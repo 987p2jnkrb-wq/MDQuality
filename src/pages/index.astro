@@ -46,6 +46,25 @@ const capabilities = [
   "Technical Documentation",
   "AI-assisted Development",
 ];
+
+const projectScreens = [
+  {
+    title: "Finance manager",
+    src: "https://raw.githubusercontent.com/987p2jnkrb-wq/MyAnalyze/main/screenshots/Manager.png",
+  },
+  {
+    title: "Statement import review",
+    src: "https://raw.githubusercontent.com/987p2jnkrb-wq/MyAnalyze/main/screenshots/ImportCSV.png",
+  },
+  {
+    title: "Monthly summary",
+    src: "https://raw.githubusercontent.com/987p2jnkrb-wq/MyAnalyze/main/screenshots/Summary.png",
+  },
+  {
+    title: "Financial goals",
+    src: "https://raw.githubusercontent.com/987p2jnkrb-wq/MyAnalyze/main/screenshots/Goals.png",
+  },
+];
 ---
 
 <!doctype html>
@@ -157,29 +176,66 @@ const capabilities = [
           <div class="project-copy">
             <p class="project-label">FEATURED PROJECT</p>
 
-            <h3>Personal Finance Application</h3>
+            <h3>MyAnalyze</h3>
 
             <p>
-              A personal finance application created to make budgeting, expense
-              tracking and financial planning clearer. The project combines product
-              thinking, application development, data handling and quality assurance.
+              An offline-first desktop application for planning, tracking and
+              reconciling personal finances. It combines manual budgeting with bank
+              statement imports, plan-versus-actual tracking, duplicate detection,
+              transfer matching and local SQLite storage.
             </p>
 
             <div class="tags">
-              <span>Web Application</span>
-              <span>Finance</span>
+              <span>React</span>
               <span>TypeScript</span>
-              <span>QA</span>
-              <span>Product Development</span>
+              <span>Node.js</span>
+              <span>SQLite</span>
+              <span>Electron</span>
+              <span>Jest</span>
+            </div>
+
+            <div class="project-actions">
+              <a
+                class="button secondary"
+                href="https://github.com/987p2jnkrb-wq/MyAnalyze"
+                target="_blank"
+                rel="noreferrer"
+              >
+                View project on GitHub
+              </a>
             </div>
           </div>
 
-          <div class="project-preview" aria-label="Finance application case study placeholder">
-            <span class="preview-kicker">MD QUALITY LAB</span>
-            <strong>Finance App</strong>
-            <small>Full case study in preparation</small>
-          </div>
+          <a
+            class="project-preview project-image-link"
+            href={projectScreens[0].src}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Open MyAnalyze finance manager screenshot"
+          >
+            <img
+              src={projectScreens[0].src}
+              alt="MyAnalyze finance manager interface"
+              loading="lazy"
+            />
+          </a>
         </article>
+
+        <div class="project-gallery" aria-label="MyAnalyze screenshots">
+          {
+            projectScreens.slice(1).map((screen) => (
+              <a
+                class="project-shot"
+                href={screen.src}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <img src={screen.src} alt={`MyAnalyze - ${screen.title}`} loading="lazy" />
+                <span>{screen.title}</span>
+              </a>
+            ))
+          }
+        </div>
       </section>
 
       <section id="about" class="section container about-section">
@@ -255,6 +311,14 @@ const capabilities = [
           <div class="contact-actions">
             <a class="button primary" href="mailto:hello@mdquality.pl">
               hello@mdquality.pl
+            </a>
+            <a
+              class="button secondary"
+              href="https://github.com/987p2jnkrb-wq"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
             </a>
             <a class="button secondary" href="#projects">See current work</a>
           </div>
@@ -584,33 +648,82 @@ const capabilities = [
     background: rgba(10, 14, 20, 0.6);
   }
 
+  .project-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+
   .project-preview {
     position: relative;
     z-index: 1;
     aspect-ratio: 4 / 3;
     border-radius: 12px;
-    background:
-      radial-gradient(circle at 25% 20%, rgba(58, 115, 172, 0.32), transparent 40%),
-      linear-gradient(145deg, #101824, #090d13 65%);
+    background: #090d13;
     border: 1px solid #202a37;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 30px;
+    overflow: hidden;
   }
 
-  .project-preview strong {
-    margin: 8px 0 4px;
-    font-size: 30px;
-    letter-spacing: -1px;
+  .project-image-link {
+    display: block;
+    transition:
+      transform 0.2s ease,
+      border-color 0.2s ease;
   }
 
-  .project-preview small {
-    font-size: 12px;
-    color: #778292;
-    font-weight: 500;
+  .project-image-link:hover {
+    transform: translateY(-3px);
+    border-color: #3b5168;
+  }
+
+  .project-preview img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: top left;
+  }
+
+  .project-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .project-shot {
+    display: block;
+    overflow: hidden;
+    border: 1px solid #1d2631;
+    border-radius: 14px;
+    background: #0d1219;
+    text-decoration: none;
+    color: #d9e0e8;
+    transition:
+      transform 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .project-shot:hover {
+    transform: translateY(-3px);
+    border-color: #3b5168;
+  }
+
+  .project-shot img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    display: block;
+    object-fit: cover;
+    object-position: top left;
+    border-bottom: 1px solid #1d2631;
+  }
+
+  .project-shot span {
+    display: block;
+    padding: 13px 15px;
+    font-size: 13px;
+    font-weight: 700;
   }
 
   .about-section {
@@ -762,7 +875,8 @@ const capabilities = [
 
     .hero-stats,
     .services-grid,
-    .project {
+    .project,
+    .project-gallery {
       grid-template-columns: 1fr;
     }
 
