@@ -1,0 +1,677 @@
+---
+const { lang = "en", type = "privacy", detectLanguage = false } = Astro.props;
+const isPl = lang === "pl";
+const isPrivacy = type === "privacy";
+
+const homePath = isPl ? "/pl/" : "/";
+const privacyPath = isPl ? "/pl/privacy/" : "/privacy/";
+const termsPath = isPl ? "/pl/terms/" : "/terms/";
+const canonical = isPrivacy ? privacyPath : termsPath;
+const canonicalUrl = "https://mdquality.pl" + canonical;
+
+const meta = isPrivacy
+  ? {
+      en: {
+        title: "Privacy Policy | MD Quality",
+        description: "Privacy, technical data and local storage information for mdquality.pl.",
+      },
+      pl: {
+        title: "Polityka prywatności | MD Quality",
+        description: "Informacje o prywatności, danych technicznych i localStorage na mdquality.pl.",
+      },
+    }
+  : {
+      en: {
+        title: "Website Terms | MD Quality",
+        description: "Terms for using the MD Quality website and contacting MD Quality about services.",
+      },
+      pl: {
+        title: "Warunki korzystania | MD Quality",
+        description: "Warunki korzystania ze strony MD Quality i kontaktowania się w sprawie usług.",
+      },
+    };
+
+const m = meta[lang] || meta.en;
+---
+
+<!doctype html>
+<html lang={lang} data-detect-language={detectLanguage ? "true" : "false"}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#080b10" />
+    <title>{m.title}</title>
+    <meta name="description" content={m.description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link
+      rel="alternate"
+      hreflang="en"
+      href={"https://mdquality.pl/" + (isPrivacy ? "privacy/" : "terms/")}
+    />
+    <link
+      rel="alternate"
+      hreflang="pl"
+      href={"https://mdquality.pl/pl/" + (isPrivacy ? "privacy/" : "terms/")}
+    />
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={"https://mdquality.pl/" + (isPrivacy ? "privacy/" : "terms/")}
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <script is:inline>
+      (() => {
+        try {
+          const root = document.documentElement;
+          if (root.dataset.detectLanguage !== "true") return;
+          const currentType = root.dataset.pageType;
+          const saved = localStorage.getItem("mdq-lang");
+          const plPath = currentType === "privacy" ? "/pl/privacy/" : "/pl/terms/";
+          if (saved === "pl") {
+            window.location.replace(plPath);
+            return;
+          }
+          if (saved === "en") return;
+          const primary = (navigator.languages?.[0] || navigator.language || "").toLowerCase();
+          if (primary.startsWith("pl")) window.location.replace(plPath);
+        } catch {}
+      })();
+    </script>
+  </head>
+
+  <body>
+    <script is:inline define:vars={{ pageType: type }}>
+      document.documentElement.dataset.pageType = pageType;
+    </script>
+
+    <header>
+      <nav class="container">
+        <a class="logo" href={homePath}>MD<span>Quality</span></a>
+
+        <div class="nav-right">
+          <div class="language-switch">
+            <a
+              class:list={[lang === "en" && "active"]}
+              href={isPrivacy ? "/privacy/" : "/terms/"}
+              data-lang="en"
+            >EN</a>
+            <span>/</span>
+            <a
+              class:list={[lang === "pl" && "active"]}
+              href={isPrivacy ? "/pl/privacy/" : "/pl/terms/"}
+              data-lang="pl"
+            >PL</a>
+          </div>
+          <a class="back" href={homePath}>{isPl ? "Wróć do strony" : "Back to website"}</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+      {
+        isPrivacy ? (
+          isPl ? (
+            <>
+              <section class="hero">
+                <p class="eyebrow">PRYWATNOŚĆ I DANE</p>
+                <h1>Polityka prywatności</h1>
+                <p class="lead">
+                  MD Quality jest prostą stroną usługową. Nie ma kont użytkowników,
+                  formularzy, newslettera, reklam ani narzędzi analitycznych.
+                </p>
+                <p class="updated">Ostatnia aktualizacja: 11 października 2026</p>
+              </section>
+
+              <section>
+                <h2>1. Administrator danych</h2>
+                <p>
+                  Administratorem danych osobowych przetwarzanych w związku z tą stroną
+                  i kontaktem dotyczącym usług jest <strong>Mikołaj Dworak</strong>,
+                  działający pod marką usługową MD Quality.
+                </p>
+                <p>
+                  Kontakt: <a href="mailto:mikolajdworak@icloud.com">mikolajdworak@icloud.com</a>.
+                </p>
+              </section>
+
+              <section>
+                <h2>2. Jakie dane mogą być przetwarzane</h2>
+                <p>
+                  Jeżeli napiszesz wiadomość e-mail, mogę przetwarzać dane, które
+                  dobrowolnie w niej podasz, w szczególności imię i nazwisko, adres
+                  e-mail, nazwę firmy, informacje o produkcie lub projekcie oraz treść
+                  korespondencji.
+                </p>
+                <p>
+                  Podczas korzystania ze strony infrastruktura techniczna może
+                  przetwarzać podstawowe dane techniczne, takie jak adres IP, czas
+                  żądania, informacje o przeglądarce oraz dane potrzebne do ochrony
+                  strony przed nadużyciami.
+                </p>
+              </section>
+
+              <section>
+                <h2>3. Cele i podstawy przetwarzania</h2>
+                <ul>
+                  <li>
+                    obsługa zapytań, przygotowanie zakresu i wyceny oraz działania
+                    przed zawarciem umowy, gdy kontakt dotyczy możliwej współpracy;
+                  </li>
+                  <li>
+                    bieżąca komunikacja, bezpieczeństwo strony oraz ochrona przed
+                    nadużyciami na podstawie uzasadnionego interesu;
+                  </li>
+                  <li>
+                    wykonanie obowiązków prawnych i rozliczeniowych, jeżeli dojdzie do
+                    płatnej współpracy;
+                  </li>
+                  <li>
+                    ustalenie, dochodzenie lub obrona roszczeń, gdy jest to konieczne.
+                  </li>
+                </ul>
+              </section>
+
+              <section>
+                <h2>4. Odbiorcy i dostawcy techniczni</h2>
+                <p>
+                  Dane mogą być przetwarzane przez dostawców infrastruktury i usług
+                  potrzebnych do działania strony lub komunikacji, w szczególności
+                  Cloudflare w zakresie hostingu, bezpieczeństwa i ruchu sieciowego
+                  oraz Apple/iCloud w zakresie poczty elektronicznej.
+                </p>
+                <p>
+                  Część obrazów projektu MyAnalyze jest obecnie pobierana z publicznej
+                  infrastruktury GitHub. Przy ich wyświetlaniu przeglądarka może
+                  połączyć się z serwerami GitHub i przekazać standardowe dane
+                  techniczne związane z takim żądaniem.
+                </p>
+                <p>
+                  Dostawcy technologiczni mogą przetwarzać dane również poza
+                  Europejskim Obszarem Gospodarczym zgodnie z mechanizmami ochrony
+                  przewidzianymi przez RODO.
+                </p>
+              </section>
+
+              <section>
+                <h2>5. Cookies i localStorage</h2>
+                <p>
+                  MD Quality nie używa Google Analytics, Meta Pixel, Hotjar ani innych
+                  narzędzi reklamowych lub profilujących. Strona nie ustawia własnych
+                  marketingowych ani analitycznych plików cookie.
+                </p>
+                <p>
+                  Po ręcznym wyborze języka strona zapisuje w localStorage wyłącznie
+                  wartość <code>mdq-lang</code>, aby przy kolejnej wizycie zachować
+                  wybrany język. Nie służy to do śledzenia ani profilowania. Wartość
+                  można usunąć przez wyczyszczenie danych witryny w ustawieniach
+                  przeglądarki.
+                </p>
+              </section>
+
+              <section>
+                <h2>6. Jak długo dane są przechowywane</h2>
+                <p>
+                  Korespondencja związana z zapytaniem jest przechowywana przez czas
+                  potrzebny do jego obsługi. Jeżeli nie dochodzi do współpracy, zwykle
+                  nie dłużej niż 12 miesięcy, chyba że dłuższe przechowanie jest
+                  uzasadnione bezpieczeństwem lub możliwością ustalenia i obrony
+                  roszczeń.
+                </p>
+                <p>
+                  Dane związane z zawartą współpracą i rozliczeniami mogą być
+                  przechowywane przez okres wynikający z obowiązujących przepisów.
+                </p>
+              </section>
+
+              <section>
+                <h2>7. Twoje prawa</h2>
+                <p>
+                  W zależności od podstawy przetwarzania możesz żądać dostępu do
+                  danych, ich sprostowania, usunięcia, ograniczenia przetwarzania lub
+                  przeniesienia, a także wnieść sprzeciw wobec przetwarzania opartego
+                  na uzasadnionym interesie.
+                </p>
+                <p>
+                  Możesz również złożyć skargę do Prezesa Urzędu Ochrony Danych
+                  Osobowych.
+                </p>
+              </section>
+
+              <section>
+                <h2>8. Brak profilowania</h2>
+                <p>
+                  Dane nie są wykorzystywane do zautomatyzowanego podejmowania decyzji
+                  ani profilowania marketingowego.
+                </p>
+              </section>
+            </>
+          ) : (
+            <>
+              <section class="hero">
+                <p class="eyebrow">PRIVACY & DATA</p>
+                <h1>Privacy Policy</h1>
+                <p class="lead">
+                  MD Quality is a simple service website. It does not use user
+                  accounts, contact forms, newsletters, advertising or analytics tools.
+                </p>
+                <p class="updated">Last updated: 11 October 2026</p>
+              </section>
+
+              <section>
+                <h2>1. Data controller</h2>
+                <p>
+                  The controller of personal data processed in connection with this
+                  website and service enquiries is <strong>Mikołaj Dworak</strong>,
+                  operating the MD Quality service brand.
+                </p>
+                <p>
+                  Contact: <a href="mailto:mikolajdworak@icloud.com">mikolajdworak@icloud.com</a>.
+                </p>
+              </section>
+
+              <section>
+                <h2>2. Data that may be processed</h2>
+                <p>
+                  If you contact me by email, I may process information you provide
+                  voluntarily, including your name, email address, company name,
+                  product or project information and the content of your message.
+                </p>
+                <p>
+                  When you use the website, technical infrastructure may process basic
+                  technical information such as IP address, request time, browser
+                  information and data required to protect the website against abuse.
+                </p>
+              </section>
+
+              <section>
+                <h2>3. Purposes and legal bases</h2>
+                <ul>
+                  <li>
+                    handling enquiries, preparing scope and quotations and taking
+                    steps before entering into an agreement;
+                  </li>
+                  <li>
+                    communication, website security and abuse prevention based on
+                    legitimate interests;
+                  </li>
+                  <li>
+                    compliance with legal and accounting obligations if paid work is
+                    agreed;
+                  </li>
+                  <li>
+                    establishing, pursuing or defending legal claims where necessary.
+                  </li>
+                </ul>
+              </section>
+
+              <section>
+                <h2>4. Recipients and technical providers</h2>
+                <p>
+                  Data may be processed by providers necessary for website operation
+                  and communication, including Cloudflare for hosting, security and
+                  network traffic and Apple/iCloud for email communication.
+                </p>
+                <p>
+                  Some MyAnalyze project images are currently loaded from public GitHub
+                  infrastructure. When they are displayed, your browser may connect to
+                  GitHub servers and transmit standard technical information associated
+                  with that request.
+                </p>
+                <p>
+                  Technology providers may process data outside the European Economic
+                  Area using safeguards available under the GDPR.
+                </p>
+              </section>
+
+              <section>
+                <h2>5. Cookies and localStorage</h2>
+                <p>
+                  MD Quality does not use Google Analytics, Meta Pixel, Hotjar or other
+                  advertising or profiling tools. The website does not set its own
+                  marketing or analytics cookies.
+                </p>
+                <p>
+                  When you manually choose a language, the website stores only the
+                  <code>mdq-lang</code> value in localStorage so your choice can be
+                  preserved on later visits. It is not used for tracking or profiling.
+                  You can remove it by clearing site data in your browser settings.
+                </p>
+              </section>
+
+              <section>
+                <h2>6. Retention</h2>
+                <p>
+                  Enquiry correspondence is kept for as long as necessary to handle the
+                  enquiry. If no cooperation follows, it is normally retained for no
+                  longer than 12 months unless a longer period is justified by security
+                  needs or the establishment and defence of legal claims.
+                </p>
+                <p>
+                  Data related to an agreed engagement and billing may be retained for
+                  periods required by applicable law.
+                </p>
+              </section>
+
+              <section>
+                <h2>7. Your rights</h2>
+                <p>
+                  Depending on the legal basis, you may request access, rectification,
+                  erasure, restriction or portability of your data and may object to
+                  processing based on legitimate interests.
+                </p>
+                <p>
+                  You may also lodge a complaint with the President of the Polish
+                  Personal Data Protection Office.
+                </p>
+              </section>
+
+              <section>
+                <h2>8. No profiling</h2>
+                <p>
+                  Personal data is not used for automated decision-making or marketing
+                  profiling.
+                </p>
+              </section>
+            </>
+          )
+        ) : isPl ? (
+          <>
+            <section class="hero">
+              <p class="eyebrow">WARUNKI KORZYSTANIA</p>
+              <h1>Warunki korzystania ze strony</h1>
+              <p class="lead">
+                Krótkie zasady dotyczące strony MD Quality i kontaktowania się w
+                sprawie usług.
+              </p>
+              <p class="updated">Ostatnia aktualizacja: 11 października 2026</p>
+            </section>
+
+            <section>
+              <h2>1. Operator strony</h2>
+              <p>
+                MD Quality jest marką usługową używaną przez <strong>Mikołaja Dworaka</strong>.
+                Nie jest odrębną osobą prawną.
+              </p>
+              <p>
+                Kontakt elektroniczny:
+                <a href="mailto:mikolajdworak@icloud.com">mikolajdworak@icloud.com</a>.
+              </p>
+              <p>
+                Forma prawna i rozliczeniowa konkretnego zlecenia jest uzgadniana
+                indywidualnie przed rozpoczęciem płatnej pracy.
+              </p>
+            </section>
+
+            <section>
+              <h2>2. Charakter strony</h2>
+              <p>
+                Strona ma charakter informacyjny i prezentuje możliwy zakres usług.
+                Samo korzystanie ze strony, wysłanie wiadomości lub kliknięcie przycisku
+                kontaktowego nie powoduje zawarcia umowy.
+              </p>
+              <p>
+                Zakres, rezultat, termin, cena, forma współpracy oraz zasady rozliczenia
+                są uzgadniane indywidualnie i wymagają odrębnego potwierdzenia.
+              </p>
+            </section>
+
+            <section>
+              <h2>3. Dla kogo są usługi</h2>
+              <p>
+                Oferta jest kierowana przede wszystkim do firm, founderów i zespołów
+                produktowych. Inne zgodne z prawem formy współpracy mogą być rozważone
+                indywidualnie, zależnie od rzeczywistego charakteru zlecenia.
+              </p>
+              <p>
+                Jeżeli do współpracy mają zastosowanie bezwzględnie obowiązujące prawa
+                konsumenta, niniejsze warunki ich nie ograniczają.
+              </p>
+            </section>
+
+            <section>
+              <h2>4. Wymagania techniczne</h2>
+              <p>
+                Do korzystania ze strony wystarcza urządzenie z dostępem do internetu
+                i aktualna przeglądarka obsługująca standardowy HTML, CSS i JavaScript.
+                Nie jest wymagane zakładanie konta.
+              </p>
+            </section>
+
+            <section>
+              <h2>5. Treści i własność intelektualna</h2>
+              <p>
+                Treści strony, układ, teksty i materiały MD Quality mogą być chronione
+                prawami własności intelektualnej. Nie należy ich kopiować lub
+                rozpowszechniać jako własnych bez odpowiedniej podstawy prawnej lub zgody.
+              </p>
+              <p>
+                Przykładowy raport QA jest demonstracją. Jest fikcyjny, nie przedstawia
+                prawdziwego klienta i nie zawiera danych klienta.
+              </p>
+            </section>
+
+            <section>
+              <h2>6. Linki zewnętrzne</h2>
+              <p>
+                Strona może prowadzić do zewnętrznych serwisów, między innymi LinkedIn
+                i GitHub. Po przejściu do takiego serwisu obowiązują jego własne zasady
+                i polityki.
+              </p>
+            </section>
+
+            <section>
+              <h2>7. Dostępność i bezpieczeństwo</h2>
+              <p>
+                Dokładam rozsądnych starań, aby strona była dostępna i bezpieczna,
+                jednak mogą występować przerwy techniczne, aktualizacje lub błędy.
+                Zabronione jest podejmowanie działań mających zakłócić działanie strony
+                albo uzyskać nieuprawniony dostęp do infrastruktury.
+              </p>
+            </section>
+
+            <section>
+              <h2>8. Zgłoszenia dotyczące strony</h2>
+              <p>
+                Problemy techniczne lub uwagi dotyczące działania strony można
+                przesłać na
+                <a href="mailto:mikolajdworak@icloud.com">mikolajdworak@icloud.com</a>.
+                Zgłoszenia będą rozpatrywane w rozsądnym terminie.
+              </p>
+            </section>
+
+            <section>
+              <h2>9. Zmiany warunków</h2>
+              <p>
+                Warunki mogą być aktualizowane wraz ze zmianą funkcjonalności strony
+                lub sposobu świadczenia usług. Aktualna wersja jest publikowana na tej
+                stronie wraz z datą ostatniej aktualizacji.
+              </p>
+            </section>
+          </>
+        ) : (
+          <>
+            <section class="hero">
+              <p class="eyebrow">WEBSITE TERMS</p>
+              <h1>Website Terms</h1>
+              <p class="lead">
+                Short rules for using the MD Quality website and contacting MD Quality
+                about services.
+              </p>
+              <p class="updated">Last updated: 11 October 2026</p>
+            </section>
+
+            <section>
+              <h2>1. Website operator</h2>
+              <p>
+                MD Quality is a service brand used by <strong>Mikołaj Dworak</strong>.
+                It is not a separate legal entity.
+              </p>
+              <p>
+                Electronic contact:
+                <a href="mailto:mikolajdworak@icloud.com">mikolajdworak@icloud.com</a>.
+              </p>
+              <p>
+                The legal and billing form applicable to a specific paid engagement is
+                agreed individually before work begins.
+              </p>
+            </section>
+
+            <section>
+              <h2>2. Nature of the website</h2>
+              <p>
+                This website is informational and describes possible service scopes.
+                Visiting the website, sending an email or clicking a contact button
+                does not by itself create a contract.
+              </p>
+              <p>
+                Scope, deliverables, timing, price, cooperation form and billing rules
+                are agreed individually and require separate confirmation.
+              </p>
+            </section>
+
+            <section>
+              <h2>3. Intended clients</h2>
+              <p>
+                The offer is aimed primarily at businesses, founders and product teams.
+                Other lawful cooperation models may be considered individually
+                depending on the actual nature of the engagement.
+              </p>
+              <p>
+                Where mandatory consumer rights apply, these terms do not limit them.
+              </p>
+            </section>
+
+            <section>
+              <h2>4. Technical requirements</h2>
+              <p>
+                You only need an internet-connected device and a current browser
+                supporting standard HTML, CSS and JavaScript. No user account is
+                required.
+              </p>
+            </section>
+
+            <section>
+              <h2>5. Content and intellectual property</h2>
+              <p>
+                The MD Quality website layout, texts and materials may be protected by
+                intellectual property rights. They should not be copied or presented as
+                your own without an appropriate legal basis or permission.
+              </p>
+              <p>
+                The sample QA report is a demonstration. It is fictional, does not
+                represent a real client and contains no client data.
+              </p>
+            </section>
+
+            <section>
+              <h2>6. External links</h2>
+              <p>
+                The website may link to third-party services including LinkedIn and
+                GitHub. Their own terms and privacy policies apply after you visit them.
+              </p>
+            </section>
+
+            <section>
+              <h2>7. Availability and security</h2>
+              <p>
+                Reasonable efforts are made to keep the website available and secure,
+                but technical interruptions, maintenance or errors may occur. You must
+                not attempt to disrupt the website or gain unauthorized access to its
+                infrastructure.
+              </p>
+            </section>
+
+            <section>
+              <h2>8. Website issues</h2>
+              <p>
+                Technical problems or website-related complaints can be sent to
+                <a href="mailto:mikolajdworak@icloud.com">mikolajdworak@icloud.com</a>.
+                They will be reviewed within a reasonable time.
+              </p>
+            </section>
+
+            <section>
+              <h2>9. Changes</h2>
+              <p>
+                These terms may be updated when the website functionality or service
+                model changes. The current version is published here with its last
+                update date.
+              </p>
+            </section>
+          </>
+        )
+      }
+    </main>
+
+    <footer class="container">
+      <div>
+        <a class="logo" href={homePath}>MD<span>Quality</span></a>
+        <p>© {new Date().getFullYear()} Mikołaj Dworak</p>
+      </div>
+      <div class="footer-links">
+        <a href={privacyPath}>{isPl ? "Polityka prywatności" : "Privacy"}</a>
+        <a href={termsPath}>{isPl ? "Warunki korzystania" : "Website terms"}</a>
+      </div>
+    </footer>
+
+    <script is:inline>
+      document.querySelectorAll("[data-lang]").forEach((link) => {
+        link.addEventListener("click", () => {
+          try {
+            localStorage.setItem("mdq-lang", link.getAttribute("data-lang") || "en");
+          } catch {}
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  :global(*) { box-sizing: border-box; }
+  :global(body) {
+    margin: 0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: radial-gradient(circle at 80% 5%, rgba(63,142,196,.11), transparent 28%), #080b10;
+    color: #f4f7fb;
+    line-height: 1.7;
+  }
+  .container { width: min(900px, calc(100% - 40px)); margin: 0 auto; }
+  header { border-bottom: 1px solid #18212b; background: rgba(8,11,16,.92); }
+  nav { min-height: 70px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .logo { color: white; font-size: 20px; font-weight: 850; text-decoration: none; letter-spacing: -.6px; }
+  .logo span { color: #7dd3fc; }
+  .nav-right, .language-switch, .footer-links { display: flex; align-items: center; gap: 16px; }
+  .language-switch { gap: 6px; color: #465569; font-size: 12px; }
+  .language-switch a, .back, .footer-links a { color: #91a0b2; text-decoration: none; }
+  .language-switch a { font-weight: 800; }
+  .language-switch a.active, .language-switch a:hover, .back:hover, .footer-links a:hover { color: white; }
+  .back { font-size: 13px; }
+
+  main { padding-bottom: 75px; }
+  .hero { padding: 90px 0 58px; border-top: 0; }
+  .eyebrow { color: #7dd3fc; font-size: 10px; font-weight: 850; letter-spacing: 1.7px; }
+  h1 { margin: 7px 0 20px; font-size: clamp(44px, 7vw, 70px); line-height: 1; letter-spacing: -3px; }
+  .lead { max-width: 720px; font-size: 18px; color: #a7b2c0; }
+  .updated { color: #647285; font-size: 12px; margin-top: 24px; }
+
+  section { padding: 38px 0; border-top: 1px solid #18212b; }
+  section h2 { margin: 0 0 15px; font-size: 24px; letter-spacing: -.5px; }
+  section p, section li { color: #9ba8b8; font-size: 15px; }
+  section ul { margin: 14px 0 0; padding-left: 21px; }
+  section li + li { margin-top: 8px; }
+  section a { color: #a9ddf6; }
+  code { color: #cceeff; background: #101821; border: 1px solid #253344; border-radius: 5px; padding: 2px 5px; }
+
+  footer { padding: 32px 0; border-top: 1px solid #18212b; display: flex; justify-content: space-between; align-items: center; gap: 24px; color: #657286; font-size: 12px; }
+  footer p { margin: 5px 0 0; }
+  .footer-links { flex-wrap: wrap; justify-content: flex-end; }
+
+  @media (max-width: 640px) {
+    .container { width: min(100% - 30px, 900px); }
+    .back { display: none; }
+    .hero { padding-top: 70px; }
+    footer { flex-direction: column; align-items: flex-start; }
+    .footer-links { justify-content: flex-start; }
+  }
+</style>
