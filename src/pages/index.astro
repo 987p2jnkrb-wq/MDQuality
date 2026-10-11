@@ -49,22 +49,26 @@ const capabilities = [
 
 const projectScreens = [
   {
-    title: "Finance manager",
-    src: "https://raw.githubusercontent.com/987p2jnkrb-wq/MyAnalyze/main/screenshots/Manager.png",
+    title: "MyAnalyze dashboard",
+    src: "https://github.com/987p2jnkrb-wq/MyAnalyze-releases/releases/download/v2.0.0/screenshots.release.png",
   },
   {
-    title: "Statement import review",
-    src: "https://raw.githubusercontent.com/987p2jnkrb-wq/MyAnalyze/main/screenshots/ImportCSV.png",
+    title: "Finance Manager",
+    src: "https://github.com/987p2jnkrb-wq/MyAnalyze-releases/releases/download/v2.0.0/screenshots.release2.png",
   },
   {
-    title: "Monthly summary",
-    src: "https://raw.githubusercontent.com/987p2jnkrb-wq/MyAnalyze/main/screenshots/Summary.png",
+    title: "Financial analysis",
+    src: "https://github.com/987p2jnkrb-wq/MyAnalyze-releases/releases/download/v2.0.0/screenshots.release.3.png",
   },
   {
-    title: "Financial goals",
-    src: "https://raw.githubusercontent.com/987p2jnkrb-wq/MyAnalyze/main/screenshots/Goals.png",
+    title: "Application overview",
+    src: "https://github.com/987p2jnkrb-wq/MyAnalyze-releases/releases/download/v2.0.0/screenshots.release.4.png",
   },
 ];
+
+const myAnalyzePublicUrl = "https://github.com/987p2jnkrb-wq/MyAnalyze-releases";
+const myAnalyzeReleaseUrl =
+  "https://github.com/987p2jnkrb-wq/MyAnalyze-releases/releases/tag/v2.0.0";
 ---
 
 <!doctype html>
@@ -176,13 +180,14 @@ const projectScreens = [
           <div class="project-copy">
             <p class="project-label">FEATURED PROJECT</p>
 
-            <h3>MyAnalyze</h3>
+            <h3>MyAnalyze 2.0.0</h3>
 
             <p>
-              An offline-first desktop application for planning, tracking and
-              reconciling personal finances. It combines manual budgeting with bank
-              statement imports, plan-versus-actual tracking, duplicate detection,
-              transfer matching and local SQLite storage.
+              An offline-first Windows application for planning, tracking and
+              analysing personal finances. The current release combines accounts,
+              transactions, statement imports, forecasts, configurable KPIs,
+              financial analysis, goals and local data storage in one desktop
+              workspace.
             </p>
 
             <div class="tags">
@@ -197,11 +202,19 @@ const projectScreens = [
             <div class="project-actions">
               <a
                 class="button secondary"
-                href="https://github.com/987p2jnkrb-wq/MyAnalyze"
+                href={myAnalyzePublicUrl}
                 target="_blank"
                 rel="noreferrer"
               >
-                View project on GitHub
+                Public project page
+              </a>
+              <a
+                class="button secondary"
+                href={myAnalyzeReleaseUrl}
+                target="_blank"
+                rel="noreferrer"
+              >
+                Release 2.0.0
               </a>
             </div>
           </div>
@@ -211,11 +224,11 @@ const projectScreens = [
             href={projectScreens[0].src}
             target="_blank"
             rel="noreferrer"
-            aria-label="Open MyAnalyze finance manager screenshot"
+            aria-label="Open MyAnalyze 2.0.0 dashboard screenshot"
           >
             <img
               src={projectScreens[0].src}
-              alt="MyAnalyze finance manager interface"
+              alt="MyAnalyze 2.0.0 dashboard interface"
               loading="lazy"
             />
           </a>
@@ -305,12 +318,16 @@ const projectScreens = [
 
           <p>
             I'm open to QA, application support, integrations, automation,
-            web application development and B2B cooperation.
+            web application development and B2B cooperation. For project inquiries,
+            estimates or cooperation, you can use either address below.
           </p>
 
           <div class="contact-actions">
             <a class="button primary" href="mailto:hello@mdquality.pl">
               hello@mdquality.pl
+            </a>
+            <a class="button secondary" href="mailto:mikolajdworak@icloud.com">
+              mikolajdworak@icloud.com
             </a>
             <a
               class="button secondary"
@@ -322,11 +339,11 @@ const projectScreens = [
             </a>
             <a
               class="button secondary"
-              href="https://github.com/987p2jnkrb-wq"
+              href="https://github.com/987p2jnkrb-wq/MyAnalyze-releases"
               target="_blank"
               rel="noreferrer"
             >
-              GitHub
+              Public GitHub
             </a>
             <a class="button secondary" href="#projects">See current work</a>
           </div>
