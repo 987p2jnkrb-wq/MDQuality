@@ -13,7 +13,7 @@ const recipient = "mikolajdworak@icloud.com";
 
   <form data-brief-form>
     <label for="brief-product">
-      {pl ? "Strona lub aplikacja (opcjonalnie)" : "Website or application (optional)"}
+      {pl ? "Produkt, aplikacja lub proces (opcjonalnie)" : "Product, application or process (optional)"}
     </label>
     <input
       id="brief-product"
@@ -21,11 +21,11 @@ const recipient = "mikolajdworak@icloud.com";
       type="text"
       maxlength="200"
       autocomplete="off"
-      placeholder={pl ? "Link lub nazwa aplikacji" : "A link or application name"}
+      placeholder={pl ? "Link, nazwa aplikacji albo proces" : "A link, application name or process"}
     />
 
     <label for="brief-problem">
-      {pl ? "Wiadomość" : "Message"}
+      {pl ? "Co chcesz sprawdzić lub usprawnić?" : "What would you like checked or improved?"}
     </label>
     <textarea
       id="brief-problem"
@@ -34,8 +34,8 @@ const recipient = "mikolajdworak@icloud.com";
       required
       maxlength="1200"
       placeholder={pl
-        ? "Np. odbieram stronę od wykonawcy i chcę sprawdzić formularz kontaktowy, rejestrację oraz najważniejszą ścieżkę klienta."
-        : "For example: I am accepting a website from a developer and want the enquiry form, registration and the main customer journey checked."}
+        ? "Np. odbieram stronę od wykonawcy i chcę sprawdzić kluczowe ścieżki albo mam ręczny proces, który chcę zautomatyzować lub wesprzeć AI."
+        : "For example: I am accepting a website from a developer and want key journeys checked, or I have a manual process I want to automate or support with AI."}
     ></textarea>
 
     <label for="brief-timeline">
@@ -104,7 +104,7 @@ const recipient = "mikolajdworak@icloud.com";
       if (product) {
         lines.push((pl ? 'Strona lub aplikacja: ' : 'Website or application: ') + product);
       }
-      lines.push((pl ? 'Co chcę sprawdzić: ' : 'What I would like checked: ') + problem);
+      lines.push((pl ? 'Co chcę sprawdzić lub usprawnić: ' : 'What I would like checked or improved: ') + problem);
       if (timeline) {
         lines.push((pl ? 'Termin / oczekiwanie: ' : 'Timing: ') + timeline);
       }
