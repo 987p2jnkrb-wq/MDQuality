@@ -1,0 +1,389 @@
+---
+const { lang = "en", detectLanguage = false } = Astro.props;
+
+const copy = {
+  en: {
+    title: "Sample QA Release Readiness Report | MD Quality",
+    description: "A fictional demonstration of a concise QA release-readiness report from MD Quality.",
+    back: "Back to MD Quality",
+    eyebrow: "DEMONSTRATION DELIVERABLE",
+    heading: "Sample QA Release Readiness Report",
+    lead:
+      "This is a fictional example created only to show the structure and level of detail a client handover can contain. It is not a real client report and contains no client data.",
+    scenarioLabel: "Example scenario",
+    scenario:
+      "Fictional SaaS checkout release with web UI, account creation and payment API changes.",
+    executive: "EXECUTIVE SUMMARY",
+    recommendationHeading: "Release recommendation: Conditional",
+    riskLabel: "OVERALL RISK",
+    riskValue: "Medium",
+    riskText:
+      "Core purchase flow works, but one payment retry defect should be resolved before the release is promoted to all users.",
+    blockerLabel: "BLOCKING ITEM",
+    blockerValue: "1 high-risk finding",
+    blockerText:
+      "Retrying a failed payment can create a duplicate order record in one edge case.",
+    recLabel: "RECOMMENDATION",
+    recValue: "Fix + targeted regression",
+    recText:
+      "Resolve the high-risk finding, rerun checkout regression and verify API idempotency.",
+    scope: "SCOPE",
+    scopeHeading: "What was checked",
+    scopeItems: [
+      ["Web flows", "Guest checkout, registered checkout, account creation and order confirmation."],
+      ["API behaviour", "Payment request, retry handling, error responses and order status update."],
+      ["Regression", "Existing discount code, tax calculation, cart persistence and confirmation email."],
+      ["Browsers", "Current Chrome and Edge desktop plus a compact mobile viewport smoke check."],
+    ],
+    findings: "FINDINGS",
+    findingsHeading: "Prioritized issues",
+    table: ["ID", "Severity", "Area", "Finding", "Recommended action"],
+    rows: [
+      ["QA-01", "High", "Payments", "Retry after timeout can create a duplicate order record.", "Add idempotency protection and rerun retry-path regression.", "high"],
+      ["QA-02", "Medium", "Checkout UI", "Error message disappears after navigating back to payment step.", "Persist the validation state until the user changes payment data.", "medium"],
+      ["QA-03", "Medium", "API", "One validation error returns a generic 500 instead of a 4xx response.", "Return a client-safe validation response and add an API regression check.", "medium"],
+      ["QA-04", "Low", "Mobile", "Order summary wraps awkwardly at a narrow viewport.", "Adjust responsive spacing before the next UI polish pass.", "low"],
+    ],
+    handover: "EVIDENCE & HANDOVER",
+    handoverHeading: "What the client receives",
+    handoverItems: [
+      ["Reproduction steps", "Short, repeatable steps for each actionable finding."],
+      ["Evidence", "Screenshots, request/response samples or logs where they add value."],
+      ["Risk notes", "What is known, what remains uncertain and what should be retested."],
+      ["Next actions", "A prioritized list that makes the handover useful to developers and product owners."],
+    ],
+    decision: "RELEASE DECISION",
+    decisionHeading: "Proceed after QA-01 is fixed and the payment retry path passes regression.",
+    decisionText:
+      "Remaining medium and low findings can be accepted only if the product owner explicitly agrees to the documented risk.",
+    cta: "Request a Quick QA Review",
+    footer: "Fictional sample report · No client data",
+  },
+  pl: {
+    title: "Przykładowy raport gotowości do wdrożenia | MD Quality",
+    description: "Fikcyjny przykład zwięzłego raportu QA przed wdrożeniem przygotowanego w stylu MD Quality.",
+    back: "Wróć do MD Quality",
+    eyebrow: "PRZYKŁADOWY REZULTAT",
+    heading: "Przykładowy raport gotowości do wdrożenia",
+    lead:
+      "To fikcyjny przykład stworzony wyłącznie po to, aby pokazać strukturę i poziom szczegółowości raportu przekazywanego klientowi. Nie jest to raport prawdziwego klienta i nie zawiera żadnych danych klienta.",
+    scenarioLabel: "Przykładowy scenariusz",
+    scenario:
+      "Fikcyjne wdrożenie checkoutu SaaS ze zmianami w UI, tworzeniu konta i API płatności.",
+    executive: "PODSUMOWANIE",
+    recommendationHeading: "Rekomendacja wdrożenia: warunkowo",
+    riskLabel: "RYZYKO OGÓLNE",
+    riskValue: "Średnie",
+    riskText:
+      "Podstawowy proces zakupu działa, ale jeden błąd przy ponowieniu płatności powinien zostać naprawiony przed udostępnieniem wersji wszystkim użytkownikom.",
+    blockerLabel: "PROBLEM BLOKUJĄCY",
+    blockerValue: "1 problem wysokiego ryzyka",
+    blockerText:
+      "Ponowienie nieudanej płatności może w jednym przypadku brzegowym utworzyć duplikat zamówienia.",
+    recLabel: "REKOMENDACJA",
+    recValue: "Poprawka + ukierunkowana regresja",
+    recText:
+      "Naprawić problem wysokiego ryzyka, powtórzyć regresję checkoutu i zweryfikować idempotencję API.",
+    scope: "ZAKRES",
+    scopeHeading: "Co zostało sprawdzone",
+    scopeItems: [
+      ["Ścieżki webowe", "Zakup bez konta, zakup po zalogowaniu, tworzenie konta i potwierdzenie zamówienia."],
+      ["Zachowanie API", "Request płatności, obsługa ponowień, odpowiedzi błędów i aktualizacja statusu zamówienia."],
+      ["Regresja", "Kod rabatowy, kalkulacja podatku, zachowanie koszyka i wiadomość potwierdzająca."],
+      ["Przeglądarki", "Aktualny Chrome i Edge na desktopie oraz szybki smoke test na małym widoku mobilnym."],
+    ],
+    findings: "PROBLEMY",
+    findingsHeading: "Problemy według priorytetu",
+    table: ["ID", "Ważność", "Obszar", "Problem", "Rekomendowane działanie"],
+    rows: [
+      ["QA-01", "Wysokie", "Płatności", "Ponowienie po timeout może utworzyć duplikat zamówienia.", "Dodać ochronę idempotencyjną i ponownie sprawdzić ścieżkę ponowienia.", "high"],
+      ["QA-02", "Średnie", "UI checkoutu", "Komunikat błędu znika po powrocie do kroku płatności.", "Utrzymać stan walidacji do czasu zmiany danych płatności.", "medium"],
+      ["QA-03", "Średnie", "API", "Jeden błąd walidacji zwraca ogólne 500 zamiast odpowiedzi 4xx.", "Zwracać bezpieczną odpowiedź walidacyjną i dodać test regresji API.", "medium"],
+      ["QA-04", "Niskie", "Mobile", "Podsumowanie zamówienia źle zawija się na wąskim widoku.", "Poprawić responsywne odstępy przy kolejnej korekcie UI.", "low"],
+    ],
+    handover: "DOWODY I PRZEKAZANIE",
+    handoverHeading: "Co otrzymuje klient",
+    handoverItems: [
+      ["Kroki reprodukcji", "Krótkie, powtarzalne kroki dla każdego problemu wymagającego działania."],
+      ["Dowody", "Screeny, przykłady request/response lub logi tam, gdzie mają wartość."],
+      ["Opis ryzyka", "Co wiadomo, co pozostaje niepewne i co trzeba ponownie sprawdzić."],
+      ["Kolejne kroki", "Lista priorytetów, dzięki której raport jest użyteczny dla wykonawcy systemu i właściciela produktu."],
+    ],
+    decision: "DECYZJA O WDROŻENIU",
+    decisionHeading: "Wdrażać po naprawie QA-01 i przejściu regresji ścieżki ponowienia płatności.",
+    decisionText:
+      "Pozostałe problemy średniego i niskiego ryzyka można zaakceptować tylko wtedy, gdy właściciel produktu świadomie akceptuje opisane ryzyko.",
+    cta: "Zamów szybki audyt QA",
+    footer: "Fikcyjny przykładowy raport · Bez danych klienta",
+  },
+};
+
+const t = copy[lang] || copy.en;
+const canonical =
+  lang === "pl"
+    ? "https://mdquality.pl/pl/sample-qa-report/"
+    : "https://mdquality.pl/sample-qa-report/";
+const homePath = lang === "pl" ? "/pl/" : "/";
+const quoteMailto =
+  lang === "pl"
+    ? "mailto:hello@mdquality.pl?subject=Szybki%20audyt%20QA%20%2F%20wycena%20B2B"
+    : "mailto:hello@mdquality.pl?subject=Quick%20QA%20review%20%2F%20B2B%20quote";
+---
+
+<!doctype html>
+<html lang={lang} data-detect-language={detectLanguage ? "true" : "false"}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#080b10" />
+    <title>{t.title}</title>
+    <meta name="description" content={t.description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="en" href="https://mdquality.pl/sample-qa-report/" />
+    <link rel="alternate" hreflang="pl" href="https://mdquality.pl/pl/sample-qa-report/" />
+    <link rel="alternate" hreflang="x-default" href="https://mdquality.pl/sample-qa-report/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+
+    <script is:inline>
+      (() => {
+        try {
+          const root = document.documentElement;
+          if (root.dataset.detectLanguage !== "true") return;
+
+          const saved = localStorage.getItem("mdq-lang");
+          if (saved === "pl") {
+            window.location.replace("/pl/sample-qa-report/");
+            return;
+          }
+          if (saved === "en") return;
+
+          const primary = (navigator.languages?.[0] || navigator.language || "").toLowerCase();
+          if (primary.startsWith("pl")) {
+            window.location.replace("/pl/sample-qa-report/");
+          }
+        } catch {}
+      })();
+    </script>
+  </head>
+
+  <body>
+    <header>
+      <nav class="container">
+        <a class="logo" href={homePath}>MD<span>Quality</span></a>
+        <div class="report-nav">
+          <div class="language-switch">
+            <a class:list={[lang === "en" && "active"]} href="/sample-qa-report/" data-lang="en">EN</a>
+            <span>/</span>
+            <a class:list={[lang === "pl" && "active"]} href="/pl/sample-qa-report/" data-lang="pl">PL</a>
+          </div>
+          <a class="back-link" href={homePath}>{t.back}</a>
+        </div>
+      </nav>
+    </header>
+
+    <main class="container">
+      <section class="intro">
+        <p class="eyebrow">{t.eyebrow}</p>
+        <h1>{t.heading}</h1>
+        <p class="lead">{t.lead}</p>
+
+        <div class="notice">
+          <strong>{t.scenarioLabel}</strong>
+          <span>{t.scenario}</span>
+        </div>
+      </section>
+
+      <section class="report-section">
+        <div class="section-title">
+          <span>01</span>
+          <div>
+            <p>{t.executive}</p>
+            <h2>{t.recommendationHeading}</h2>
+          </div>
+        </div>
+
+        <div class="summary-grid">
+          <article>
+            <span class="label">{t.riskLabel}</span>
+            <strong>{t.riskValue}</strong>
+            <p>{t.riskText}</p>
+          </article>
+          <article>
+            <span class="label">{t.blockerLabel}</span>
+            <strong>{t.blockerValue}</strong>
+            <p>{t.blockerText}</p>
+          </article>
+          <article>
+            <span class="label">{t.recLabel}</span>
+            <strong>{t.recValue}</strong>
+            <p>{t.recText}</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="report-section">
+        <div class="section-title">
+          <span>02</span>
+          <div>
+            <p>{t.scope}</p>
+            <h2>{t.scopeHeading}</h2>
+          </div>
+        </div>
+
+        <div class="scope-grid">
+          {t.scopeItems.map(([title, text]) => (
+            <div>
+              <strong>{title}</strong>
+              <p>{text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section class="report-section">
+        <div class="section-title">
+          <span>03</span>
+          <div>
+            <p>{t.findings}</p>
+            <h2>{t.findingsHeading}</h2>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>{t.table.map((item) => <th>{item}</th>)}</tr>
+            </thead>
+            <tbody>
+              {t.rows.map(([id, severity, area, finding, action, level]) => (
+                <tr>
+                  <td>{id}</td>
+                  <td><span class:list={["severity", level]}>{severity}</span></td>
+                  <td>{area}</td>
+                  <td>{finding}</td>
+                  <td>{action}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="report-section">
+        <div class="section-title">
+          <span>04</span>
+          <div>
+            <p>{t.handover}</p>
+            <h2>{t.handoverHeading}</h2>
+          </div>
+        </div>
+
+        <div class="handover-grid">
+          {t.handoverItems.map(([title, text]) => (
+            <article>
+              <strong>{title}</strong>
+              <p>{text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="report-section decision">
+        <div>
+          <p class="eyebrow">{t.decision}</p>
+          <h2>{t.decisionHeading}</h2>
+          <p>{t.decisionText}</p>
+        </div>
+        <a class="button" href={quoteMailto}>{t.cta}</a>
+      </section>
+    </main>
+
+    <footer class="container">
+      <div class="logo">MD<span>Quality</span></div>
+      <p>{t.footer}</p>
+    </footer>
+
+    <script is:inline>
+      document.querySelectorAll("[data-lang]").forEach((link) => {
+        link.addEventListener("click", () => {
+          try {
+            localStorage.setItem("mdq-lang", link.getAttribute("data-lang") || "en");
+          } catch {}
+        });
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  :global(*) { box-sizing: border-box; }
+  :global(body) {
+    margin: 0;
+    font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: radial-gradient(circle at 85% 5%, rgba(67,140,190,.12), transparent 28%), #080b10;
+    color: #f4f7fb;
+    line-height: 1.6;
+  }
+  .container { width: min(1080px, calc(100% - 40px)); margin: 0 auto; }
+  header { border-bottom: 1px solid #18212b; background: rgba(8,11,16,.9); }
+  nav { min-height: 70px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .logo { color: white; font-size: 20px; font-weight: 850; text-decoration: none; letter-spacing: -.6px; }
+  .logo span { color: #7dd3fc; }
+  .report-nav, .language-switch { display: flex; align-items: center; }
+  .report-nav { gap: 20px; }
+  .language-switch { gap: 6px; color: #465569; font-size: 12px; }
+  .language-switch a, .back-link { color: #9ba6b5; text-decoration: none; }
+  .language-switch a { font-weight: 800; }
+  .language-switch a:hover, .language-switch a.active, .back-link:hover { color: white; }
+  .back-link { font-size: 13px; }
+
+  .intro { padding: 95px 0 70px; }
+  .eyebrow, .section-title p, .label { color: #7dd3fc; font-size: 10px; font-weight: 850; letter-spacing: 1.6px; }
+  h1 { max-width: 800px; margin: 8px 0 22px; font-size: clamp(44px,7vw,72px); line-height: 1; letter-spacing: -3px; }
+  .lead { max-width: 760px; color: #a5b0bd; font-size: 18px; }
+  .notice { margin-top: 30px; padding: 18px 20px; border: 1px solid #2a3b4e; border-radius: 12px; background: #0c131b; display: flex; gap: 16px; align-items: baseline; }
+  .notice strong { flex: 0 0 auto; color: #e7edf4; }
+  .notice span { color: #8f9dae; font-size: 14px; }
+
+  .report-section { padding: 72px 0; border-top: 1px solid #18212b; }
+  .section-title { display: grid; grid-template-columns: 42px 1fr; gap: 18px; align-items: start; margin-bottom: 35px; }
+  .section-title > span { color: #58697c; font-size: 12px; font-weight: 800; padding-top: 9px; }
+  .section-title p { margin: 0 0 4px; }
+  h2 { margin: 0; font-size: clamp(30px,5vw,46px); line-height: 1.08; letter-spacing: -1.8px; }
+
+  .summary-grid, .scope-grid, .handover-grid { display: grid; gap: 14px; }
+  .summary-grid { grid-template-columns: repeat(3,1fr); }
+  .summary-grid article, .scope-grid > div, .handover-grid article { padding: 24px; border: 1px solid #1e2935; border-radius: 14px; background: #0d1219; }
+  .summary-grid strong { display: block; margin: 6px 0 8px; font-size: 18px; }
+  .summary-grid p, .scope-grid p, .handover-grid p { margin: 0; color: #8d9bac; font-size: 13px; }
+  .scope-grid, .handover-grid { grid-template-columns: repeat(2,1fr); }
+  .scope-grid strong, .handover-grid strong { display: block; margin-bottom: 7px; }
+
+  .table-wrap { overflow-x: auto; border: 1px solid #1e2935; border-radius: 14px; }
+  table { width: 100%; border-collapse: collapse; min-width: 780px; background: #0d1219; }
+  th, td { padding: 16px 18px; text-align: left; vertical-align: top; border-bottom: 1px solid #1b2430; font-size: 13px; }
+  th { color: #7f8da0; font-size: 10px; letter-spacing: 1px; }
+  td { color: #aab5c2; }
+  tbody tr:last-child td { border-bottom: 0; }
+  .severity { display: inline-block; border-radius: 999px; padding: 4px 8px; font-size: 10px; font-weight: 800; }
+  .severity.high { color: #ffb4b4; background: rgba(255,88,88,.1); }
+  .severity.medium { color: #f7d78a; background: rgba(241,184,64,.1); }
+  .severity.low { color: #9fd7f4; background: rgba(93,180,232,.1); }
+
+  .decision { display: flex; justify-content: space-between; align-items: center; gap: 45px; }
+  .decision > div { max-width: 760px; }
+  .decision p:not(.eyebrow) { color: #8d9bac; }
+  .button { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 18px; border-radius: 8px; background: #f4f7fb; color: #080b10; text-decoration: none; font-weight: 800; font-size: 13px; }
+
+  footer { padding: 35px 0; border-top: 1px solid #18212b; display: flex; justify-content: space-between; align-items: center; color: #667487; font-size: 12px; }
+
+  @media (max-width: 760px) {
+    .container { width: min(100% - 30px,1080px); }
+    .summary-grid, .scope-grid, .handover-grid { grid-template-columns: 1fr; }
+    .notice, .decision { align-items: flex-start; flex-direction: column; }
+    .report-section { padding: 58px 0; }
+    .button { width: 100%; }
+    .back-link { display: none; }
+    footer { flex-direction: column; align-items: flex-start; gap: 8px; }
+  }
+</style>
