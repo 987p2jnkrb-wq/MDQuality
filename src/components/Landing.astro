@@ -50,12 +50,16 @@ const copy = {
         },
       ],
     },
-    proof: [
-      ["Quick Review", "independent quality check and prioritized findings"],
-      ["QA + Release", "risk-focused coverage before important changes"],
-      ["Support + Diagnostics", "structured investigation and clear evidence"],
-      ["Automation + AI", "practical workflows, safer data handling and less manual work"],
-    ],
+    overview: {
+      eyebrow: "AT A GLANCE",
+      title: "What you can hire me for.",
+      cards: [
+        ["Scope", "QA, release checks, troubleshooting, automation and practical AI."],
+        ["Ability", "6+ years across software quality, support, APIs, data and production fixes."],
+        ["Business value", "Prioritized findings, clearer release decisions and less repetitive work."],
+        ["Pricing", "From 850 PLN / MD, up to 8 hours. Scope and quote agreed before work starts."],
+      ],
+    },
     quick: {
       eyebrow: "QUICK QA REVIEW",
       title: "Start with the journeys your customers rely on.",
@@ -63,6 +67,7 @@ const copy = {
         "One application, up to three key user journeys and a prioritized report for your developer. Access, devices and test conditions are agreed before work starts.",
       primary: "Ask about this scope",
       secondary: "See sample report",
+      detailsLabel: "See detailed QA review scope",
       items: [
         ["01", "Agree the scope", "Choose up to three important journeys and the browsers or devices to check."],
         ["02", "Check what can go wrong", "Test normal use, incorrect input and interrupted actions in the agreed environment."],
@@ -118,6 +123,7 @@ const copy = {
       ],
       bestFor: "BEST FOR",
       youGet: "YOU GET",
+      detailsLabel: "See scope",
       additional: "ADDITIONAL CAPABILITY",
       additionalTitle: "When the practical answer is broader than QA.",
       extra: [
@@ -172,6 +178,7 @@ const copy = {
       ],
       projectButton: "Public project page",
       releaseButton: "Release 2.0.0",
+      detailsLabel: "See MyAnalyze quality evidence",
     },
     about: {
       eyebrow: "ABOUT",
@@ -268,12 +275,16 @@ const copy = {
         },
       ],
     },
-    proof: [
-      ["Szybki audyt", "niezależna ocena jakości i problemy według priorytetu"],
-      ["QA + wdrożenie", "testy oparte na ryzyku przed ważną zmianą"],
-      ["Wsparcie + diagnostyka", "uporządkowana analiza i czytelne dowody"],
-      ["Automatyzacja + AI", "praktyczne workflow, bezpieczniejsze dane i mniej pracy ręcznej"],
-    ],
+    overview: {
+      eyebrow: "W SKRÓCIE",
+      title: "W czym mogę pomóc.",
+      cards: [
+        ["Zakres", "QA, testy przed wdrożeniem, diagnostyka, automatyzacja i praktyczne AI."],
+        ["Możliwości", "6+ lat w jakości i wsparciu, API, dane, diagnostyka oraz poprawki kodu."],
+        ["Korzyść", "Priorytety, pewniejsze wdrożenia i mniej powtarzalnej pracy ręcznej."],
+        ["Cena", "Od 850 zł / MD, do 8 godzin. Zakres i wycena ustalane przed startem."],
+      ],
+    },
     quick: {
       eyebrow: "SZYBKI AUDYT QA",
       title: "Zacznij od działań najważniejszych dla Twoich klientów.",
@@ -281,6 +292,7 @@ const copy = {
         "Jedna aplikacja, do trzech kluczowych ścieżek użytkownika i raport z priorytetami dla programisty. Dostęp, urządzenia i warunki testów ustalamy przed startem.",
       primary: "Zapytaj o ten zakres",
       secondary: "Zobacz przykładowy raport",
+      detailsLabel: "Zobacz szczegółowy zakres audytu QA",
       items: [
         ["01", "Ustalamy zakres", "Wybieramy do trzech ważnych ścieżek oraz przeglądarki lub urządzenia do sprawdzenia."],
         ["02", "Sprawdzam trudne sytuacje", "Testuję zwykłe użycie, błędne dane i przerwane działania w uzgodnionym środowisku."],
@@ -336,6 +348,7 @@ const copy = {
       ],
       bestFor: "NAJLEPSZE DLA",
       youGet: "OTRZYMUJESZ",
+      detailsLabel: "Zobacz zakres",
       additional: "DODATKOWE MOŻLIWOŚCI",
       additionalTitle: "Gdy praktyczne rozwiązanie wykracza poza samo QA.",
       extra: [
@@ -390,6 +403,7 @@ const copy = {
       ],
       projectButton: "Publiczna strona projektu",
       releaseButton: "Wydanie 2.0.0",
+      detailsLabel: "Zobacz szczegóły jakości MyAnalyze",
     },
     about: {
       eyebrow: "O MNIE",
@@ -635,6 +649,23 @@ const schema = {
         </aside>
       </section>
 
+      <section class="overview-section">
+        <div class="container">
+          <div class="overview-heading">
+            <p class="eyebrow">{t.overview.eyebrow}</p>
+            <h2>{t.overview.title}</h2>
+          </div>
+          <div class="overview-grid">
+            {t.overview.cards.map(([title, text]) => (
+              <article class="overview-card">
+                <span>{title}</span>
+                <p>{text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="quick-review" class="section container quick-review-section">
         <div class="quick-review">
           <div class="quick-review-copy">
@@ -647,17 +678,23 @@ const schema = {
             </div>
           </div>
 
-          <div class="quick-review-grid">
-            {t.quick.items.map(([number, title, text]) => (
-              <article>
-                <span>{number}</span>
-                <strong>{title}</strong>
-                <p>{text}</p>
-              </article>
-            ))}
-          </div>
         </div>
-        <ReviewScope lang={lang} />
+
+        <details class="disclosure quick-details">
+          <summary>{t.quick.detailsLabel}</summary>
+          <div class="disclosure-body">
+            <div class="quick-review-grid">
+              {t.quick.items.map(([number, title, text]) => (
+                <article>
+                  <span>{number}</span>
+                  <strong>{title}</strong>
+                  <p>{text}</p>
+                </article>
+              ))}
+            </div>
+            <ReviewScope lang={lang} />
+          </div>
+        </details>
       </section>
 
       <section id="services" class="section container">
@@ -674,24 +711,28 @@ const schema = {
               <h3>{service.title}</h3>
               <p class="service-summary">{service.summary}</p>
 
-
-              <div class="outcomes">
-                <span>{t.services.youGet}</span>
-                <ul>
-                  {service.outcomes.map((outcome) => <li>{outcome}</li>)}
-                </ul>
-              </div>
+              <details class="service-details">
+                <summary>{t.services.detailsLabel}</summary>
+                <div class="service-details-body">
+                  <p class="service-best-for"><strong>{t.services.bestFor}:</strong> {service.bestFor}</p>
+                  <div class="outcomes">
+                    <span>{t.services.youGet}</span>
+                    <ul>
+                      {service.outcomes.map((outcome) => <li>{outcome}</li>)}
+                    </ul>
+                  </div>
+                </div>
+              </details>
             </article>
           ))}
         </div>
 
-        <div class="secondary-services">
-          <div class="secondary-heading">
-            <p class="eyebrow">{t.services.additional}</p>
-            <h3>{t.services.additionalTitle}</h3>
-          </div>
-
-          <div class="secondary-grid">
+        <details class="secondary-services disclosure">
+          <summary>
+            <span>{t.services.additional}</span>
+            <strong>{t.services.additionalTitle}</strong>
+          </summary>
+          <div class="secondary-grid disclosure-body">
             {t.services.extra.map(([title, text]) => (
               <article>
                 <h4>{title}</h4>
@@ -699,7 +740,7 @@ const schema = {
               </article>
             ))}
           </div>
-        </div>
+        </details>
       </section>
 
       <section id="process" class="section process-section">
@@ -735,13 +776,6 @@ const schema = {
             <h3>{t.work.caseTitle}</h3>
             <p>{t.work.caseText}</p>
 
-            <div class="project-proof">
-              <span>{t.work.proofLabel}</span>
-              <ul>
-                {t.work.bullets.map((item) => <li>{item}</li>)}
-              </ul>
-            </div>
-
             <div class="tags">
               <span>React</span>
               <span>TypeScript</span>
@@ -766,15 +800,27 @@ const schema = {
           </a>
         </article>
 
-        <div class="project-gallery">
-          {projectScreens.slice(1).map((screen) => (
-            <a class="project-shot" href={screen.src} target="_blank" rel="noreferrer">
-              <img src={screen.src} alt={"MyAnalyze - " + screen.title} loading="lazy" />
-              <span>{screen.title}</span>
-            </a>
-          ))}
-        </div>
-        <WorkEvidence lang={lang} />
+        <details class="work-details disclosure">
+          <summary>{t.work.detailsLabel}</summary>
+          <div class="disclosure-body">
+            <div class="project-proof">
+              <span>{t.work.proofLabel}</span>
+              <ul>
+                {t.work.bullets.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+
+            <div class="project-gallery">
+              {projectScreens.slice(1).map((screen) => (
+                <a class="project-shot" href={screen.src} target="_blank" rel="noreferrer">
+                  <img src={screen.src} alt={"MyAnalyze - " + screen.title} loading="lazy" />
+                  <span>{screen.title}</span>
+                </a>
+              ))}
+            </div>
+            <WorkEvidence lang={lang} />
+          </div>
+        </details>
       </section>
 
       <section id="about" class="section container about-section">
@@ -787,10 +833,12 @@ const schema = {
         </div>
 
         <aside class="about-panel">
-          <p class="panel-label">{t.about.principles}</p>
-          <ul>
-            {t.about.list.map((item) => <li>{item}</li>)}
-          </ul>
+          <details>
+            <summary>{t.about.principles}</summary>
+            <ul>
+              {t.about.list.map((item) => <li>{item}</li>)}
+            </ul>
+          </details>
         </aside>
       </section>
 
@@ -919,6 +967,14 @@ const schema = {
   .proof-grid strong { display: block; font-size: 14px; margin-bottom: 3px; }
   .proof-grid span { display: block; color: #718094; font-size: 11px; line-height: 1.4; }
 
+  .overview-section { padding: 54px 0; border-top: 1px solid #171d26; border-bottom: 1px solid #171d26; background: rgba(10,14,20,.55); }
+  .overview-heading { display: flex; align-items: end; justify-content: space-between; gap: 30px; margin-bottom: 25px; }
+  .overview-heading h2 { margin: 7px 0 0; font-size: clamp(30px,4vw,44px); }
+  .overview-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+  .overview-card { padding: 20px; border: 1px solid #1d2835; border-radius: 13px; background: #0d1219; }
+  .overview-card span { display: block; margin-bottom: 8px; color: #7dd3fc; font-size: 11px; font-weight: 850; text-transform: uppercase; letter-spacing: 1px; }
+  .overview-card p { margin: 0; color: #a6b1bf; font-size: 13px; }
+
   .section { padding: 88px 0; border-top: 1px solid #171d26; }
   .section-heading { max-width: 790px; margin-bottom: 48px; }
   .section-intro { max-width: 740px; color: #99a6b6; font-size: 16px; margin: 18px 0 0; }
@@ -930,6 +986,38 @@ const schema = {
   .quick-review { display: grid; grid-template-columns: minmax(0,.95fr) minmax(420px,1.05fr); gap: 58px; align-items: center; padding: 42px; border: 1px solid #27384a; border-radius: 20px; background: radial-gradient(circle at 95% 5%, rgba(78,166,222,.11), transparent 35%), #0b1118; }
   .quick-review-copy .section-intro { margin-bottom: 0; }
   .quick-review-actions { margin-top: 28px; }
+  .disclosure { margin-top: 22px; border: 1px solid #27384a; border-radius: 14px; background: rgba(10,14,20,.58); overflow: hidden; }
+  .disclosure > summary,
+  .service-details > summary,
+  .about-panel summary {
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    padding: 18px 52px 18px 20px;
+    color: #e9eef5;
+    font-size: 14px;
+    font-weight: 780;
+  }
+  .disclosure > summary::-webkit-details-marker,
+  .service-details > summary::-webkit-details-marker,
+  .about-panel summary::-webkit-details-marker { display: none; }
+  .disclosure > summary::after,
+  .service-details > summary::after,
+  .about-panel summary::after {
+    content: "+";
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #7dd3fc;
+    font-size: 19px;
+  }
+  .disclosure[open] > summary::after,
+  .service-details[open] > summary::after,
+  .about-panel details[open] > summary::after { content: "−"; }
+  .disclosure-body { padding: 0 20px 22px; border-top: 1px solid #1d2835; }
+  .quick-details .disclosure-body { padding-top: 20px; }
+
   .quick-review-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .quick-review-grid article { padding: 20px; border: 1px solid #1e2a37; border-radius: 13px; background: rgba(7,10,14,.55); }
   .quick-review-grid span { display: block; color: #7dd3fc; font-size: 10px; font-weight: 850; margin-bottom: 22px; }
@@ -942,13 +1030,22 @@ const schema = {
   .card-number { display: block; color: #59687b; font-size: 11px; font-weight: 800; margin-bottom: 28px; }
   .service-card h3 { margin: 0 0 10px; font-size: 22px; letter-spacing: -.4px; }
   .service-summary { color: #a6b1bf; min-height: 78px; }
+  .service-details { margin-top: 18px; border-top: 1px solid #19222d; }
+  .service-details > summary { padding-left: 0; padding-right: 30px; color: #b9dff5; font-size: 12px; }
+  .service-details > summary::after { right: 0; }
+  .service-details-body { padding-top: 2px; }
+  .service-best-for { color: #8795a7; font-size: 13px; }
+  .service-best-for strong { color: #b8c4d2; }
   .best-for, .outcomes { padding-top: 18px; margin-top: 20px; border-top: 1px solid #19222d; }
   .best-for p { margin-bottom: 0; color: #808da0; font-size: 13px; }
   .outcomes ul, .project-proof ul { margin: 11px 0 0; padding: 0; list-style: none; }
   .outcomes li, .project-proof li { position: relative; padding: 6px 0 6px 17px; color: #99a6b6; font-size: 13px; }
   .outcomes li::before, .project-proof li::before { content: ""; position: absolute; left: 0; top: 14px; width: 5px; height: 5px; border-radius: 50%; background: #7dd3fc; }
-  .secondary-services { margin-top: 18px; border: 1px solid #1d2631; border-radius: 16px; padding: 28px; display: grid; grid-template-columns: minmax(260px,.7fr) 1.3fr; gap: 45px; background: rgba(13,18,25,.6); }
-  .secondary-heading h3 { margin: 8px 0 0; font-size: 24px; line-height: 1.2; }
+  .secondary-services { margin-top: 18px; border: 1px solid #1d2631; border-radius: 16px; background: rgba(13,18,25,.6); }
+  .secondary-services > summary { display: flex; flex-direction: column; gap: 4px; }
+  .secondary-services > summary span { color: #7dd3fc; font-size: 10px; letter-spacing: 1.4px; }
+  .secondary-services > summary strong { font-size: 16px; }
+  .secondary-services .disclosure-body { padding-top: 20px; }
   .secondary-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
   .secondary-grid article { padding: 20px; border: 1px solid #1c2632; border-radius: 12px; background: rgba(7,10,14,.45); }
   .secondary-grid h4 { margin: 0 0 7px; font-size: 16px; }
@@ -994,8 +1091,10 @@ const schema = {
   .about-section { display: grid; grid-template-columns: minmax(0,1.35fr) minmax(290px,.65fr); gap: 70px; align-items: start; }
   .about-lead { font-size: 22px; color: #e9eef5; line-height: 1.5; }
   .about-copy > p:not(.eyebrow):not(.about-lead) { color: #9ba6b5; font-size: 15px; }
-  .about-panel { margin-top: 45px; padding: 28px; border: 1px solid #1d2631; border-radius: 14px; background: #0d1219; }
-  .about-panel ul { margin: 20px 0 0; padding: 0; list-style: none; }
+  .about-panel { margin-top: 45px; padding: 8px 24px; border: 1px solid #1d2631; border-radius: 14px; background: #0d1219; }
+  .about-panel summary { padding-left: 0; }
+  .about-panel summary::after { right: 0; }
+  .about-panel ul { margin: 0 0 12px; padding: 0; list-style: none; }
   .about-panel li { position: relative; padding: 12px 0 12px 22px; border-top: 1px solid #19212b; color: #a7b2c0; font-size: 13px; }
   .about-panel li:first-child { border-top: 0; }
   .about-panel li::before { content: ""; position: absolute; left: 0; top: 21px; width: 6px; height: 6px; border-radius: 50%; background: #7dd3fc; }
@@ -1006,12 +1105,12 @@ const schema = {
   .faq-section { background: rgba(10,14,20,.38); }
   .faq-layout { display: grid; grid-template-columns: .65fr 1.35fr; gap: 75px; align-items: start; }
   .faq-list { border-top: 1px solid #1d2631; }
-  details { border-bottom: 1px solid #1d2631; }
-  summary { cursor: pointer; list-style: none; padding: 20px 0; font-weight: 720; color: #e8edf3; }
-  summary::-webkit-details-marker { display: none; }
-  summary::after { content: "+"; float: right; color: #7dd3fc; font-size: 18px; }
-  details[open] summary::after { content: "−"; }
-  details p { margin: -4px 0 21px; max-width: 720px; color: #8d9bac; font-size: 14px; }
+  .faq-list details { border-bottom: 1px solid #1d2631; }
+  .faq-list summary { cursor: pointer; list-style: none; padding: 20px 0; font-weight: 720; color: #e8edf3; }
+  .faq-list summary::-webkit-details-marker { display: none; }
+  .faq-list summary::after { content: "+"; float: right; color: #7dd3fc; font-size: 18px; }
+  .faq-list details[open] summary::after { content: "−"; }
+  .faq-list details p { margin: -4px 0 21px; max-width: 720px; color: #8d9bac; font-size: 14px; }
 
   .contact { max-width: 900px; text-align: center; margin: 0 auto; padding: 46px; border: 1px solid #223041; border-radius: 20px; background: radial-gradient(circle at 50% 0%, rgba(72,151,205,.11), transparent 35%), #0c1118; }
   .contact h2 { max-width: 780px; margin-left: auto; margin-right: auto; }
@@ -1030,6 +1129,7 @@ const schema = {
     .nav-links { display: none; }
     .hero, .about-section, .section-split, .faq-layout, .secondary-services, .quick-review { grid-template-columns: 1fr; gap: 42px; }
     .hero { min-height: auto; padding-top: 55px; }
+    .overview-grid { grid-template-columns: repeat(2,1fr); }
     .services-grid, .deliverables-grid { grid-template-columns: 1fr; }
     .service-summary { min-height: 0; }
     .proof-grid, .process-grid { grid-template-columns: repeat(2,1fr); }
@@ -1045,7 +1145,7 @@ const schema = {
     .hero { gap: 38px; }
     .hero-text { font-size: 17px; }
     .hero-meta span::after { display: none; }
-    .proof-grid, .process-grid, .project, .project-gallery, .secondary-grid, .quick-review-grid { grid-template-columns: 1fr; }
+    .overview-grid, .proof-grid, .process-grid, .project, .project-gallery, .secondary-grid, .quick-review-grid { grid-template-columns: 1fr; }
     .proof-grid > div { border-left: 0; border-top: 1px solid #171d26; }
     .proof-grid > div:first-child { border-top: 0; }
     .project { padding: 25px; gap: 30px; }
