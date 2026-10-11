@@ -35,7 +35,7 @@ const m = meta[lang] || meta.en;
 ---
 
 <!doctype html>
-<html lang={lang} data-detect-language={detectLanguage ? "true" : "false"}>
+<html lang={lang} data-detect-language={detectLanguage ? "true" : "false"} data-page-type={type}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -81,10 +81,6 @@ const m = meta[lang] || meta.en;
   </head>
 
   <body>
-    <script is:inline define:vars={{ pageType: type }}>
-      document.documentElement.dataset.pageType = pageType;
-    </script>
-
     <header>
       <nav class="container">
         <a class="logo" href={homePath}>MD<span>Quality</span></a>
