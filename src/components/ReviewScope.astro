@@ -1,0 +1,31 @@
+---
+const { lang = "en" } = Astro.props;
+const pl = lang === "pl";
+const cards = pl ? [
+  ["Zakres startowy", "Jedna aplikacja i do 3 ścieżek", "Listę funkcji, przeglądarki, urządzenia i środowisko zapisujemy przed rozpoczęciem. Większy zakres wyceniam osobno."],
+  ["Rezultat", "Raport gotowy dla programisty", "Priorytety, kroki odtworzenia, dowody i rekomendacja. Raport wskazuje również, czego nie sprawdzono."],
+  ["Cena i rozliczenie", "Indywidualna wycena · Faktura", "Otrzymujesz cenę za ustalony zakres przed startem. Zmiany zakresu i dodatkowe prace wymagają osobnego uzgodnienia."],
+  ["Termin", "Ustalany przed rozpoczęciem", "Odpowiadam bez zbędnej zwłoki. Termin wykonania potwierdzam po poznaniu zakresu i dostępności środowiska."],
+] : [
+  ["Starting scope", "One application, up to 3 journeys", "We agree the features, browsers, devices and environment before starting. A larger scope is quoted separately."],
+  ["Deliverable", "A report your developer can use", "Priorities, reproduction steps, evidence and a recommendation. The report also identifies what was not tested."],
+  ["Price and billing", "Individual quote · Invoice", "You receive a price for the agreed scope before work starts. Scope changes and additional work need a separate agreement."],
+  ["Delivery", "Agreed before work begins", "I respond without unnecessary delay. The delivery date is confirmed after reviewing the scope and environment availability."],
+];
+---
+<div class="scope-grid">
+  {cards.map(([label, title, text]) => <article><p class="label">{label}</p><h3>{title}</h3><p>{text}</p></article>)}
+</div>
+<p class="scope-note">{pl
+  ? "Audyt obejmuje uzgodnione testy funkcjonalne. Naprawy, ponowna weryfikacja poprawek, testy bezpieczeństwa, wydajności i dostępności oraz głęboka analiza integracji są osobnym zakresem. Przegląd nie jest gwarancją braku wszystkich błędów."
+  : "The review covers agreed functional tests. Fixes, retesting, security, performance and accessibility testing, and in-depth integration analysis are separate scopes. A review is not a guarantee that all defects have been found."}</p>
+<style>
+  .scope-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; margin-top: 28px; }
+  article { border-top: 2px solid #34566c; padding: 20px 4px 0; }
+  .label { color: #7dd3fc; font-size: 12px; margin: 0 0 10px; }
+  h3 { font-size: 18px; line-height: 1.4; margin: 0 0 10px; }
+  p { color: #aeb7c4; font-size: 14px; }
+  .scope-note { color: #9ba6b5; font-size: 13px; max-width: 980px; margin: 25px 0 0; }
+  @media(max-width: 980px) { .scope-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+  @media(max-width: 520px) { .scope-grid { grid-template-columns: 1fr; } }
+</style>
