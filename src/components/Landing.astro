@@ -176,11 +176,11 @@ const copy = {
       lead:
         "MD Quality is an independent software quality and technical support service run by Mikołaj Dworak.",
       p1:
-        "I have 6+ years of experience around business applications and software products, combining functional and pre-release testing, API and database testing, performance verification, application monitoring, technical support and troubleshooting.",
+        "My background includes leading a technical support team that was also responsible for application quality across releases. I coordinated communication with partners, verified functional and performance testing, and helped drive a steady reduction in reported issues from version to version.",
       p2:
-        "I have worked directly with developers, users and product environments to diagnose issues, document solutions and improve day-to-day operations. I also have experience leading a technical support team.",
+        "In my current work I stay close to customers across application support, testing and technical troubleshooting. I also contribute code fixes that are deployed into the application, giving me hands-on experience not only in testing software but also in its ongoing development and maintenance.",
       p3:
-        "The core offer is QA, technical review, troubleshooting and automation. Web applications and internal tools remain available when building something is the most practical way to solve the problem.",
+        "Across 6+ years around business applications and software products, I have worked with functional and pre-release testing, APIs, databases, performance verification, monitoring, support and application development. The core MD Quality offer remains QA, technical review, troubleshooting and automation.",
       principles: "WORKING PRINCIPLES",
       list: [
         "Understand the real user flow before testing it",
@@ -204,6 +204,7 @@ const copy = {
         ["Do you need full source-code access?", "Not always. Depending on the task, work can start from a build, test environment, API documentation, logs, database access or a reproducible problem. The minimum useful access is agreed during scoping."],
         ["Can this be a small one-off engagement?", "Yes. A quick review, release check, investigation or automation task can be scoped as a standalone project."],
         ["What will I receive at the end?", "That is defined before work starts. Typical outputs include a QA report, prioritized findings, evidence, scripts, documentation or a troubleshooting summary."],
+        ["What form of cooperation is possible?", "The website is aimed primarily at business clients, but the legal and billing form is agreed individually before work starts. B2B and other lawful cooperation models can be considered depending on the actual scope."],
       ],
     },
     contact: {
@@ -391,11 +392,11 @@ const copy = {
       lead:
         "MD Quality to niezależna usługa jakości oprogramowania i wsparcia technicznego prowadzona przez Mikołaja Dworaka.",
       p1:
-        "Mam ponad 6 lat doświadczenia przy aplikacjach biznesowych i produktach software'owych, łącząc testy funkcjonalne i przedwdrożeniowe, API i bazy danych, weryfikację wydajności, monitoring aplikacji, wsparcie techniczne i troubleshooting.",
+        "W poprzedniej roli prowadziłem zespół wsparcia technicznego, który odpowiadał również za jakość aplikacji w kolejnych wersjach. Koordynowałem kontakt z partnerami, weryfikowałem testy funkcjonalne i wydajnościowe oraz pracowałem nad tym, aby z wersji na wersję liczba zgłaszanych problemów malała.",
       p2:
-        "Pracowałem bezpośrednio z deweloperami, użytkownikami i środowiskami produktowymi, diagnozując problemy, dokumentując rozwiązania i usprawniając codzienną pracę. Mam również doświadczenie w prowadzeniu zespołu wsparcia technicznego.",
+        "Obecnie pracuję blisko klientów w obszarze supportu aplikacji, testów i diagnostyki technicznej. Wprowadzam również poprawki w kodzie, które trafiają do aplikacji, dlatego mam praktyczne doświadczenie nie tylko w testowaniu, ale też w bieżącym rozwoju i utrzymaniu produktu.",
       p3:
-        "Rdzeniem oferty są QA, audyty techniczne, troubleshooting i automatyzacja. Aplikacje webowe i narzędzia wewnętrzne pozostają dostępne, gdy zbudowanie rozwiązania jest najbardziej praktyczną odpowiedzią.",
+        "W ponad 6 latach pracy przy aplikacjach biznesowych i produktach software'owych łączyłem testy funkcjonalne i przedwdrożeniowe, API, bazy danych, wydajność, monitoring, support i rozwój aplikacji. Rdzeniem MD Quality pozostają QA, audyty techniczne, troubleshooting i automatyzacja.",
       principles: "ZASADY PRACY",
       list: [
         "Najpierw rozumiem rzeczywisty sposób użycia produktu",
@@ -419,6 +420,7 @@ const copy = {
         ["Czy potrzebujesz pełnego dostępu do kodu źródłowego?", "Nie zawsze. Zależnie od zadania można zacząć od wersji aplikacji, środowiska testowego, dokumentacji API, logów, dostępu do bazy albo możliwego do odtworzenia problemu. Minimalny potrzebny dostęp ustalamy podczas określania zakresu."],
         ["Czy może to być małe jednorazowe zlecenie?", "Tak. Szybki audyt, przegląd przed wdrożeniem, diagnostykę lub automatyzację można ustalić jako samodzielny projekt."],
         ["Co otrzymam na końcu?", "Ustalamy to przed rozpoczęciem pracy. Typowe rezultaty to raport QA, problemy według priorytetu, dowody, skrypty, dokumentacja albo podsumowanie diagnostyki."],
+        ["Jaka forma współpracy jest możliwa?", "Strona jest kierowana przede wszystkim do klientów biznesowych, ale forma prawna i sposób rozliczenia są ustalane indywidualnie przed rozpoczęciem pracy. W zależności od rzeczywistego zakresu możliwe jest B2B lub inna zgodna z prawem forma współpracy."],
       ],
     },
     contact: {
@@ -884,8 +886,18 @@ const schema = {
     </main>
 
     <footer class="container">
-      <div class="logo">MD<span>Quality</span></div>
-      <p>© {new Date().getFullYear()} MD Quality · Mikołaj Dworak · {t.footer}</p>
+      <div class="footer-brand">
+        <div class="logo">MD<span>Quality</span></div>
+        <p>© {new Date().getFullYear()} MD Quality · Mikołaj Dworak · {t.footer}</p>
+      </div>
+      <div class="footer-links">
+        <a href={lang === "pl" ? "/pl/privacy/" : "/privacy/"}>
+          {lang === "pl" ? "Polityka prywatności" : "Privacy"}
+        </a>
+        <a href={lang === "pl" ? "/pl/terms/" : "/terms/"}>
+          {lang === "pl" ? "Warunki korzystania" : "Website terms"}
+        </a>
+      </div>
     </footer>
 
     <script is:inline>
@@ -1065,7 +1077,11 @@ const schema = {
   .contact-actions, .social-links { justify-content: center; }
   .social-links { display: flex; gap: 20px; margin-top: 25px; }
 
-  footer { padding: 35px 0; border-top: 1px solid #171d26; display: flex; justify-content: space-between; align-items: center; color: #697586; font-size: 12px; }
+  footer { padding: 35px 0; border-top: 1px solid #171d26; display: flex; justify-content: space-between; align-items: center; gap: 28px; color: #697586; font-size: 12px; }
+  .footer-brand p { margin: 7px 0 0; }
+  .footer-links { display: flex; gap: 18px; flex-wrap: wrap; justify-content: flex-end; }
+  .footer-links a { color: #8794a5; text-decoration: none; }
+  .footer-links a:hover { color: white; }
 
   @media (max-width: 980px) {
     .nav-links { display: none; }
