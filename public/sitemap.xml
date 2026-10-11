@@ -25,4 +25,28 @@
     <xhtml:link rel="alternate" hreflang="pl" href="https://mdquality.pl/pl/sample-qa-report/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mdquality.pl/sample-qa-report/"/>
   </url>
+  <url>
+    <loc>https://mdquality.pl/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mdquality.pl/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://mdquality.pl/pl/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mdquality.pl/privacy/"/>
+  </url>
+  <url>
+    <loc>https://mdquality.pl/pl/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mdquality.pl/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://mdquality.pl/pl/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mdquality.pl/privacy/"/>
+  </url>
+  <url>
+    <loc>https://mdquality.pl/terms/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mdquality.pl/terms/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://mdquality.pl/pl/terms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mdquality.pl/terms/"/>
+  </url>
+  <url>
+    <loc>https://mdquality.pl/pl/terms/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mdquality.pl/terms/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://mdquality.pl/pl/terms/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://mdquality.pl/terms/"/>
+  </url>
 </urlset>
