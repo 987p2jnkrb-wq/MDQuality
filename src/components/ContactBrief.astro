@@ -1,117 +1,212 @@
 ---
 const { lang = "en" } = Astro.props;
 const pl = lang === "pl";
+const recipient = "mikolajdworak@icloud.com";
 ---
-<div class="brief" data-brief data-lang-code={lang}>
-  <p class="how">{pl ? "Przygotuj krótką wiadomość. Otwórz ją w swojej poczcie albo skopiuj i wyślij na:" : "Prepare a short message. Open it in your email app or copy it and send it to:"}
-    <a href="mailto:mikolajdworak@icloud.com">mikolajdworak@icloud.com</a>
+<div class="brief" data-brief data-lang-code={lang} data-recipient={recipient}>
+  <p class="how">
+    {pl
+      ? "Napisz krótko, co chcesz sprawdzić. Po kliknięciu otworzy się Twoja aplikacja pocztowa z gotową wiadomością do:"
+      : "Tell me briefly what you would like checked. Clicking send opens your email app with a ready message to:"}
+    <a href={"mailto:" + recipient}>{recipient}</a>
   </p>
-  <form hidden data-brief-form>
-    <label for="brief-product">{pl ? "Strona lub aplikacja (opcjonalnie)" : "Website or application (optional)"}</label>
-    <input id="brief-product" name="product" type="text" maxlength="200" placeholder={pl ? "Link lub nazwa aplikacji" : "A link or application name"} />
-    <label for="brief-problem">{pl ? "Co chcesz sprawdzić?" : "What would you like checked?"}</label>
-    <textarea id="brief-problem" name="problem" rows="4" required maxlength="1500" placeholder={pl ? "Np. odbieram stronę od wykonawcy i chcę sprawdzić formularz kontaktowy oraz rejestrację." : "For example: I am accepting a website from a developer and want to check the enquiry form and registration."}></textarea>
-    <div class="fields">
-      <div><label for="brief-timeline">{pl ? "Oczekiwany termin (opcjonalnie)" : "Target date (optional)"}</label>
-        <input id="brief-timeline" name="timeline" type="text" maxlength="100" placeholder={pl ? "Np. przed kolejną aktualizacją" : "For example: before the next update"} />
-      </div>
-      <div><label for="brief-source">{pl ? "Skąd znasz MD Quality? (opcjonalnie)" : "How did you find MD Quality? (optional)"}</label>
-        <select id="brief-source" name="source">
-          <option value="">{pl ? "Wybierz, jeśli chcesz" : "Select if you wish"}</option>
-          <option value="LinkedIn">LinkedIn</option>
-          <option value="Google">Google</option>
-          <option value="referral">{pl ? "Polecenie" : "Referral"}</option>
-          <option value="GitHub">GitHub</option>
-          <option value="other">{pl ? "Inne źródło" : "Other"}</option>
-        </select>
-      </div>
-    </div>
-    <p class="hint">{pl ? "Treść pozostaje w tej karcie do czasu otwarcia poczty lub skopiowania. Formularz nie wysyła wiadomości automatycznie. Nie wpisuj haseł ani danych klientów." : "Your text stays in this tab until you open your email app or copy it. This form does not send messages automatically. Do not include passwords or customer data."}</p>
+
+  <form data-brief-form>
+    <label for="brief-product">
+      {pl ? "Strona lub aplikacja (opcjonalnie)" : "Website or application (optional)"}
+    </label>
+    <input
+      id="brief-product"
+      name="product"
+      type="text"
+      maxlength="200"
+      autocomplete="off"
+      placeholder={pl ? "Link lub nazwa aplikacji" : "A link or application name"}
+    />
+
+    <label for="brief-problem">
+      {pl ? "Wiadomość" : "Message"}
+    </label>
+    <textarea
+      id="brief-problem"
+      name="problem"
+      rows="6"
+      required
+      maxlength="1200"
+      placeholder={pl
+        ? "Np. odbieram stronę od wykonawcy i chcę sprawdzić formularz kontaktowy, rejestrację oraz najważniejszą ścieżkę klienta."
+        : "For example: I am accepting a website from a developer and want the enquiry form, registration and the main customer journey checked."}
+    ></textarea>
+
+    <label for="brief-timeline">
+      {pl ? "Kiedy tego potrzebujesz? (opcjonalnie)" : "When do you need it? (optional)"}
+    </label>
+    <input
+      id="brief-timeline"
+      name="timeline"
+      type="text"
+      maxlength="120"
+      autocomplete="off"
+      placeholder={pl ? "Np. w tym tygodniu, przed wdrożeniem, ASAP" : "For example: this week, before launch, ASAP"}
+    />
+
+    <p class="hint">
+      {pl
+        ? "Termin zostawiam jako pole tekstowe, bo często ważniejsze jest „przed wdrożeniem” niż konkretna data. Nie wpisuj haseł, danych klientów ani innych poufnych informacji."
+        : "Timing stays as free text because “before launch” is often more useful than an exact date. Do not include passwords, customer data or other confidential information."}
+    </p>
+
     <div class="actions">
-      <button type="submit">{pl ? "Przygotuj wiadomość" : "Prepare message"}</button>
+      <button type="submit">{pl ? "Wyślij zapytanie" : "Send enquiry"}</button>
+      <button class="secondary" type="button" data-copy>
+        {pl ? "Kopiuj wiadomość" : "Copy message"}
+      </button>
     </div>
+
+    <p class="delivery-note">
+      {pl
+        ? "„Wyślij zapytanie” otwiera Twoją aplikację pocztową. Wiadomość nie jest wysyłana automatycznie przez tę stronę, finalnie wysyłasz ją ze swojej skrzynki."
+        : "“Send enquiry” opens your email app. The website does not send anything automatically; you send the final email from your own mailbox."}
+    </p>
+
+    <p class="status" role="status" aria-live="polite" data-status></p>
   </form>
-  <noscript><p>{pl ? "Napisz bezpośrednio na adres powyżej. Wystarczą link, opis problemu i oczekiwany termin." : "Email the address above directly. A link, a short description and your target date are enough."}</p></noscript>
-  <div class="draft" hidden data-draft>
-    <label for="brief-preview">{pl ? "Gotowa treść — jeszcze niewysłana" : "Your draft — not sent yet"}</label>
-    <textarea id="brief-preview" data-preview rows="9" readonly></textarea>
-    <div class="actions">
-      <a data-email href="mailto:mikolajdworak@icloud.com">{pl ? "Otwórz w poczcie" : "Open in email app"}</a>
-      <button class="secondary" type="button" data-copy>{pl ? "Kopiuj wiadomość" : "Copy message"}</button>
-    </div>
-    <p class="hint">{pl ? "Po otwarciu poczty sprawdź treść i kliknij Wyślij. Jeśli poczta się nie otworzy, skopiuj wiadomość do dowolnej skrzynki lub napisz przez LinkedIn poniżej." : "After opening your email app, review the draft and press Send. If no email app opens, copy the text into any mailbox or use LinkedIn below."}</p>
-  </div>
-  <p class="status" role="status" aria-live="polite" data-status></p>
-  <a class="privacy" href={pl ? "/pl/privacy/" : "/privacy/"}>{pl ? "Jak przetwarzam dane z wiadomości" : "How enquiry data is handled"}</a>
+
+  <noscript>
+    <p>
+      {pl ? "Napisz bezpośrednio na " : "Email "}
+      <a href={"mailto:" + recipient}>{recipient}</a>.
+      {pl ? " Wystarczy link, krótki opis i orientacyjny termin." : " A link, a short description and approximate timing are enough."}
+    </p>
+  </noscript>
+
+  <a class="privacy" href={pl ? "/pl/privacy/" : "/privacy/"}>
+    {pl ? "Jak przetwarzam dane z wiadomości" : "How enquiry data is handled"}
+  </a>
 </div>
+
 <script>
   document.querySelectorAll<HTMLElement>('[data-brief]').forEach((root) => {
     const form = root.querySelector<HTMLFormElement>('[data-brief-form]')!;
-    const draft = root.querySelector<HTMLElement>('[data-draft]')!;
-    const preview = root.querySelector<HTMLTextAreaElement>('[data-preview]')!;
-    const email = root.querySelector<HTMLAnchorElement>('[data-email]')!;
     const copy = root.querySelector<HTMLButtonElement>('[data-copy]')!;
     const status = root.querySelector<HTMLElement>('[data-status]')!;
     const pl = root.dataset.langCode === 'pl';
-    const sourceLabels: Record<string, string> = pl
-      ? { referral: 'Polecenie', other: 'Inne źródło' }
-      : { referral: 'Referral', other: 'Other' };
-    form.hidden = false;
-    form.addEventListener('input', () => { draft.hidden = true; status.textContent = ''; });
-    form.addEventListener('change', () => { draft.hidden = true; status.textContent = ''; });
-    form.addEventListener('submit', (event) => {
-      event.preventDefault();
-      if (!form.reportValidity()) return;
+    const recipient = root.dataset.recipient || 'mikolajdworak@icloud.com';
+
+    const buildMessage = () => {
       const fields = new FormData(form);
       const value = (key: string) => String(fields.get(key) || '').trim();
       const product = value('product');
       const problem = value('problem');
-      if (!problem) {
-        status.textContent = pl ? 'Opisz krótko, co mam sprawdzić.' : 'Please briefly describe what you want checked.';
-        form.querySelector<HTMLTextAreaElement>('[name="problem"]')!.focus();
-        return;
-      }
+      const timeline = value('timeline');
+
       const lines = [pl ? 'Cześć Mikołaj,' : 'Hi Mikołaj,', ''];
-      if (product) lines.push((pl ? 'Strona lub aplikacja: ' : 'Website or application: ') + product);
+      if (product) {
+        lines.push((pl ? 'Strona lub aplikacja: ' : 'Website or application: ') + product);
+      }
       lines.push((pl ? 'Co chcę sprawdzić: ' : 'What I would like checked: ') + problem);
-      if (value('timeline')) lines.push((pl ? 'Oczekiwany termin: ' : 'Target date: ') + value('timeline'));
-      if (value('source')) lines.push((pl ? 'Źródło kontaktu: ' : 'How I found you: ') + (sourceLabels[value('source')] || value('source')));
-      lines.push('', pl ? 'Proszę o propozycję zakresu i indywidualną wycenę.' : 'Please suggest a scope and provide an individual quote.');
-      preview.value = lines.join('\n');
-      email.href = 'mailto:mikolajdworak@icloud.com?subject=' + encodeURIComponent(pl ? 'MD Quality — zapytanie o audyt' : 'MD Quality — review enquiry') + '&body=' + encodeURIComponent(preview.value);
-      draft.hidden = false;
-      preview.focus();
-      status.textContent = pl ? 'Wiadomość gotowa. Wybierz sposób wysłania poniżej treści.' : 'Draft ready. Choose how to send it below the message.';
+      if (timeline) {
+        lines.push((pl ? 'Termin / oczekiwanie: ' : 'Timing: ') + timeline);
+      }
+      lines.push(
+        '',
+        pl
+          ? 'Proszę o propozycję zakresu, terminu i indywidualną wycenę.'
+          : 'Please suggest a scope, delivery date and individual quote.'
+      );
+      return lines.join('\n');
+    };
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!form.reportValidity()) return;
+
+      const message = buildMessage();
+      const subject = pl ? 'MD Quality - zapytanie o audyt' : 'MD Quality - review enquiry';
+      status.textContent = pl
+        ? 'Otwieram Twoją aplikację pocztową...'
+        : 'Opening your email app...';
+
+      window.location.href =
+        'mailto:' + recipient +
+        '?subject=' + encodeURIComponent(subject) +
+        '&body=' + encodeURIComponent(message);
     });
+
     copy.addEventListener('click', async () => {
+      if (!form.reportValidity()) return;
+
+      const message = buildMessage();
       try {
-        await navigator.clipboard.writeText(preview.value);
-        status.textContent = pl ? 'Skopiowano. Wklej wiadomość do poczty i wyślij na mikolajdworak@icloud.com.' : 'Copied. Paste the message into your email and send it to mikolajdworak@icloud.com.';
+        await navigator.clipboard.writeText(message);
+        status.textContent = pl
+          ? 'Wiadomość skopiowana. Możesz wkleić ją do swojej poczty.'
+          : 'Message copied. You can paste it into your email.';
       } catch {
-        preview.focus();
-        preview.select();
-        status.textContent = pl ? 'Zaznaczyłem treść. Skopiuj ją ręcznie i wyślij ze swojej poczty.' : 'The text is selected. Copy it manually and send it from your email.';
+        status.textContent = pl
+          ? 'Nie udało się skopiować automatycznie. Zaznacz treść wiadomości i skopiuj ją ręcznie.'
+          : 'Automatic copy was not available. Copy the message manually from the form.';
       }
     });
   });
 </script>
+
 <style>
   .brief { text-align: left; max-width: 690px; margin: 25px auto 0; }
   .how { color: #b8c3d1; font-size: 15px; }
-  .how a { display: inline-block; overflow-wrap: anywhere; }
+  .how a { display: inline-block; overflow-wrap: anywhere; margin-left: 5px; }
   a { color: #b5e4ff; text-underline-offset: 4px; }
   label { display: block; color: #e7edf4; font-size: 14px; font-weight: 650; margin: 20px 0 8px; }
-  input, textarea, select { width: 100%; min-width: 0; border: 1px solid #405168; border-radius: 8px; background: #080e16; color: #f5f7fa; padding: 13px; font: inherit; font-size: 16px; }
+  input, textarea {
+    width: 100%;
+    min-width: 0;
+    border: 1px solid #405168;
+    border-radius: 8px;
+    background: #080e16;
+    color: #f5f7fa;
+    padding: 13px;
+    font: inherit;
+    font-size: 16px;
+  }
   input::placeholder, textarea::placeholder { color: #95a3b6; }
   textarea { resize: vertical; }
-  .fields { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
-  .fields > div { min-width: 0; }
-  .hint, .privacy, .status { font-size: 13px; line-height: 1.6; color: #aeb7c4; }
+  .hint, .delivery-note, .privacy, .status {
+    font-size: 13px;
+    line-height: 1.6;
+    color: #aeb7c4;
+  }
+  .delivery-note { margin-top: 12px; }
   .status { color: #b5e4ff; min-height: 1.6em; }
   .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
-  button, .actions a { cursor: pointer; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; border: 1px solid #f4f7fb; border-radius: 8px; padding: 12px 20px; font: inherit; font-size: 14px; font-weight: 750; color: #090c11; background: #f4f7fb; text-decoration: none; }
-  button.secondary { color: #e7edf4; border-color: #405168; background: transparent; }
-  .draft { border-top: 1px solid #34465a; margin-top: 25px; padding-top: 5px; }
-  [hidden] { display: none !important; }
-  @media(max-width: 600px) { .fields { grid-template-columns: 1fr; gap: 0; } .actions > * { width: 100%; } }
+  button {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    border: 1px solid #f4f7fb;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 750;
+    color: #090c11;
+    background: #f4f7fb;
+  }
+  button.secondary {
+    color: #e7edf4;
+    border-color: #405168;
+    background: transparent;
+  }
+  button:hover { transform: translateY(-1px); }
+  input:focus-visible, textarea:focus-visible, button:focus-visible, a:focus-visible {
+    outline: 2px solid #7dd3fc;
+    outline-offset: 3px;
+  }
+  @media(max-width: 600px) {
+    .actions > * { width: 100%; }
+  }
+  @media(prefers-reduced-motion: reduce) {
+    button { transition: none; }
+  }
 </style>
