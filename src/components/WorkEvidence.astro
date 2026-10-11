@@ -1,0 +1,42 @@
+---
+const { lang = "en" } = Astro.props;
+const pl = lang === "pl";
+const cases = pl ? [
+  { title: "Import nie może zmieniać kwot", risk: "Nieprawidłowy zapis kwoty może zostać błędnie odczytany jako poprawna liczba.", check: "Testy importu obejmują uszkodzone wartości, różne separatory i znaki kwot. Oczekiwane zachowanie: odrzucić błędny wiersz, zachować poprawne dane.", value: "Podobne sprawdzenie chroni jakość danych w importach zamówień, raportach i integracjach." },
+  { title: "Podobne operacje to nie zawsze duplikaty", risk: "Dwie prawdziwe transakcje mogą mieć taką samą datę, opis i kwotę.", check: "Osobne testy sprawdzają dwie podobne operacje bez identyfikatora oraz powtórzony unikalny identyfikator. Reguła ma zachować pierwsze i wykluczyć rzeczywisty duplikat.", value: "To podejście pomaga sprawdzić, czy system nie gubi prawidłowych rekordów i nie zapisuje tych samych danych ponownie." },
+  { title: "Jedna zmiana nie powinna psuć innych danych", risk: "Aktualizacja dostępnych środków na karcie nie powinna nadpisywać jej zadłużenia.", check: "Test modelu konta sprawdza, czy zmiana jednej wartości zachowuje drugą. Takie testy pozwalają wykrywać naruszenie reguł przy kolejnych zmianach.", value: "U klienta szukam podobnych zależności: co oprócz widocznego pola może zmienić się w tle?" },
+] : [
+  { title: "An import must not change amounts", risk: "A malformed amount can be misread as a valid number.", check: "Import tests cover corrupted values, different separators and signed amounts. Expected behaviour: reject the invalid row and preserve valid data.", value: "The same approach helps check data quality in order imports, reports and integrations." },
+  { title: "Similar records are not always duplicates", risk: "Two legitimate transactions can share a date, description and amount.", check: "Separate tests cover similar transactions without identifiers and a repeated unique identifier. The rule should preserve the former and exclude an actual duplicate.", value: "This helps check whether a system drops valid records or saves the same data twice." },
+  { title: "One change should preserve other data", risk: "Changing a card's available credit must not overwrite its debt.", check: "An account-model test checks that changing one value preserves the other. These checks can flag broken rules as the product changes.", value: "In client work, I look for the same dependencies: what could change behind the visible field?" },
+];
+---
+<div class="evidence-heading">
+  <p class="eyebrow">{pl ? "JAK SPRAWDZAM JAKOŚĆ" : "HOW I CHECK QUALITY"}</p>
+  <h3>{pl ? "Od ryzyka do konkretnego testu." : "From a risk to a specific check."}</h3>
+  <p>{pl ? "Przykłady na podstawie testów projektu MyAnalyze. Opisują zakres sprawdzeń, nie audyt klienta ani gwarancję jakości całej aplikacji." : "Examples based on MyAnalyze project tests. They describe checks, not a client audit or a guarantee of application-wide quality."}</p>
+</div>
+<div class="evidence-grid">
+  {cases.map((item, i) => <article>
+    <span class="number">0{i + 1}</span><h4>{item.title}</h4>
+    <dl>
+      <dt>{pl ? "Ryzyko" : "Risk"}</dt><dd>{item.risk}</dd>
+      <dt>{pl ? "Sprawdzenie" : "Check"}</dt><dd>{item.check}</dd>
+      <dt>{pl ? "Znaczenie dla Twojej firmy" : "Why it matters to your business"}</dt><dd>{item.value}</dd>
+    </dl>
+  </article>)}
+</div>
+<a class="evidence-cta" href="#contact">{pl ? "Masz podobny proces do sprawdzenia? Opisz go →" : "Have a similar process to check? Tell me about it →"}</a>
+<style>
+  .evidence-heading { margin: 45px 0 24px; max-width: 800px; }
+  .eyebrow, .number { color: #7dd3fc; font-size: 12px; font-weight: 750; }
+  h3 { font-size: 30px; line-height: 1.2; margin: 10px 0; }
+  .evidence-heading > p:last-child { color: #aeb7c4; font-size: 14px; }
+  .evidence-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 16px; }
+  article { background: #0d1219; border: 1px solid #27384a; border-radius: 15px; padding: 27px; }
+  h4 { font-size: 21px; line-height: 1.35; margin: 15px 0 24px; }
+  dt { color: #c7e8f9; font-size: 12px; font-weight: 750; margin-top: 20px; }
+  dd { margin: 5px 0 0; color: #aeb7c4; font-size: 14px; }
+  .evidence-cta { display: inline-block; margin-top: 25px; color: #b2e2fc; text-underline-offset: 5px; }
+  @media(max-width: 850px) { .evidence-grid { grid-template-columns: 1fr; } }
+</style>

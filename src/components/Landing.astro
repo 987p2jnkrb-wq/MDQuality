@@ -1,4 +1,7 @@
 ---
+import ReviewScope from "./ReviewScope.astro";
+import WorkEvidence from "./WorkEvidence.astro";
+import ContactBrief from "./ContactBrief.astro";
 const { lang = "en", detectLanguage = false } = Astro.props;
 
 const copy = {
@@ -12,30 +15,30 @@ const copy = {
       process: "Process",
       work: "Work",
       about: "About",
-      quote: "Request a review",
+      quote: "Ask for a quote",
     },
     hero: {
       badge: "INDEPENDENT QA FOR SMALL BUSINESSES & LEAN PRODUCT TEAMS",
-      title: "Independent software QA & technical review",
-      accent: "without hiring a full-time QA team.",
+      title: "Know what needs fixing",
+      accent: "before your next release.",
       text:
-        "No in-house tester? I can step in for a focused audit, release review, troubleshooting task or automation job and give you prioritized findings, evidence and practical next steps.",
-      primary: "Request a Quick QA Review",
-      secondary: "See what is included",
+        "Independent website and application testing for small businesses without an in-house tester. Before a launch or vendor handover, I check the agreed customer journeys and give your developer a report with clear priorities and steps to reproduce each issue.",
+      primary: "Ask for a review quote",
+      secondary: "See a sample report",
       meta: [
         "6+ years in software quality & support",
-        "One-off reviews or ongoing support for businesses",
+        "Defined scope · Individual quote · Invoice",
         "PL / EN",
       ],
       fitLabel: "A GOOD FIT WHEN YOU NEED",
       fit: [
         {
-          title: "A second pair of eyes",
-          text: "Independent review before you approve a release, vendor handover or another round of development.",
+          title: "Accepting work from a developer?",
+          text: "Check the agreed features before signing off on a website or application.",
         },
         {
-          title: "A quick quality check",
-          text: "Find the most important problems without building an internal QA function first.",
+          title: "Preparing an update?",
+          text: "Check whether customers can still sign in, submit a form and complete key tasks.",
         },
         {
           title: "A difficult issue investigated",
@@ -55,23 +58,23 @@ const copy = {
     ],
     quick: {
       eyebrow: "QUICK QA REVIEW",
-      title: "A focused software check for companies without in-house QA.",
+      title: "Start with the journeys your customers rely on.",
       text:
-        "This is the simplest way to start. You give me access to the website, application or test environment and explain what matters most. I review the key flows independently and return a concise, prioritized summary you can use yourself or hand directly to your freelancer, agency or software vendor.",
-      primary: "Request a Quick QA Review",
+        "One website or application, up to three agreed user journeys, and a report you can hand to your developer. For example: registration, submitting an enquiry and completing an order. We confirm access, devices and test conditions before work begins.",
+      primary: "Ask about this scope",
       secondary: "See sample report",
       items: [
-        ["01", "Core user flows", "Check the paths that matter most to customers or employees."],
-        ["02", "Visible risks & edge cases", "Look for broken states, confusing behaviour and obvious release risks."],
-        ["03", "API / integration checks", "Where access is available, validate requests, responses and data flow."],
-        ["04", "Prioritized handover", "Receive findings, evidence and next steps in a format someone can act on."],
+        ["01", "Agree the scope", "Choose up to three important journeys and the browsers or devices to check."],
+        ["02", "Check what can go wrong", "Test normal use, incorrect input and interrupted actions in the agreed environment."],
+        ["03", "Document the findings", "Each reported issue has reproduction steps, expected behaviour and evidence."],
+        ["04", "Decide what comes first", "Receive priorities, limitations and a recommendation for the agreed scope."],
       ],
     },
     services: {
       eyebrow: "SERVICES FOR BUSINESSES",
-      title: "Start with one defined problem. Expand only if it makes sense.",
+      title: "More help when you need it.",
       intro:
-        "The offer is designed for small companies, founders and lean teams that need one experienced person to review, test, diagnose or automate a specific area without hiring a full internal QA team.",
+        "Start with a review, investigate a recurring problem or reduce repetitive work. Each engagement has its own scope and quote.",
       cards: [
         {
           number: "01",
@@ -152,13 +155,13 @@ const copy = {
     },
     work: {
       eyebrow: "SELECTED WORK",
-      title: "Quality is easiest to judge in the details.",
+      title: "Real product. Specific quality checks.",
       intro:
-        "MyAnalyze is the clearest example of how I work. It is a real product I have taken from idea to packaged releases, where product thinking, visual consistency, edge cases, data flows, release discipline and continuous iteration all have to work together.",
-      caseLabel: "PRODUCT CASE STUDY",
+        "MyAnalyze is my personal project, not a client engagement. It shows how I approach data validation, unusual user actions and regression testing in a working application.",
+      caseLabel: "PERSONAL PROJECT · PRIVATE SOURCE CODE",
       caseTitle: "MyAnalyze 2.0.0 · Personal finance workspace for Windows",
       caseText:
-        "The application combines accounts, transactions, statement imports, forecasts, configurable KPIs, financial analysis, goals and local data storage. Instead of asking you to trust a list of skills, this project lets you inspect the quality of the work in the product itself.",
+        "A Windows application for personal finances, statement imports and planning. Its source code remains private; screenshots and packaged releases are public. The examples below describe checks in the project, not measured client results.",
       proofLabel: "WHAT TO LOOK AT",
       bullets: [
         "Attention to detail and consistency across a growing interface",
@@ -172,15 +175,15 @@ const copy = {
     },
     about: {
       eyebrow: "ABOUT",
-      title: "One experienced technical partner instead of unnecessary overhead.",
+      title: "You work directly with Mikołaj.",
       lead:
         "MD Quality is an independent software quality and technical support service run by Mikołaj Dworak.",
       p1:
-        "My background includes leading a technical support team that was also responsible for application quality across releases. I coordinated communication with partners, verified functional and performance testing, and helped drive a steady reduction in reported issues from version to version.",
+        "Across 6+ years in software quality and support, I have led a technical support team, coordinated communication with partners and verified functional and performance tests before releases.",
       p2:
-        "In my current work I stay close to customers across application support, testing and technical troubleshooting. I also contribute code fixes that are deployed into the application, giving me hands-on experience not only in testing software but also in its ongoing development and maintenance.",
+        "My work at Bridge includes application support, testing, technical troubleshooting and code fixes. This professional experience helps me connect a customer's report with evidence a developer can investigate.",
       p3:
-        "Across 6+ years around business applications and software products, I have worked with functional and pre-release testing, APIs, databases, performance verification, monitoring, support and application development. The core MD Quality offer remains QA, technical review, troubleshooting and automation.",
+        "MD Quality is my independent service. Bridge is my employer, not a client reference or an endorsement of MD Quality. Employer code, customer information and internal materials are not shared here.",
       principles: "WORKING PRINCIPLES",
       list: [
         "Understand the real user flow before testing it",
@@ -204,14 +207,15 @@ const copy = {
         ["Do you need full source-code access?", "Not always. Depending on the task, work can start from a build, test environment, API documentation, logs, database access or a reproducible problem. The minimum useful access is agreed during scoping."],
         ["Can this be a small one-off engagement?", "Yes. A quick review, release check, investigation or automation task can be scoped as a standalone project."],
         ["What will I receive at the end?", "That is defined before work starts. Typical outputs include a QA report, prioritized findings, evidence, scripts, documentation or a troubleshooting summary."],
-        ["What form of cooperation is possible?", "The website is aimed primarily at business clients, but the legal and billing form is agreed individually before work starts. B2B and other lawful cooperation models can be considered depending on the actual scope."],
+        ["How much does a review cost, and how long does it take?", "I quote individually based on the journeys, devices, access and complexity. I respond without unnecessary delay; the delivery date is agreed before work starts. Sending an enquiry does not place an order."],
+        ["How is the work billed?", "Work is invoiced. We confirm the scope, price and payment arrangements before starting. A one-off review does not require an ongoing subscription."],
       ],
     },
     contact: {
-      eyebrow: "REQUEST A QUICK REVIEW OR QUOTE",
-      title: "Send the website, application or technical problem you want independently reviewed.",
+      eyebrow: "LET'S DEFINE YOUR REVIEW",
+      title: "What would you like checked?",
       text:
-        "You do not need a formal specification. A useful first message can be short: what the product is, what worries you, what should be checked and your target date.",
+        "A link and a few sentences are enough to start. I respond without unnecessary delay to clarify the scope, quote and delivery date. Work starts after we agree the terms.",
       chips: ["Product or application", "What should be checked", "Target date", "Useful context or constraints"],
       primary: "Request a Quick QA Review",
       github: "Public GitHub",
@@ -228,30 +232,30 @@ const copy = {
       process: "Proces",
       work: "Realizacje",
       about: "O mnie",
-      quote: "Poproś o audyt",
+      quote: "Zapytaj o wycenę",
     },
     hero: {
-      badge: "NIEZALEŻNE QA DLA MAŁYCH FIRM I LEKKICH ZESPOŁÓW",
-      title: "Niezależne QA, audyt techniczny i automatyzacja",
-      accent: "bez zatrudniania testera na pełny etat.",
+      badge: "NIEZALEŻNE TESTY DLA FIRM BEZ WŁASNEGO TESTERA",
+      title: "Sprawdź, co wymaga poprawy",
+      accent: "zanim wdrożysz aplikację.",
       text:
-        "Nie masz własnego testera? Mogę wejść na konkretny zakres: szybki audyt, przegląd przed wdrożeniem, diagnostykę problemu albo automatyzację i oddać Ci uporządkowane problemy, dowody oraz kolejne kroki.",
-      primary: "Zamów szybki audyt QA",
-      secondary: "Zobacz co obejmuje",
+        "Odbierasz stronę od wykonawcy lub przygotowujesz nową wersję? Sprawdzę uzgodnione działania użytkowników i przekażę raport z priorytetami oraz instrukcjami odtworzenia błędów. Dla małych firm, które nie mają własnego testera.",
+      primary: "Zapytaj o wycenę audytu",
+      secondary: "Zobacz przykładowy raport",
       meta: [
         "6+ lat w jakości oprogramowania i wsparciu",
-        "Jednorazowy audyt lub stałe wsparcie dla firm",
+        "Ustalony zakres · Indywidualna wycena · Faktura",
         "PL / EN",
       ],
       fitLabel: "DOBRY WYBÓR, GDY POTRZEBUJESZ",
       fit: [
         {
-          title: "Drugiej pary oczu",
-          text: "Niezależnej oceny przed wdrożeniem, odbiorem od wykonawcy lub kolejną rundą developmentu.",
+          title: "Odbierasz stronę od wykonawcy?",
+          text: "Sprawdź uzgodnione funkcje przed zaakceptowaniem gotowej strony lub aplikacji.",
         },
         {
-          title: "Szybkiego sprawdzenia jakości",
-          text: "Znalezienia najważniejszych problemów bez budowania własnego działu QA.",
+          title: "Przygotowujesz aktualizację?",
+          text: "Upewnij się, że klient nadal może się zalogować, wysłać formularz i wykonać najważniejsze zadania.",
         },
         {
           title: "Diagnostyki trudnego problemu",
@@ -267,27 +271,27 @@ const copy = {
       ["Szybki audyt", "niezależna ocena jakości i problemy według priorytetu"],
       ["QA + wdrożenie", "testy oparte na ryzyku przed ważną zmianą"],
       ["Wsparcie + diagnostyka", "uporządkowana analiza i czytelne dowody"],
-      ["Automatyzacja", "powtarzalne testy i praktyczne workflow"],
+      ["Automatyzacja", "mniej powtarzalnej pracy ręcznej"],
     ],
     quick: {
       eyebrow: "SZYBKI AUDYT QA",
-      title: "Skoncentrowany przegląd oprogramowania dla firm bez własnego QA.",
+      title: "Zacznij od działań najważniejszych dla Twoich klientów.",
       text:
-        "To najprostszy sposób, żeby zacząć. Dajesz mi dostęp do strony, aplikacji albo środowiska testowego i mówisz, co jest dla Ciebie najważniejsze. Niezależnie sprawdzam kluczowe ścieżki i oddaję zwięzły raport z priorytetami, który możesz wykorzystać samodzielnie albo przekazać freelancerowi, agencji czy dostawcy systemu.",
-      primary: "Zamów szybki audyt QA",
+        "Jedna strona lub aplikacja, do trzech uzgodnionych ścieżek użytkownika i raport dla programisty. Na przykład: rejestracja, wysłanie zapytania i złożenie zamówienia. Przed startem ustalamy dostęp, urządzenia i warunki testów.",
+      primary: "Zapytaj o ten zakres",
       secondary: "Zobacz przykładowy raport",
       items: [
-        ["01", "Kluczowe ścieżki użytkownika", "Sprawdzenie procesów najważniejszych dla klientów lub pracowników."],
-        ["02", "Widoczne ryzyka i edge case'y", "Wyszukanie błędnych stanów, niejasnych zachowań i oczywistych ryzyk przed wdrożeniem."],
-        ["03", "API i integracje", "Jeśli jest dostęp, weryfikacja requestów, odpowiedzi i przepływu danych."],
-        ["04", "Raport z priorytetami", "Problemy, dowody i kolejne kroki w formie, na której ktoś może od razu pracować."],
+        ["01", "Ustalamy zakres", "Wybieramy do trzech ważnych ścieżek oraz przeglądarki lub urządzenia do sprawdzenia."],
+        ["02", "Sprawdzam trudne sytuacje", "Testuję zwykłe użycie, błędne dane i przerwane działania w uzgodnionym środowisku."],
+        ["03", "Dokumentuję problemy", "Każdy opisany błąd ma kroki odtworzenia, oczekiwane zachowanie i dowody."],
+        ["04", "Wskazuję priorytety", "Otrzymujesz kolejność poprawek, ograniczenia testów i rekomendację dla sprawdzonego zakresu."],
       ],
     },
     services: {
       eyebrow: "USŁUGI DLA FIRM",
-      title: "Zacznij od jednego problemu. Rozszerzaj tylko wtedy, gdy ma to sens.",
+      title: "Dalsze wsparcie, gdy go potrzebujesz.",
       intro:
-        "Oferta jest przygotowana dla małych firm, founderów i lekkich zespołów, które potrzebują jednej doświadczonej osoby do audytu, testów, diagnostyki albo automatyzacji konkretnego obszaru bez zatrudniania pełnego zespołu QA.",
+        "Przegląd przed wdrożeniem, diagnoza powracającego problemu lub mniej pracy ręcznej. Każde zlecenie ma osobny zakres i wycenę.",
       cards: [
         {
           number: "01",
@@ -304,7 +308,7 @@ const copy = {
         },
         {
           number: "02",
-          title: "Wsparcie aplikacji i troubleshooting",
+          title: "Diagnostyka i wsparcie aplikacji",
           summary: "Uporządkowana analiza problemów aplikacji, integracji i przepływu danych.",
           bestFor:
             "Problemy produkcyjne, trudne do odtworzenia błędy, problemy integracji i powtarzające się zgłoszenia.",
@@ -318,12 +322,12 @@ const copy = {
         {
           number: "03",
           title: "Automatyzacja testów i procesów",
-          summary: "Zamiana powtarzalnej pracy ręcznej w testy i workflow, które można uruchamiać wielokrotnie.",
+          summary: "Automatyczne testy i skrypty, które ograniczają powtarzalną pracę ręczną.",
           bestFor:
-            "Powtarzalna regresja, cykliczne zadania operacyjne i procesy zbyt mocno zależne od pracy ręcznej.",
+            "Sprawdzanie tych samych funkcji po każdej zmianie oraz cykliczne zadania wykonywane ręcznie.",
           outcomes: [
             "Wskazane i uporządkowane możliwości automatyzacji",
-            "Skrypty, testy lub automatyzacje workflow do ponownego użycia",
+            "Skrypty, testy lub automatyzacje procesów do ponownego użycia",
             "Czytelna konfiguracja i instrukcja uruchomienia",
             "Dokumentacja pozwalająca utrzymać rozwiązanie",
           ],
@@ -334,7 +338,7 @@ const copy = {
       additional: "DODATKOWE MOŻLIWOŚCI",
       additionalTitle: "Gdy praktyczne rozwiązanie wykracza poza samo QA.",
       extra: [
-        ["Weryfikacja API i integracji", "Sprawdzanie requestów, odpowiedzi, przypadków brzegowych i przepływu danych zanim problem trafi na produkcję."],
+        ["Weryfikacja API i integracji", "Sprawdzanie wymiany danych między systemami, także przy błędnych danych i nietypowych sytuacjach."],
         ["Aplikacje webowe i narzędzia wewnętrzne", "MVP, narzędzia wewnętrzne i praktyczne aplikacje webowe, gdy najlepszym rozwiązaniem jest coś zbudować, a nie tylko testować."],
       ],
     },
@@ -368,13 +372,13 @@ const copy = {
     },
     work: {
       eyebrow: "WYBRANA REALIZACJA",
-      title: "Jakość najlepiej ocenić po detalach.",
+      title: "Rzeczywisty produkt. Konkretne testy jakości.",
       intro:
-        "MyAnalyze jest najlepszą wizytówką tego, jak pracuję. To rzeczywisty produkt rozwijany od pomysłu do kolejnych wydań, gdzie myślenie produktowe, spójność wizualna, edge case'y, przepływy danych, dyscyplina wydań i ciągłe ulepszanie muszą działać razem.",
-      caseLabel: "CASE STUDY PRODUKTU",
+        "MyAnalyze to mój projekt własny, nie realizacja dla klienta. Pokazuje podejście do poprawności danych, nietypowych działań użytkowników i sprawdzania, czy zmiany nie psują istniejących funkcji.",
+      caseLabel: "PROJEKT WŁASNY · PRYWATNY KOD ŹRÓDŁOWY",
       caseTitle: "MyAnalyze 2.0.0 · Aplikacja finansów osobistych dla Windows",
       caseText:
-        "Aplikacja łączy konta, transakcje, importy wyciągów, prognozy, konfigurowalne KPI, analizę finansową, cele i lokalne przechowywanie danych. Zamiast prosić Cię o zaufanie do listy umiejętności, ten projekt pozwala zobaczyć jakość pracy bezpośrednio w produkcie.",
+        "Aplikacja Windows do finansów osobistych, importowania wyciągów i planowania. Kod pozostaje prywatny; publicznie udostępniam zrzuty ekranu i gotowe wydania. Poniżej pokazuję przykłady testów w projekcie, a nie zmierzone wyniki klientów.",
       proofLabel: "NA CO WARTO ZWRÓCIĆ UWAGĘ",
       bullets: [
         "Dbałość o detale i spójność w rosnącym interfejsie",
@@ -388,15 +392,15 @@ const copy = {
     },
     about: {
       eyebrow: "O MNIE",
-      title: "Jedna doświadczona osoba zamiast niepotrzebnego narzutu.",
+      title: "Współpracujesz bezpośrednio z Mikołajem.",
       lead:
         "MD Quality to niezależna usługa jakości oprogramowania i wsparcia technicznego prowadzona przez Mikołaja Dworaka.",
       p1:
-        "W poprzedniej roli prowadziłem zespół wsparcia technicznego, który odpowiadał również za jakość aplikacji w kolejnych wersjach. Koordynowałem kontakt z partnerami, weryfikowałem testy funkcjonalne i wydajnościowe oraz pracowałem nad tym, aby z wersji na wersję liczba zgłaszanych problemów malała.",
+        "Przez ponad 6 lat pracy w jakości oprogramowania i wsparciu prowadziłem zespół wsparcia technicznego, koordynowałem kontakt z partnerami oraz weryfikowałem testy funkcjonalne i wydajnościowe przed wydaniami.",
       p2:
-        "Obecnie pracuję blisko klientów w obszarze supportu aplikacji, testów i diagnostyki technicznej. Wprowadzam również poprawki w kodzie, które trafiają do aplikacji, dlatego mam praktyczne doświadczenie nie tylko w testowaniu, ale też w bieżącym rozwoju i utrzymaniu produktu.",
+        "W Bridge pracuję przy wsparciu aplikacji, testach, diagnostyce technicznej i poprawkach w kodzie. To doświadczenie pomaga mi przełożyć zgłoszenie użytkownika na konkretne dowody, które programista może sprawdzić.",
       p3:
-        "W ponad 6 latach pracy przy aplikacjach biznesowych i produktach software'owych łączyłem testy funkcjonalne i przedwdrożeniowe, API, bazy danych, wydajność, monitoring, support i rozwój aplikacji. Rdzeniem MD Quality pozostają QA, audyty techniczne, troubleshooting i automatyzacja.",
+        "MD Quality to moja niezależna usługa. Bridge jest moim pracodawcą, a nie klientem ani podmiotem rekomendującym MD Quality. Nie udostępniam tutaj firmowego kodu, informacji o klientach ani materiałów wewnętrznych.",
       principles: "ZASADY PRACY",
       list: [
         "Najpierw rozumiem rzeczywisty sposób użycia produktu",
@@ -410,7 +414,7 @@ const copy = {
       eyebrow: "NARZĘDZIA",
       title: "Narzędzia i obszary, z którymi pracuję.",
       intro:
-        "Dokładny stack zależy od projektu. Skupiam się na praktycznych testach, diagnostyce, integracjach, danych i lekkiej automatyzacji.",
+        "Dobieram narzędzia do problemu: testowania aplikacji, analizy danych, integracji lub automatyzacji.",
     },
     faq: {
       eyebrow: "FAQ",
@@ -420,14 +424,15 @@ const copy = {
         ["Czy potrzebujesz pełnego dostępu do kodu źródłowego?", "Nie zawsze. Zależnie od zadania można zacząć od wersji aplikacji, środowiska testowego, dokumentacji API, logów, dostępu do bazy albo możliwego do odtworzenia problemu. Minimalny potrzebny dostęp ustalamy podczas określania zakresu."],
         ["Czy może to być małe jednorazowe zlecenie?", "Tak. Szybki audyt, przegląd przed wdrożeniem, diagnostykę lub automatyzację można ustalić jako samodzielny projekt."],
         ["Co otrzymam na końcu?", "Ustalamy to przed rozpoczęciem pracy. Typowe rezultaty to raport QA, problemy według priorytetu, dowody, skrypty, dokumentacja albo podsumowanie diagnostyki."],
-        ["Jaka forma współpracy jest możliwa?", "Strona jest kierowana przede wszystkim do klientów biznesowych, ale forma prawna i sposób rozliczenia są ustalane indywidualnie przed rozpoczęciem pracy. W zależności od rzeczywistego zakresu możliwe jest B2B lub inna zgodna z prawem forma współpracy."],
+        ["Ile kosztuje audyt i jak długo trwa?", "Wyceniam go indywidualnie na podstawie ścieżek użytkownika, urządzeń, dostępu i złożoności. Odpowiadam bez zbędnej zwłoki; termin realizacji ustalamy przed startem. Wysłanie zapytania nie jest zamówieniem."],
+        ["Jak wygląda rozliczenie?", "Rozliczenie na fakturę. Przed rozpoczęciem ustalamy zakres, cenę i zasady płatności. Jednorazowy audyt nie wymaga stałego abonamentu."],
       ],
     },
     contact: {
-      eyebrow: "ZAMÓW SZYBKI AUDYT LUB WYCENĘ",
-      title: "Wyślij stronę, aplikację albo problem techniczny, który chcesz niezależnie sprawdzić.",
+      eyebrow: "USTALMY ZAKRES AUDYTU",
+      title: "Co chcesz sprawdzić?",
       text:
-        "Nie potrzebujesz formalnej specyfikacji. Pierwsza wiadomość może być krótka: czym jest produkt, co Cię niepokoi, co mam sprawdzić i jaki jest termin.",
+        "Na początek wystarczy link i kilka zdań. Odpowiadam bez zbędnej zwłoki, aby ustalić zakres, wycenę i termin. Pracę rozpoczynam po uzgodnieniu warunków.",
       chips: ["Produkt lub aplikacja", "Co mam sprawdzić", "Termin", "Ważny kontekst lub ograniczenia"],
       primary: "Zamów szybki audyt QA",
       github: "Publiczny GitHub",
@@ -556,14 +561,14 @@ const schema = {
 
           const saved = localStorage.getItem("mdq-lang");
           if (saved === "pl") {
-            window.location.replace("/pl/" + window.location.hash);
+            window.location.replace("/pl/" + window.location.search + window.location.hash);
             return;
           }
           if (saved === "en") return;
 
           const primary = (navigator.languages?.[0] || navigator.language || "").toLowerCase();
           if (primary.startsWith("pl")) {
-            window.location.replace("/pl/" + window.location.hash);
+            window.location.replace("/pl/" + window.location.search + window.location.hash);
           }
         } catch {}
       })();
@@ -589,7 +594,7 @@ const schema = {
           <a class:list={[lang === "pl" && "active"]} href="/pl/" data-lang="pl">PL</a>
         </div>
 
-        <a class="header-cta" href={quoteMailto}>{t.nav.quote}</a>
+        <a class="header-cta" href="#contact">{t.nav.quote}</a>
       </nav>
     </header>
 
@@ -606,8 +611,8 @@ const schema = {
           <p class="hero-text">{t.hero.text}</p>
 
           <div class="hero-buttons">
-            <a class="button primary" href={quoteMailto}>{t.hero.primary}</a>
-            <a class="button secondary" href="#quick-review">{t.hero.secondary}</a>
+            <a class="button primary" href="#contact">{t.hero.primary}</a>
+            <a class="button secondary" href={sampleReportPath}>{t.hero.secondary}</a>
           </div>
 
           <div class="hero-meta">
@@ -646,7 +651,7 @@ const schema = {
             <h2>{t.quick.title}</h2>
             <p class="section-intro">{t.quick.text}</p>
             <div class="hero-buttons quick-review-actions">
-              <a class="button primary" href={quoteMailto}>{t.quick.primary}</a>
+              <a class="button primary" href="#contact">{t.quick.primary}</a>
               <a class="button secondary" href={sampleReportPath}>{t.quick.secondary}</a>
             </div>
           </div>
@@ -661,6 +666,7 @@ const schema = {
             ))}
           </div>
         </div>
+        <ReviewScope lang={lang} />
       </section>
 
       <section id="services" class="section container">
@@ -810,6 +816,7 @@ const schema = {
             </a>
           ))}
         </div>
+        <WorkEvidence lang={lang} />
       </section>
 
       <section id="about" class="section container about-section">
@@ -868,14 +875,7 @@ const schema = {
           <h2>{t.contact.title}</h2>
           <p>{t.contact.text}</p>
 
-          <div class="contact-points">
-            {t.contact.chips.map((item) => <span>{item}</span>)}
-          </div>
-
-          <div class="contact-actions">
-            <a class="button primary" href={quoteMailto}>{t.contact.primary}</a>
-            <a class="button secondary" href="mailto:mikolajdworak@icloud.com">mikolajdworak@icloud.com</a>
-          </div>
+          <ContactBrief lang={lang} />
 
           <div class="social-links">
             <a href="https://www.linkedin.com/in/mikdwo/" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -914,7 +914,7 @@ const schema = {
 
 <style>
   :global(*) { box-sizing: border-box; }
-  :global(html) { scroll-behavior: smooth; }
+  :global(html) { scroll-behavior: smooth; scroll-padding-top: 90px; }
   :global(body) {
     margin: 0;
     font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -922,7 +922,7 @@ const schema = {
     color: #f5f7fa;
     line-height: 1.6;
   }
-  :global(a:focus-visible), :global(summary:focus-visible) { outline: 2px solid #7dd3fc; outline-offset: 4px; }
+  :global(:focus-visible) { outline: 2px solid #7dd3fc; outline-offset: 4px; }
   :global(::selection) { background: #7dd3fc; color: #071019; }
 
   .container { width: min(1160px, calc(100% - 40px)); margin: 0 auto; }
@@ -944,12 +944,12 @@ const schema = {
   .language-switch a { font-weight: 800; }
   .header-cta { flex: 0 0 auto; text-decoration: none; color: #071019; background: #f4f7fb; border-radius: 8px; padding: 9px 14px; font-size: 12px; font-weight: 800; }
 
-  .hero { min-height: 740px; display: grid; grid-template-columns: minmax(0, 1.42fr) minmax(310px, .58fr); gap: 70px; align-items: center; padding: 92px 0; }
+  .hero { min-height: 620px; display: grid; grid-template-columns: minmax(0, 1.42fr) minmax(310px, .58fr); gap: 55px; align-items: center; padding: 65px 0; }
   .badge, .panel-label, .eyebrow, .project-label, .best-for > span, .outcomes > span, .project-proof > span {
     color: #7dd3fc; font-size: 10px; letter-spacing: 1.7px; font-weight: 850;
   }
   .badge { display: inline-flex; padding: 7px 12px; border: 1px solid #263241; border-radius: 999px; margin-bottom: 28px; background: rgba(15,22,31,.72); }
-  h1 { max-width: 920px; margin: 0; font-size: clamp(48px, 6.2vw, 78px); line-height: .99; letter-spacing: -4px; }
+  h1 { max-width: 920px; margin: 0; font-size: clamp(44px, 5.3vw, 66px); line-height: 1.08; letter-spacing: -2.6px; }
   h1 span { display: block; color: #7dd3fc; }
   h2 { font-size: clamp(36px, 5vw, 56px); line-height: 1.06; letter-spacing: -2.4px; margin: 8px 0 20px; }
   .hero-text { max-width: 770px; margin: 30px 0; font-size: 19px; color: #aeb7c4; }
@@ -1086,7 +1086,7 @@ const schema = {
   @media (max-width: 980px) {
     .nav-links { display: none; }
     .hero, .about-section, .section-split, .faq-layout, .secondary-services, .quick-review { grid-template-columns: 1fr; gap: 42px; }
-    .hero { min-height: auto; padding-top: 100px; }
+    .hero { min-height: auto; padding-top: 55px; }
     .services-grid, .deliverables-grid { grid-template-columns: 1fr; }
     .service-summary { min-height: 0; }
     .proof-grid, .process-grid { grid-template-columns: repeat(2,1fr); }
