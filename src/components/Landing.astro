@@ -33,7 +33,7 @@ const copy = {
         ["Scope", "QA, release checks, troubleshooting, automation and practical AI."],
         ["Ability", "6+ years across software quality, support, APIs, data and production fixes."],
         ["Business value", "Prioritized findings, clearer release decisions and less repetitive work."],
-        ["Pricing", "From 850 PLN / MD (up to 8h)."],
+        ["Pricing", "From 850 PLN per working day (up to 8 hours). Free initial consultation and estimate."],
       ],
     },
     quick: {
@@ -197,7 +197,7 @@ const copy = {
       eyebrow: "LET'S DEFINE YOUR REVIEW",
       title: "What would you like checked, fixed or automated?",
       text:
-        "Send a link or describe the process. I will reply with the next questions, scope, quote and delivery date.",
+        "The initial consultation is free: we clarify the problem, outline the scope and estimate the effort and cost. Send a link or describe the process. Paid work starts after we agree the scope, price and delivery date.",
       chips: ["Product, application or process", "What should be checked or automated", "Target date", "Useful context or data constraints"],
       primary: "Request a Quick QA Review",
       github: "Public GitHub",
@@ -232,7 +232,7 @@ const copy = {
         ["Zakres", "QA, testy przed wdrożeniem, diagnostyka, automatyzacja i praktyczne AI."],
         ["Możliwości", "6+ lat w jakości i wsparciu, API, dane, diagnostyka oraz poprawki kodu."],
         ["Korzyść", "Priorytety, pewniejsze wdrożenia i mniej powtarzalnej pracy ręcznej."],
-        ["Cena", "Od 850 zł / MD (do 8h)."],
+        ["Cena", "Od 850 zł za dzień pracy (do 8 godzin). Bezpłatna konsultacja wstępna i estymacja."],
       ],
     },
     quick: {
@@ -396,7 +396,7 @@ const copy = {
       eyebrow: "USTALMY ZAKRES AUDYTU",
       title: "Co chcesz sprawdzić, naprawić lub zautomatyzować?",
       text:
-        "Wyślij link albo opisz proces. Odpowiem z pytaniami, proponowanym zakresem, wyceną i terminem.",
+        "Konsultacja wstępna jest bezpłatna: rozpoznajemy problem, określamy wstępny zakres oraz orientacyjny nakład pracy i koszt. Wyślij link albo opisz proces. Płatną pracę rozpoczynam po uzgodnieniu zakresu, ceny i terminu.",
       chips: ["Produkt, aplikacja lub proces", "Co mam sprawdzić lub zautomatyzować", "Termin", "Ważny kontekst lub ograniczenia danych"],
       primary: "Zamów szybki audyt QA",
       github: "Publiczny GitHub",
@@ -612,6 +612,7 @@ const schema = {
 
         </div>
 
+        <ReviewScope lang={lang} />
         <details class="disclosure quick-details">
           <summary>{t.quick.detailsLabel}</summary>
           <div class="disclosure-body">
@@ -624,7 +625,6 @@ const schema = {
                 </article>
               ))}
             </div>
-            <ReviewScope lang={lang} />
           </div>
         </details>
       </section>

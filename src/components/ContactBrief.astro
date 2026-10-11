@@ -52,12 +52,12 @@ const recipient = "mikolajdworak@icloud.com";
 
     <p class="hint">
       {pl
-        ? "Termin zostawiam jako pole tekstowe, bo często ważniejsze jest „przed wdrożeniem” niż konkretna data. Nie wpisuj haseł, danych klientów ani innych poufnych informacji."
-        : "Timing stays as free text because “before launch” is often more useful than an exact date. Do not include passwords, customer data or other confidential information."}
+        ? "Nie wpisuj haseł, danych klientów ani innych poufnych informacji."
+        : "Do not include passwords, customer data or other confidential information."}
     </p>
 
     <div class="actions">
-      <button type="submit">{pl ? "Wyślij zapytanie" : "Send enquiry"}</button>
+      <button type="submit">{pl ? "Otwórz wiadomość w poczcie" : "Open message in email app"}</button>
       <button class="secondary" type="button" data-copy>
         {pl ? "Kopiuj wiadomość" : "Copy message"}
       </button>
@@ -65,8 +65,8 @@ const recipient = "mikolajdworak@icloud.com";
 
     <p class="delivery-note">
       {pl
-        ? "„Wyślij zapytanie” otwiera Twoją aplikację pocztową. Wiadomość nie jest wysyłana automatycznie przez tę stronę, finalnie wysyłasz ją ze swojej skrzynki."
-        : "“Send enquiry” opens your email app. The website does not send anything automatically; you send the final email from your own mailbox."}
+        ? "Sprawdź przygotowaną wiadomość i wyślij ją ze swojej poczty. Możesz też skopiować treść do dowolnej skrzynki."
+        : "Review the prepared message and send it from your email app. You can also copy the text into any mailbox."}
     </p>
 
     <p class="status" role="status" aria-live="polite" data-status></p>
