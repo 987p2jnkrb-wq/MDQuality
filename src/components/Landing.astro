@@ -141,9 +141,9 @@ const copy = {
       intro:
         "MyAnalyze is the clearest example of how I turn an idea into a working product and keep improving it across real releases.",
       caseLabel: "PERSONAL PRODUCT · WINDOWS",
-      caseTitle: "MyAnalyze 2.0.0 · Finance, planning and analysis in one place",
+      caseTitle: "MyAnalyze 3.0 · Finance, planning and analysis in one place",
       caseText:
-        "Accounts, transactions, loans, liabilities and savings goals come together with statement imports, forecasts, custom KPIs and financial analysis. Data stays local on the user's computer, while the product keeps planning, completed transactions and balances clearly separated.",
+        "Accounts, transactions, goals, statement imports and forecasts in one local Windows app. Version 3.0 adds a guided first run, clearer transaction review and refined dashboard, KPI and trend views. Financial integrity checks flag items for review without changing data automatically.",
       proofLabel: "WHAT TO LOOK AT",
       bullets: [
         "Attention to detail and consistency across a growing interface",
@@ -153,7 +153,7 @@ const copy = {
         "Design decisions balanced with usability and business rules",
       ],
       projectButton: "Public project page",
-      releaseButton: "Release 2.0.0",
+      releaseButton: "Release 3.0",
       detailsLabel: "See MyAnalyze quality evidence",
     },
     about: {
@@ -340,9 +340,9 @@ const copy = {
       intro:
         "MyAnalyze najlepiej pokazuje, jak przekładam pomysł na działający produkt, rozwijam go przez kolejne wersje i dbam o jakość na każdym etapie.",
       caseLabel: "WŁASNY PRODUKT · WINDOWS",
-      caseTitle: "MyAnalyze 2.0.0 · Finanse, planowanie i analiza w jednym miejscu",
+      caseTitle: "MyAnalyze 3.0 · Finanse, planowanie i analiza w jednym miejscu",
       caseText:
-        "Konta, transakcje, kredyty, zobowiązania i cele oszczędnościowe łączą się tu z importem wyciągów, prognozami, własnymi KPI i analizą finansową. Dane pozostają lokalnie na komputerze użytkownika, a planowanie, wykonane transakcje i salda są rozdzielone tak, żeby analiza nie zacierała rzeczywistej historii finansów.",
+        "Konta, transakcje, cele, import wyciągów i prognozy w jednej aplikacji Windows z danymi przechowywanymi lokalnie. Wersja 3.0 prowadzi przez pierwsze uruchomienie, ułatwia przegląd transakcji i rozwija dashboard, KPI oraz widoki trendów. Kontrole spójności finansowej wskazują dane wymagające sprawdzenia, bez automatycznego ich zmieniania.",
       proofLabel: "NA CO WARTO ZWRÓCIĆ UWAGĘ",
       bullets: [
         "Dbałość o detale i spójność w rosnącym interfejsie",
@@ -352,7 +352,7 @@ const copy = {
         "Decyzje projektowe łączące design, użyteczność i reguły biznesowe",
       ],
       projectButton: "Publiczna strona projektu",
-      releaseButton: "Wydanie 2.0.0",
+      releaseButton: "Wydanie 3.0",
       detailsLabel: "Zobacz szczegóły jakości MyAnalyze",
     },
     about: {
@@ -417,20 +417,22 @@ const quoteMailto =
 
 const projectScreens = [
   {
-    title: "MyAnalyze dashboard",
-    src: "https://github.com/987p2jnkrb-wq/MyAnalyze-releases/releases/download/v2.0.0/screenshots.release.png",
+    title: lang === "pl" ? "Dashboard · tryb ciemny, ukryte kwoty" : "Dashboard · dark mode, amounts hidden",
+    src: "https://raw.githubusercontent.com/987p2jnkrb-wq/MyAnalyze-releases/main/screenshots/3.0/dashboard-dark.png",
+    width: 1679,
+    height: 951,
   },
   {
-    title: "Finance Manager",
-    src: "https://github.com/987p2jnkrb-wq/MyAnalyze-releases/releases/download/v2.0.0/screenshots.release2.png",
+    title: lang === "pl" ? "Trendy i alerty · porównanie miesięcy" : "Trends and alerts · month comparisons",
+    src: "https://raw.githubusercontent.com/987p2jnkrb-wq/MyAnalyze-releases/main/screenshots/3.0/trends.png",
+    width: 1891,
+    height: 969,
   },
   {
-    title: "Financial analysis",
-    src: "https://github.com/987p2jnkrb-wq/MyAnalyze-releases/releases/download/v2.0.0/screenshots.release.3.png",
-  },
-  {
-    title: "Application overview",
-    src: "https://github.com/987p2jnkrb-wq/MyAnalyze-releases/releases/download/v2.0.0/screenshots.release.4.png",
+    title: lang === "pl" ? "KPI · własne wskaźniki finansowe" : "KPIs · custom financial indicators",
+    src: "https://raw.githubusercontent.com/987p2jnkrb-wq/MyAnalyze-releases/main/screenshots/3.0/kpi.png",
+    width: 1226,
+    height: 621,
   },
 ];
 
@@ -473,7 +475,7 @@ const capabilities =
 
 const myAnalyzePublicUrl = "https://github.com/987p2jnkrb-wq/MyAnalyze-releases";
 const myAnalyzeReleaseUrl =
-  "https://github.com/987p2jnkrb-wq/MyAnalyze-releases/releases/tag/v2.0.0";
+  "https://github.com/987p2jnkrb-wq/MyAnalyze-releases/releases/tag/v3.0";
 
 const schema = {
   "@context": "https://schema.org",
@@ -728,7 +730,7 @@ const schema = {
           </div>
 
           <a class="project-preview project-image-link" href={projectScreens[0].src} target="_blank" rel="noreferrer">
-            <img src={projectScreens[0].src} alt="MyAnalyze 2.0.0 dashboard" loading="lazy" />
+            <img src={projectScreens[0].src} alt={"MyAnalyze 3.0 — " + projectScreens[0].title} width={projectScreens[0].width} height={projectScreens[0].height} loading="lazy" decoding="async" />
           </a>
         </article>
 
@@ -745,7 +747,7 @@ const schema = {
             <div class="project-gallery">
               {projectScreens.slice(1).map((screen) => (
                 <a class="project-shot" href={screen.src} target="_blank" rel="noreferrer">
-                  <img src={screen.src} alt={"MyAnalyze - " + screen.title} loading="lazy" />
+                  <img src={screen.src} alt={"MyAnalyze 3.0 — " + screen.title} width={screen.width} height={screen.height} loading="lazy" decoding="async" />
                   <span>{screen.title}</span>
                 </a>
               ))}
@@ -1012,14 +1014,14 @@ const schema = {
   .tags { margin-top: 24px; }
   .tags span, .capabilities span, .contact-points span { border: 1px solid #263241; border-radius: 999px; padding: 6px 11px; color: #aeb7c4; font-size: 12px; background: rgba(10,14,20,.6); }
   .project-actions { margin-top: 27px; }
-  .project-preview { position: relative; z-index: 1; aspect-ratio: 4/3; border-radius: 12px; background: #090d13; border: 1px solid #202a37; overflow: hidden; }
+  .project-preview { position: relative; z-index: 1; border-radius: 12px; background: #090d13; border: 1px solid #202a37; overflow: hidden; }
   .project-image-link { display: block; transition: transform .2s ease, border-color .2s ease; }
   .project-image-link:hover { transform: translateY(-3px); border-color: #3b5168; }
-  .project-preview img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: top left; }
-  .project-gallery { display: grid; grid-template-columns: repeat(3,1fr); gap: 15px; margin-top: 15px; }
+  .project-preview img { width: 100%; height: auto; display: block; }
+  .project-gallery { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 15px; margin-top: 15px; }
   .project-shot { display: block; overflow: hidden; border: 1px solid #1d2631; border-radius: 14px; background: #0d1219; text-decoration: none; color: #d9e0e8; transition: transform .2s ease, border-color .2s ease; }
   .project-shot:hover { transform: translateY(-3px); border-color: #3b5168; }
-  .project-shot img { width: 100%; aspect-ratio: 16/10; display: block; object-fit: cover; object-position: top left; border-bottom: 1px solid #1d2631; }
+  .project-shot img { width: 100%; height: auto; display: block; border-bottom: 1px solid #1d2631; }
   .project-shot span { display: block; padding: 13px 15px; font-size: 13px; font-weight: 720; }
 
   .about-section { display: grid; grid-template-columns: minmax(0,1.35fr) minmax(290px,.65fr); gap: 70px; align-items: start; }
