@@ -1,0 +1,104 @@
+---
+interface Props { lang: string; }
+const { lang } = Astro.props;
+const pl = lang === "pl";
+const text = pl ? {
+  label: "DOŚWIADCZENIE ZAWODOWE",
+  role: "Wsparcie aplikacji, testowanie i diagnostyka",
+  intro: "W IT pracuję od 2020 roku. Zaczynałem od sprzętu i wsparcia użytkowników, dziś pracuję przy aplikacjach wykorzystywanych na produkcji. Łączę kontakt z klientem z analizą problemów, testami i drobnymi zmianami w kodzie.",
+  contact: "Porozmawiajmy o współpracy",
+  history: "Doświadczenie w skrócie",
+  stages: [
+    { period: "2023 - obecnie", title: "Aplikacje dla produkcji i magazynów", description: "Pracuję przy systemach używanych w fabrykach, w tym WMS. Uczestniczę w ustalaniu potrzeb, projektowaniu zmian i proponowaniu rozwiązań technicznych. Wprowadzam drobne poprawki kodu, wykonuję testy aplikacji, API, wydajnościowe i jednostkowe. Wspieram klientów i tworzę dokumentację." },
+    { period: "2021 - 2023", title: "Wsparcie aplikacji i usług chmurowych", description: "Diagnozowałem zgłoszenia, odtwarzałem błędy i testowałem aplikacje webowe, mobilne oraz desktopowe. Pracowałem z SQL i logami, wspierałem użytkowników oraz współpracowałem przy rozwoju aplikacji." },
+    { period: "2020", title: "Wsparcie IT i środowiska użytkowników", description: "Zajmowałem się serwisem sprzętu, instalacją i aktualizacją oprogramowania oraz rozwiązywaniem problemów z urządzeniami i usługami. Analizowałem logi i reagowałem na alerty ochrony stacji roboczych." },
+    { period: "Wcześniejsze doświadczenie", title: "Bankowość i zarządzanie zespołem", description: "Obsługiwałem klientów i pracowałem w aplikacjach bankowych, zgodnie z procedurami i zasadami bezpieczeństwa. Przez rok zarządzałem zespołem. Poznałem pracę z produktami bankowymi i odpowiedzialność za poprawną obsługę klienta." },
+  ],
+  projectLabel: "WŁASNY PROJEKT",
+  projectTitle: "MyAnalyze - od pomysłu do wydania",
+  projectText: "Korzystając z doświadczenia zawodowego i rozwijając umiejętności z pomocą narzędzi AI, zbudowałem aplikację do finansów osobistych. Odpowiadam za projekt interfejsu, implementację, testy, dokumentację i publikację kolejnych wersji na Windows oraz widoków mobilnych.",
+  projectMethod: "AI wspiera mnie w projektowaniu, pisaniu kodu i analizie problemów. Decyzje produktowe oraz weryfikacja działania pozostają po mojej stronie.",
+  projectLink: "Zobacz aplikację",
+  evidence: "Historia rozwoju i przykłady",
+} : {
+  label: "PROFESSIONAL EXPERIENCE",
+  role: "Application support, testing and diagnostics",
+  intro: "I have worked in IT since 2020. I started with hardware and user support and now work on applications used in production environments. I combine customer communication with troubleshooting, testing and focused code changes.",
+  contact: "Let's discuss working together",
+  history: "Experience at a glance",
+  stages: [
+    { period: "2023 - present", title: "Manufacturing and warehouse applications", description: "I work on systems used in factories, including WMS. I contribute to requirements, change design and technical implementation proposals. I make focused code fixes, carry out application, API, performance and unit testing, support customers and write documentation." },
+    { period: "2021 - 2023", title: "Application and cloud service support", description: "I investigated support requests, reproduced issues and tested web, mobile and desktop applications. I worked with SQL and logs, supported users and contributed to application development." },
+    { period: "2020", title: "IT and end-user support", description: "I serviced hardware, installed and updated software, and resolved device and service issues. I investigated logs and responded to endpoint protection alerts." },
+    { period: "Earlier experience", title: "Banking and team management", description: "I served customers and worked with banking applications, following procedures and security requirements. I managed a team for one year. This gave me practical knowledge of banking products and responsibility for accurate customer service." },
+  ],
+  projectLabel: "PERSONAL PROJECT",
+  projectTitle: "MyAnalyze - from idea to release",
+  projectText: "Drawing on my professional experience and developing my skills with AI tools, I built a personal finance application. I handle interface design, implementation, testing, documentation and versioned Windows releases with mobile views.",
+  projectMethod: "AI supports my design, coding and troubleshooting work. Product decisions and verification remain my responsibility.",
+  projectLink: "Explore the application",
+  evidence: "Development history and examples",
+};
+---
+
+<section id="about" class="experience" aria-labelledby="experience-name">
+  <div class="profile">
+    <p class="eyebrow">{text.label}</p>
+    <h1 id="experience-name">Mikołaj Dworak</h1>
+    <p class="role">{text.role}</p>
+    <p class="intro">{text.intro}</p>
+    <div class="contact-links">
+      <a href="mailto:mikolajdworak@icloud.com">{text.contact} <span aria-hidden="true">→</span></a>
+      <a href="https://www.linkedin.com/in/mikdwo/" target="_blank" rel="noreferrer">LinkedIn</a>
+    </div>
+  </div>
+  <div class="experience-body">
+    <section aria-labelledby="career-title">
+      <h2 id="career-title">{text.history}</h2>
+      <ol class="timeline">
+        {text.stages.map((stage) => <li>
+          <p class="period">{stage.period}</p>
+          <h3>{stage.title}</h3>
+          <p>{stage.description}</p>
+        </li>)}
+      </ol>
+    </section>
+    <section class="project" aria-labelledby="personal-project-title">
+      <p class="eyebrow">{text.projectLabel}</p>
+      <h2 id="personal-project-title">{text.projectTitle}</h2>
+      <p>{text.projectText}</p>
+      <p>{text.projectMethod}</p>
+      <div class="project-links">
+        <a class="project-button" href="https://github.com/987p2jnkrb-wq/MyAnalyze-releases" target="_blank" rel="noreferrer">{text.projectLink} <span aria-hidden="true">↗</span></a>
+        <a href={pl ? "/pl/#work" : "/#work"}>{text.evidence}</a>
+      </div>
+    </section>
+  </div>
+</section>
+
+<style>
+  .experience { width: min(1160px, calc(100% - 40px)); margin: 0 auto; padding: 48px 0; }
+  .profile { max-width: 780px; margin-bottom: 38px; }
+  .eyebrow { color: #7dd3fc; font-size: 10px; letter-spacing: 1.7px; font-weight: 850; margin: 0 0 12px; }
+  h1 { font-size: clamp(32px, 5vw, 48px); line-height: 1.1; letter-spacing: -1.5px; margin: 0 0 14px; }
+  .role { color: #dce6f0; font-size: 19px; margin: 0 0 16px; }
+  .intro { color: #aeb7c4; font-size: 16px; margin: 0; }
+  .contact-links, .project-links { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 22px; }
+  a { color: #7dd3fc; font-size: 14px; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .experience-body { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .9fr); gap: 40px; align-items: start; }
+  h2 { font-size: 23px; line-height: 1.25; letter-spacing: -.5px; margin: 0 0 22px; }
+  .timeline { list-style: none; margin: 0; padding: 0; }
+  .timeline li { border-left: 1px solid #2a3b4f; padding: 0 0 25px 22px; position: relative; }
+  .timeline li:last-child { padding-bottom: 0; }
+  .timeline li::before { content: ""; position: absolute; width: 7px; height: 7px; border-radius: 50%; left: -4px; top: 8px; background: #7dd3fc; }
+  .period { font-size: 12px; color: #7dd3fc; margin: 0 0 6px; }
+  h3 { font-size: 17px; line-height: 1.4; margin: 0 0 8px; }
+  li > p:last-child, .project > p:not(.eyebrow) { font-size: 14px; color: #aeb7c4; margin: 0; }
+  .project { padding: 26px; background: #0d131c; border: 1px solid #27384a; border-radius: 16px; }
+  .project h2 { margin-bottom: 16px; }
+  .project > p:not(.eyebrow) + p { margin-top: 14px; }
+  .project-button { display: inline-flex; align-items: center; gap: 8px; padding: 11px 15px; border: 1px solid #385572; border-radius: 8px; color: #e8f5ff; background: #162638; }
+  @media (max-width: 820px) { .experience-body { grid-template-columns: 1fr; gap: 30px; } }
+  @media (max-width: 520px) { .experience { width: calc(100% - 30px); padding: 30px 0; } .role { font-size: 17px; } .profile { margin-bottom: 30px; } .project { padding: 22px; } }
+</style>

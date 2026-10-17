@@ -1,4 +1,5 @@
 ---
+import Experience from "./Experience.astro";
 import ProjectVersionCarousel from "./ProjectVersionCarousel.astro";
 import ReviewScope from "./ReviewScope.astro";
 import WorkEvidence from "./WorkEvidence.astro";
@@ -158,27 +159,6 @@ const copy = {
       projectButton: "Public project page",
       releaseButton: "Release 4.0",
       detailsLabel: "See MyAnalyze quality evidence",
-    },
-    about: {
-      eyebrow: "EXPERIENCE",
-      title: "Software quality backed by hands-on product work.",
-      lead:
-        "6+ years across software quality, application support and technical troubleshooting.",
-      p1:
-        "I have led a technical support team, worked with partners and verified functional and performance testing before releases.",
-      p2:
-        "In my current position I work with application support, testing, technical troubleshooting and code fixes deployed into the product.",
-      p3:
-        "MD Quality is my independent service. My professional employment is not presented as a client reference or endorsement of MD Quality, and employer code, customer information and internal materials are not shared here.",
-      principles: "WORKING PRINCIPLES",
-      list: [
-        "Honesty and transparency: I want to earn for useful work, not unnecessary scope. I say clearly what is worth doing, what is not, and what you can realistically expect.",
-        "Understand the real user flow before testing it",
-        "Prioritize risks instead of producing noise",
-        "Look for root causes, not only symptoms",
-        "Document findings so another person can act on them",
-        "Automate when repetition stops adding value",
-      ],
     },
     toolkit: {
       eyebrow: "TOOLKIT",
@@ -358,27 +338,6 @@ const copy = {
       releaseButton: "Wydanie 4.0",
       detailsLabel: "Zobacz szczegóły jakości MyAnalyze",
     },
-    about: {
-      eyebrow: "DOŚWIADCZENIE",
-      title: "Jakość oprogramowania oparta na praktycznej pracy z produktem.",
-      lead:
-        "Ponad 6 lat w jakości oprogramowania, wsparciu aplikacji i diagnostyce technicznej.",
-      p1:
-        "Prowadziłem zespół wsparcia technicznego, współpracowałem z partnerami oraz weryfikowałem testy funkcjonalne i wydajnościowe przed wydaniami.",
-      p2:
-        "W obecnej roli pracuję przy wsparciu aplikacji, testach, diagnostyce technicznej i poprawkach kodu trafiających do produktu.",
-      p3:
-        "MD Quality to moja niezależna usługa. Moje zatrudnienie zawodowe nie jest przedstawiane jako referencja klienta ani rekomendacja MD Quality. Nie udostępniam tutaj firmowego kodu, informacji o klientach ani materiałów wewnętrznych.",
-      principles: "ZASADY PRACY",
-      list: [
-        "Uczciwość i transparentność: chcę zarabiać na dobrze wykonanej pracy, nie na niepotrzebnym zakresie. Jasno mówię, co warto zrobić, czego nie warto robić i czego można realnie oczekiwać po współpracy.",
-        "Najpierw rozumiem rzeczywisty sposób użycia produktu",
-        "Priorytetyzuję ryzyka zamiast produkować szum",
-        "Szukam przyczyn, nie tylko objawów",
-        "Dokumentuję problemy tak, aby inna osoba mogła na nich działać",
-        "Automatyzuję, gdy powtarzalność przestaje wnosić wartość",
-      ],
-    },
     toolkit: {
       eyebrow: "NARZĘDZIA",
       title: "Narzędzia i obszary, z którymi pracuję.",
@@ -443,7 +402,7 @@ const pageCopy = lang === "pl" ? {
   ]
 };
 const pageTitle = `${isHome ? (lang === "pl" ? "Testowanie, diagnostyka i rozwój aplikacji" : "Testing, diagnostics and application development") : isOffer ? pageCopy.offer : pageCopy.experience} | MD Quality`;
-const pageDescription = isHome ? pageCopy.text : isOffer ? pageCopy.offerText : t.about.lead;
+const pageDescription = isHome ? pageCopy.text : isOffer ? pageCopy.offerText : (lang === "pl" ? "Mikołaj Dworak - w IT od 2020 roku. Wsparcie aplikacji, testowanie, diagnostyka i własny projekt MyAnalyze." : "Mikołaj Dworak - working in IT since 2020. Application support, testing, diagnostics and the MyAnalyze personal project.");
 const sampleReportPath = lang === "pl" ? "/pl/sample-qa-report/" : "/sample-qa-report/";
 const homePath = lang === "pl" ? "/pl/" : "/";
 
@@ -834,28 +793,7 @@ const schema = {
 
       }
 
-      {page === "experience" && <section id="about" class="section container about-section">
-        <div class="about-copy">
-          <p class="eyebrow">{t.about.eyebrow}</p>
-          <h1 class="experience-title">{t.about.title}</h1>
-          <p class="about-lead">{t.about.lead}</p>
-          <p>{t.about.p1}</p>
-          <p>{t.about.p2}</p>
-          <p>{t.about.p3}</p>
-          <a class="text-link" href={homePath + "#work"}>{pageCopy.project} <span aria-hidden="true">→</span></a>
-        </div>
-
-        <aside class="about-panel">
-          <details>
-            <summary>{t.about.principles}</summary>
-            <ul>
-              {t.about.list.map((item) => <li>{item}</li>)}
-            </ul>
-          </details>
-        </aside>
-      </section>
-
-      }
+      {page === "experience" && <Experience lang={lang} />}
 
       {isOffer && <>
       <section class="section faq-section">
@@ -891,13 +829,13 @@ const schema = {
         </div>
       </section>
       </>}
-      {!isOffer && <section class="container compact-contact"><a href="mailto:mikolajdworak@icloud.com">mikolajdworak@icloud.com</a><a href="https://www.linkedin.com/in/mikdwo/" target="_blank" rel="noreferrer">LinkedIn</a><a href={offerPath + "#contact"}>{pageCopy.contact} <span aria-hidden="true">→</span></a></section>}
+      {isHome && <section class="container compact-contact"><a href="mailto:mikolajdworak@icloud.com">mikolajdworak@icloud.com</a><a href="https://www.linkedin.com/in/mikdwo/" target="_blank" rel="noreferrer">LinkedIn</a><a href={offerPath + "#contact"}>{pageCopy.contact} <span aria-hidden="true">→</span></a></section>}
     </main>
 
     <footer class="container">
       <div class="footer-brand">
         <div class="logo">MD<span>Quality</span></div>
-        <p>© {new Date().getFullYear()} MD Quality · Mikołaj Dworak · {t.footer}</p>
+        <p>© {new Date().getFullYear()} MD Quality · Mikołaj Dworak · {page === "experience" ? (lang === "pl" ? "Wsparcie aplikacji, testowanie i diagnostyka" : "Application support, testing and diagnostics") : t.footer}</p>
       </div>
       <div class="footer-links">
         <a href={lang === "pl" ? "/pl/privacy/" : "/privacy/"}>
@@ -1022,8 +960,7 @@ const schema = {
   .quick-review-actions { margin-top: 28px; }
   .disclosure { margin-top: 22px; border: 1px solid #27384a; border-radius: 14px; background: rgba(10,14,20,.58); overflow: hidden; }
   .disclosure > summary,
-  .service-details > summary,
-  .about-panel summary {
+  .service-details > summary {
     cursor: pointer;
     list-style: none;
     position: relative;
@@ -1033,11 +970,9 @@ const schema = {
     font-weight: 780;
   }
   .disclosure > summary::-webkit-details-marker,
-  .service-details > summary::-webkit-details-marker,
-  .about-panel summary::-webkit-details-marker { display: none; }
+  .service-details > summary::-webkit-details-marker { display: none; }
   .disclosure > summary::after,
-  .service-details > summary::after,
-  .about-panel summary::after {
+  .service-details > summary::after {
     content: "+";
     position: absolute;
     right: 20px;
@@ -1047,8 +982,7 @@ const schema = {
     font-size: 19px;
   }
   .disclosure[open] > summary::after,
-  .service-details[open] > summary::after,
-  .about-panel details[open] > summary::after { content: "−"; }
+  .service-details[open] > summary::after { content: "−"; }
   .disclosure-body { padding: 0 20px 22px; border-top: 1px solid #1d2835; }
   .quick-details .disclosure-body { padding-top: 20px; }
 
@@ -1129,16 +1063,6 @@ const schema = {
   .project-shot img { width: 100%; height: auto; display: block; border-bottom: 1px solid #1d2631; }
   .project-shot span { display: block; padding: 13px 15px; font-size: 13px; font-weight: 720; }
 
-  .about-section { display: grid; grid-template-columns: minmax(0,1.35fr) minmax(290px,.65fr); gap: 70px; align-items: start; }
-  .about-lead { font-size: 22px; color: #e9eef5; line-height: 1.5; }
-  .about-copy > p:not(.eyebrow):not(.about-lead) { color: #9ba6b5; font-size: 15px; }
-  .about-panel { margin-top: 45px; padding: 8px 24px; border: 1px solid #1d2631; border-radius: 14px; background: #0d1219; }
-  .about-panel summary { padding-left: 0; }
-  .about-panel summary::after { right: 0; }
-  .about-panel ul { margin: 0 0 12px; padding: 0; list-style: none; }
-  .about-panel li { position: relative; padding: 12px 0 12px 22px; border-top: 1px solid #19212b; color: #a7b2c0; font-size: 13px; }
-  .about-panel li:first-child { border-top: 0; }
-  .about-panel li::before { content: ""; position: absolute; left: 0; top: 21px; width: 6px; height: 6px; border-radius: 50%; background: #7dd3fc; }
 
   .toolkit-heading { margin-bottom: 30px; }
   .capabilities span { padding: 8px 13px; font-size: 12px; }
@@ -1168,14 +1092,13 @@ const schema = {
 
   @media (max-width: 980px) {
     .nav-links { display: none; }
-    .hero, .about-section, .section-split, .faq-layout { grid-template-columns: 1fr; gap: 42px; }
+    .hero, .section-split, .faq-layout { grid-template-columns: 1fr; gap: 42px; }
     .hero { min-height: auto; padding-top: 55px; }
     .overview-grid { grid-template-columns: repeat(2,1fr); }
     .services-grid, .deliverables-grid { grid-template-columns: 1fr; }
     .service-summary { min-height: 0; }
     .proof-grid, .process-grid { grid-template-columns: repeat(2,1fr); }
     .secondary-grid { grid-template-columns: 1fr 1fr; }
-    .about-panel { margin-top: 0; }
   }
 
   @media (max-width: 720px) {
@@ -1206,7 +1129,6 @@ const schema = {
     .hero-panel, .service-card, .deliverable-card { padding: 23px; }
   }
 
-  .experience-title { font-size: clamp(32px, 4vw, 48px); letter-spacing: -1.5px; margin: 8px 0 24px; }
   .nav-links a[aria-current="page"] { color: #fff; text-decoration: underline; text-underline-offset: 7px; text-decoration-color: #7dd3fc; }
   .compact-hero { min-height: auto; padding: 48px 0 36px; }
   .compact-hero .badge { margin-bottom: 20px; }
