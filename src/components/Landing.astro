@@ -35,9 +35,9 @@ const copy = {
       title: "What you can hire me for.",
       cards: [
         ["Scope", "QA, release checks, troubleshooting, automation and practical AI."],
-        ["Ability", "6+ years across software quality, support, APIs, data and production fixes."],
+        ["Experience", "Working in IT since 2020, in application support since 2021. Testing, diagnostics and focused code fixes."],
         ["Business value", "Prioritized findings, clearer release decisions and less repetitive work."],
-        ["Pricing", "From 850 PLN per working day (up to 8 hours). Free initial consultation and estimate."],
+        ["Project pricing", "From 850 PLN per working day (up to 8 hours). Free initial consultation and estimate. Employment terms are agreed separately."],
       ],
     },
     quick: {
@@ -213,9 +213,9 @@ const copy = {
       title: "W czym mogę pomóc.",
       cards: [
         ["Zakres", "QA, testy przed wdrożeniem, diagnostyka, automatyzacja i praktyczne AI."],
-        ["Możliwości", "6+ lat w jakości i wsparciu, API, dane, diagnostyka oraz poprawki kodu."],
+        ["Doświadczenie", "W IT od 2020, we wsparciu aplikacji od 2021 roku. Testy, diagnostyka i drobne poprawki kodu."],
         ["Korzyść", "Priorytety, pewniejsze wdrożenia i mniej powtarzalnej pracy ręcznej."],
-        ["Cena", "Od 850 zł za dzień pracy (do 8 godzin). Bezpłatna konsultacja wstępna i estymacja."],
+        ["Stawka projektowa", "Od 850 zł za dzień pracy (do 8 godzin). Bezpłatna konsultacja wstępna i estymacja. Warunki etatu ustalamy osobno."],
       ],
     },
     quick: {
@@ -381,7 +381,12 @@ const pageCopy = lang === "pl" ? {
   text: "Łączę testowanie i diagnostykę z poprawkami kodu oraz automatyzacją. Korzystam z AI, a efekty weryfikuję w praktyce.",
   help: "Jak mogę pomóc", project: "Zobacz MyAnalyze", details: "Poznaj ofertę i sposób współpracy",
   offerTitle: "Wsparcie dopasowane do problemu.",
-  offerText: "Zakres usług, szybki audyt, sposób współpracy i wycena - szczegóły w jednym miejscu.",
+  offerText: "Testowanie, diagnostyka i rozwój aplikacji - w ramach konkretnego zadania, etatu lub dłuższej współpracy.",
+  collaborationTitle: "Etat i dłuższa współpraca",
+  collaborationText: "Jestem otwarty na stałą pracę z zespołem przy rozwoju, testowaniu i wsparciu aplikacji. Zakres odpowiedzialności, wymiar czasu i warunki współpracy ustalmy w rozmowie.",
+  collaborationForms: ["Etat", "Część etatu", "Długoterminowa współpraca"],
+  collaborationContact: "Porozmawiajmy o roli",
+  collaborationExperience: "Poznaj moje doświadczenie",
   cards: [
     ["Testowanie i jakość", "Testy manualne, automatyczne, API i weryfikacja wydajności przed wdrożeniem."],
     ["Diagnostyka i usprawnienia", "Analiza błędów, logów i danych, poprawki kodu oraz sprawdzenie efektów."],
@@ -394,7 +399,12 @@ const pageCopy = lang === "pl" ? {
   text: "I combine testing and diagnostics with focused code improvements and automation. I use AI and verify the results in practice.",
   help: "How I can help", project: "Explore MyAnalyze", details: "Explore services and how I work",
   offerTitle: "Support shaped around your problem.",
-  offerText: "Service scope, a focused QA review, working process and pricing - all in one place.",
+  offerText: "Application testing, diagnostics and development - through a focused project, employment or longer-term collaboration.",
+  collaborationTitle: "Employment and longer-term collaboration",
+  collaborationText: "I am open to an ongoing role in a team working on application development, testing and support. Let's discuss responsibilities, working hours and terms together.",
+  collaborationForms: ["Full-time employment", "Part-time employment", "Long-term collaboration"],
+  collaborationContact: "Let's discuss the role",
+  collaborationExperience: "Explore my experience",
   cards: [
     ["Testing and quality", "Manual, automated and API tests, with performance verification before release."],
     ["Diagnostics and improvements", "Investigating errors, logs and data, making focused code fixes and checking the results."],
@@ -624,6 +634,15 @@ const schema = {
             <h1>{pageCopy.offerTitle}</h1>
             <p class="hero-text">{pageCopy.offerText}</p>
             <a class="button primary" href="#contact">{pageCopy.contact}</a>
+          </div>
+        </section>
+        <section class="container collaboration" aria-labelledby="collaboration-title">
+          <h2 id="collaboration-title">{pageCopy.collaborationTitle}</h2>
+          <p>{pageCopy.collaborationText}</p>
+          <ul class="collaboration-forms">{pageCopy.collaborationForms.map((form) => <li>{form}</li>)}</ul>
+          <div class="collaboration-links">
+            <a class="text-link" href="mailto:mikolajdworak@icloud.com">{pageCopy.collaborationContact} <span aria-hidden="true">→</span></a>
+            <a class="text-link" href={experiencePath}>{pageCopy.collaborationExperience}</a>
           </div>
         </section>
       <section class="overview-section">
@@ -1134,6 +1153,12 @@ const schema = {
   .compact-hero .badge { margin-bottom: 20px; }
   .compact-hero h1 { font-size: clamp(34px, 4.5vw, 54px); letter-spacing: -1.7px; }
   .compact-hero .hero-text { margin: 22px 0; font-size: 17px; max-width: 700px; }
+  .collaboration { padding: 24px; margin-bottom: 36px; border: 1px solid #30465e; border-radius: 14px; background: #0d1722; }
+  .collaboration h2 { font-size: 24px; letter-spacing: -.6px; margin: 0 0 12px; }
+  .collaboration p { max-width: 760px; color: #aeb7c4; font-size: 15px; margin: 0; }
+  .collaboration-forms { display: flex; flex-wrap: wrap; gap: 7px; list-style: none; padding: 0; margin: 18px 0; }
+  .collaboration-forms li { color: #c7dcef; font-size: 12px; padding: 3px 9px; border: 1px solid #30465e; border-radius: 6px; }
+  .collaboration-links { display: flex; flex-wrap: wrap; gap: 12px 24px; }
   .home-help { padding-bottom: 38px; }
   .home-help h2 { font-size: 24px; letter-spacing: -.6px; margin: 0 0 18px; }
   .help-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-bottom: 20px; }
