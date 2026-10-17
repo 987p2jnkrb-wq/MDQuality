@@ -2,7 +2,9 @@
 interface Props { lang: string; }
 const { lang } = Astro.props;
 const pl = lang === "pl";
-const projectTechnologies = ["React", "TypeScript", "Node.js", "Express", "SQLite", "Electron", "Jest", "React Testing Library", "GitHub Actions"];
+const projectTags = pl
+  ? ["Rozwój produktu", "Od pomysłu do wydania", "QA i regresja", "React / TypeScript", "Windows + mobile", "Development wspierany AI"]
+  : ["Product development", "Idea to release", "QA & regression", "React / TypeScript", "Windows + mobile", "AI-assisted development"];
 const stageIcons = [
   "M3 21V9l6 3V8l6 3V3h5v18H3ZM7 16h1m3 0h1m3 0h1",
   "M7 18a5 5 0 1 1 1-10 6 6 0 0 1 11 3 4 4 0 0 1-1 7H7Z",
@@ -11,8 +13,9 @@ const stageIcons = [
 ];
 const text = pl ? {
   label: "DOŚWIADCZENIE ZAWODOWE",
-  role: "Wsparcie aplikacji, testowanie i diagnostyka",
-  intro: "W IT pracuję od 2020 roku, a od 2023 przy aplikacjach dla fabryk i magazynów. Na co dzień rozmawiam z klientami, szukam przyczyn problemów i uczestniczę w rozwijaniu oprogramowania. Zaczynałem od wsparcia użytkowników; z czasem doszły testy, projektowanie zmian i poprawki w kodzie.",
+  role: "Wsparcie aplikacji · QA · diagnostyka techniczna",
+  intro: "Łączę wsparcie aplikacji z testowaniem i diagnostyką. Pracuję blisko użytkowników i zespołu technicznego: od odtworzenia problemu i analizy danych lub API po testy, dokumentację i drobne poprawki kodu. W IT pracuję od 2020 roku.",
+  profileLabels: ["6+ lat w IT", "Application Support", "QA / Testing", "SQL + API", "Troubleshooting", "Klient + zespół techniczny"],
   contact: "Kontakt w sprawie pracy",
   history: "Doświadczenie w skrócie",
   approachTitle: "Współpraca i rozwój",
@@ -22,10 +25,10 @@ const text = pl ? {
     "W pracy łączę samodzielną diagnostykę ze współpracą z innymi. Uzgadniam potrzeby, proponuję zmiany i sprawdzam, czy rozwiązują problem użytkownika.",
   ],
   stages: [
-    { period: "2023 - obecnie", title: "Aplikacje dla produkcji i magazynów", technologies: ["SQL", "TypeScript", "JSON", "API", "Postman", "Jira", "GitLab", "GitHub"], points: ["Projektowanie zmian w systemach fabrycznych i WMS, propozycje implementacji i drobne poprawki w TypeScript.", "Testy aplikacji i API w Postmanie, praca z JSON, testy wydajnościowe i jednostkowe.", "Diagnozowanie zgłoszeń, wsparcie klientów i dokumentacja; praca z SQL, Jirą oraz repozytoriami GitLab i GitHub."] },
-    { period: "2021 - 2023", title: "Wsparcie aplikacji i usług chmurowych", technologies: ["SQL", "PostgreSQL", "MS SQL Server"], description: "Diagnozowałem zgłoszenia, odtwarzałem błędy i testowałem aplikacje webowe, mobilne oraz desktopowe. Pracowałem z SQL i logami, wspierałem użytkowników oraz współpracowałem przy rozwoju aplikacji." },
-    { period: "2020", title: "Wsparcie IT i środowiska użytkowników", technologies: ["Endpoint security"], description: "Zajmowałem się serwisem sprzętu, instalacją i aktualizacją oprogramowania oraz rozwiązywaniem problemów z urządzeniami i usługami. Analizowałem logi i reagowałem na alerty ochrony stacji roboczych." },
-    { period: "Wcześniejsze doświadczenie", title: "Bankowość i zarządzanie zespołem", description: "Obsługiwałem klientów i pracowałem w aplikacjach bankowych, zgodnie z procedurami i zasadami bezpieczeństwa. Przez rok zarządzałem zespołem. Poznałem pracę z produktami bankowymi i odpowiedzialność za poprawną obsługę klienta." },
+    { period: "2023 - obecnie", title: "Wsparcie aplikacji i QA · produkcja / WMS", labels: ["Application Support", "QA", "WMS / produkcja", "API", "SQL", "TypeScript", "Praca z klientem"], points: ["Projektowanie zmian w systemach fabrycznych i WMS, propozycje implementacji i drobne poprawki w TypeScript.", "Testy aplikacji i API w Postmanie, praca z JSON, testy wydajnościowe i jednostkowe.", "Diagnozowanie zgłoszeń, wsparcie klientów i dokumentacja; praca z SQL, Jirą oraz repozytoriami GitLab i GitHub."] },
+    { period: "2021 - 2023", title: "Application Support · web / mobile / desktop", labels: ["Application Support", "Odtwarzanie błędów", "Testowanie", "SQL", "Logi", "Wsparcie użytkowników"], description: "Diagnozowałem zgłoszenia, odtwarzałem błędy i testowałem aplikacje webowe, mobilne oraz desktopowe. Pracowałem z SQL i logami, wspierałem użytkowników oraz współpracowałem przy rozwoju aplikacji." },
+    { period: "2020", title: "IT Support · użytkownicy i endpointy", labels: ["IT Support", "Troubleshooting", "Endpoint security", "Sprzęt i oprogramowanie"], description: "Zajmowałem się serwisem sprzętu, instalacją i aktualizacją oprogramowania oraz rozwiązywaniem problemów z urządzeniami i usługami. Analizowałem logi i reagowałem na alerty ochrony stacji roboczych." },
+    { period: "Wcześniejsze doświadczenie", title: "Bankowość · obsługa klienta i zarządzanie zespołem", labels: ["Zarządzanie zespołem", "Obsługa klienta", "Bankowość", "Procedury i bezpieczeństwo"], description: "Obsługiwałem klientów i pracowałem w aplikacjach bankowych, zgodnie z procedurami i zasadami bezpieczeństwa. Przez rok zarządzałem zespołem. Poznałem pracę z produktami bankowymi i odpowiedzialność za poprawną obsługę klienta." },
   ],
   projectLabel: "WŁASNY PROJEKT",
   projectTitle: "MyAnalyze - od pomysłu do wydania",
@@ -41,8 +44,9 @@ const text = pl ? {
   evidence: "Historia rozwoju i przykłady",
 } : {
   label: "PROFESSIONAL EXPERIENCE",
-  role: "Application support, testing and diagnostics",
-  intro: "I have worked in IT since 2020 and on manufacturing and warehouse applications since 2023. My daily work involves talking to customers, investigating problems and contributing to software development. I started in user support and gradually took on testing, change design and code fixes.",
+  role: "Application Support · QA · Technical Troubleshooting",
+  intro: "I combine application support with testing and technical troubleshooting. I work close to users and engineering teams, from reproducing issues and checking data or APIs to testing, documentation and focused code fixes. I have worked in IT since 2020.",
+  profileLabels: ["6+ years in IT", "Application Support", "QA / Testing", "SQL + API", "Troubleshooting", "Customer + engineering"],
   contact: "Contact me about a role",
   history: "Experience at a glance",
   approachTitle: "Teamwork and development",
@@ -52,10 +56,10 @@ const text = pl ? {
     "I combine independent investigation with teamwork. I clarify needs, propose changes and check whether they resolve the user’s problem.",
   ],
   stages: [
-    { period: "2023 - present", title: "Manufacturing and warehouse applications", technologies: ["SQL", "TypeScript", "JSON", "API", "Postman", "Jira", "GitLab", "GitHub"], points: ["Change design for factory systems and WMS, implementation proposals and focused TypeScript fixes.", "Application and API testing with Postman, working with JSON, performance and unit tests.", "Issue investigation, customer support and documentation; working with SQL, Jira, and GitLab and GitHub repositories."] },
-    { period: "2021 - 2023", title: "Application and cloud service support", technologies: ["SQL", "PostgreSQL", "MS SQL Server"], description: "I investigated support requests, reproduced issues and tested web, mobile and desktop applications. I worked with SQL and logs, supported users and contributed to application development." },
-    { period: "2020", title: "IT and end-user support", technologies: ["Endpoint security"], description: "I serviced hardware, installed and updated software, and resolved device and service issues. I investigated logs and responded to endpoint protection alerts." },
-    { period: "Earlier experience", title: "Banking and team management", description: "I served customers and worked with banking applications, following procedures and security requirements. I managed a team for one year. This gave me practical knowledge of banking products and responsibility for accurate customer service." },
+    { period: "2023 - present", title: "Application Support & QA · manufacturing / WMS", labels: ["Application Support", "QA", "WMS / manufacturing", "API", "SQL", "TypeScript", "Customer-facing"], points: ["Change design for factory systems and WMS, implementation proposals and focused TypeScript fixes.", "Application and API testing with Postman, working with JSON, performance and unit tests.", "Issue investigation, customer support and documentation; working with SQL, Jira, and GitLab and GitHub repositories."] },
+    { period: "2021 - 2023", title: "Application Support · web / mobile / desktop", labels: ["Application Support", "Bug reproduction", "Testing", "SQL", "Logs", "User support"], description: "I investigated support requests, reproduced issues and tested web, mobile and desktop applications. I worked with SQL and logs, supported users and contributed to application development." },
+    { period: "2020", title: "IT Support · users and endpoints", labels: ["IT Support", "Troubleshooting", "Endpoint security", "Hardware & software"], description: "I serviced hardware, installed and updated software, and resolved device and service issues. I investigated logs and responded to endpoint protection alerts." },
+    { period: "Earlier experience", title: "Banking · customer service and team leadership", labels: ["Team leadership", "Customer service", "Banking", "Procedures & security"], description: "I served customers and worked with banking applications, following procedures and security requirements. I managed a team for one year. This gave me practical knowledge of banking products and responsibility for accurate customer service." },
   ],
   projectLabel: "PERSONAL PROJECT",
   projectTitle: "MyAnalyze - from idea to release",
@@ -78,6 +82,7 @@ const text = pl ? {
     <h1 id="experience-name">Mikołaj Dworak</h1>
     <p class="role">{text.role}</p>
     <p class="intro">{text.intro}</p>
+    <ul class="profile-labels" aria-label={pl ? "Najważniejsze obszary doświadczenia" : "Core experience areas"}>{text.profileLabels.map((item) => <li>{item}</li>)}</ul>
     <div class="contact-links">
       <a href="mailto:mikolajdworak@icloud.com">{text.contact} <span aria-hidden="true">→</span></a>
       <a href="https://www.linkedin.com/in/mikdwo/" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -91,7 +96,7 @@ const text = pl ? {
           <svg class="stage-icon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d={stageIcons[index]} /></svg>
           <p class="period">{stage.period}</p>
           <h3>{stage.title}</h3>
-          {stage.technologies && <ul class="skill-labels" aria-label={pl ? "Technologie i narzędzia" : "Technologies and tools"}>{stage.technologies.map((item) => <li>{item}</li>)}</ul>}
+          {stage.labels && <ul class="skill-labels" aria-label={pl ? "Obszary, umiejętności i narzędzia" : "Areas, skills and tools"}>{stage.labels.map((item) => <li>{item}</li>)}</ul>}
           {stage.points ? <ul class="stage-points">{stage.points.map((point) => <li>{point}</li>)}</ul> : <p>{stage.description}</p>}
         </li>)}
       </ol>
@@ -99,7 +104,7 @@ const text = pl ? {
     <section class="project" aria-labelledby="personal-project-title">
       <p class="eyebrow">{text.projectLabel}</p>
       <h2 id="personal-project-title">{text.projectTitle}</h2>
-      <ul class="skill-labels project-technologies" aria-label={pl ? "Technologie projektu" : "Project technologies"}>{projectTechnologies.map((item) => <li>{item}</li>)}</ul>
+      <ul class="skill-labels project-technologies" aria-label={pl ? "Najważniejsze obszary projektu" : "Key project areas"}>{projectTags.map((item) => <li>{item}</li>)}</ul>
       <p>{text.projectText}</p>
       <h3 class="results-title">{text.resultsTitle}</h3>
       <ul class="results">{text.results.map((result) => <li>{result}</li>)}</ul>
@@ -123,6 +128,9 @@ const text = pl ? {
   h1 { font-size: clamp(32px, 5vw, 48px); line-height: 1.1; letter-spacing: -1.5px; margin: 0 0 14px; }
   .role { color: #dce6f0; font-size: 19px; margin: 0 0 16px; }
   .intro { color: #aeb7c4; font-size: 16px; margin: 0; }
+  .profile-labels, .skill-labels { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; }
+  .profile-labels { margin: 18px 0 0; }
+  .profile-labels li { padding: 5px 10px; border: 1px solid #30465e; border-radius: 999px; background: rgba(16,27,40,.72); color: #d8e8f5; font-size: 12px; line-height: 1.4; }
   .contact-links, .project-links { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 22px; }
   a { color: #7dd3fc; font-size: 14px; text-decoration: none; }
   a:hover { text-decoration: underline; }
@@ -131,7 +139,7 @@ const text = pl ? {
   .approach h2 { font-size: 19px; margin-bottom: 12px; }
   .approach ul { margin: 0; padding-left: 18px; color: #aeb7c4; font-size: 14px; }
   .approach li + li { margin-top: 8px; }
-  .skill-labels { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 10px 0 14px; }
+  .skill-labels { margin: 10px 0 14px; }
   .skill-labels li { padding: 3px 9px; border: 1px solid #30465e; border-radius: 6px; background: #101b28; color: #c7dcef; font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
   h2 { font-size: 23px; line-height: 1.25; letter-spacing: -.5px; margin: 0 0 22px; }
   .timeline { list-style: none; margin: 0; padding: 0; }
