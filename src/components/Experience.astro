@@ -3,8 +3,8 @@ interface Props { lang: string; }
 const { lang } = Astro.props;
 const pl = lang === "pl";
 const projectTags = pl
-  ? ["Rozwój produktu", "Od pomysłu do wydania", "QA i regresja", "React / TypeScript", "Windows + mobile", "Development wspierany AI"]
-  : ["Product development", "Idea to release", "QA & regression", "React / TypeScript", "Windows + mobile", "AI-assisted development"];
+  ? ["UI: React / TypeScript", "API: Node.js / Express", "Dane: SQLite", "Windows: Electron", "Testy: Jest / RTL", "CI: GitHub Actions"]
+  : ["UI: React / TypeScript", "API: Node.js / Express", "Data: SQLite", "Windows: Electron", "Tests: Jest / RTL", "CI: GitHub Actions"];
 const stageIcons = [
   "M3 21V9l6 3V8l6 3V3h5v18H3ZM7 16h1m3 0h1m3 0h1",
   "M7 18a5 5 0 1 1 1-10 6 6 0 0 1 11 3 4 4 0 0 1-1 7H7Z",
@@ -14,21 +14,20 @@ const stageIcons = [
 const text = pl ? {
   label: "DOŚWIADCZENIE ZAWODOWE",
   role: "Wsparcie aplikacji · QA · diagnostyka techniczna",
-  intro: "Łączę wsparcie aplikacji z testowaniem i diagnostyką. Pracuję blisko użytkowników i zespołu technicznego: od odtworzenia problemu i analizy danych lub API po testy, dokumentację i drobne poprawki kodu. W IT pracuję od 2020 roku.",
-  profileLabels: ["6+ lat w IT", "Application Support", "QA / Testing", "SQL + API", "Troubleshooting", "Klient + zespół techniczny"],
+  intro: "Współpracuję z użytkownikami i zespołem technicznym. Odtwarzam problemy, analizuję dane i API, testuję zmiany oraz dokumentuję ustalenia. Wprowadzam też drobne poprawki kodu.",
+  profileLabels: ["W IT od 2020", "Produkcja / WMS"],
   contact: "Kontakt w sprawie pracy",
   history: "Doświadczenie w skrócie",
   approachTitle: "Współpraca i rozwój",
   approach: [
-    "Potrafię rozmawiać o problemie zarówno z użytkownikiem, jak i z zespołem technicznym. Wyjaśniam ustalenia prostym językiem i dbam o to, żebyśmy wiedzieli, co robimy dalej.",
+    "Wyjaśniam techniczne ustalenia użytkownikom i zespołowi, uzgadniam kolejne kroki i łączę samodzielną diagnostykę ze współpracą.",
     "Nowe narzędzia poznaję przy konkretnych zadaniach. Dostosowuję sposób pracy do problemu i rozwijam umiejętności wraz ze zmianami technologii.",
-    "W pracy łączę samodzielną diagnostykę ze współpracą z innymi. Uzgadniam potrzeby, proponuję zmiany i sprawdzam, czy rozwiązują problem użytkownika.",
   ],
   stages: [
-    { period: "2023 - obecnie", title: "Wsparcie aplikacji i QA · produkcja / WMS", labels: ["Application Support", "QA", "WMS / produkcja", "API", "SQL", "TypeScript", "Praca z klientem"], points: ["Projektowanie zmian w systemach fabrycznych i WMS, propozycje implementacji i drobne poprawki w TypeScript.", "Testy aplikacji i API w Postmanie, praca z JSON, testy wydajnościowe i jednostkowe.", "Diagnozowanie zgłoszeń, wsparcie klientów i dokumentacja; praca z SQL, Jirą oraz repozytoriami GitLab i GitHub."] },
-    { period: "2021 - 2023", title: "Application Support · web / mobile / desktop", labels: ["Application Support", "Odtwarzanie błędów", "Testowanie", "SQL", "Logi", "Wsparcie użytkowników"], description: "Diagnozowałem zgłoszenia, odtwarzałem błędy i testowałem aplikacje webowe, mobilne oraz desktopowe. Pracowałem z SQL i logami, wspierałem użytkowników oraz współpracowałem przy rozwoju aplikacji." },
-    { period: "2020", title: "IT Support · użytkownicy i endpointy", labels: ["IT Support", "Troubleshooting", "Endpoint security", "Sprzęt i oprogramowanie"], description: "Zajmowałem się serwisem sprzętu, instalacją i aktualizacją oprogramowania oraz rozwiązywaniem problemów z urządzeniami i usługami. Analizowałem logi i reagowałem na alerty ochrony stacji roboczych." },
-    { period: "Wcześniejsze doświadczenie", title: "Bankowość · obsługa klienta i zarządzanie zespołem", labels: ["Zarządzanie zespołem", "Obsługa klienta", "Bankowość", "Procedury i bezpieczeństwo"], description: "Obsługiwałem klientów i pracowałem w aplikacjach bankowych, zgodnie z procedurami i zasadami bezpieczeństwa. Przez rok zarządzałem zespołem. Poznałem pracę z produktami bankowymi i odpowiedzialność za poprawną obsługę klienta." },
+    { period: "2023 - obecnie", title: "Wsparcie aplikacji i QA · produkcja / WMS", labels: ["API Testing", "Postman", "SQL", "Jira", "TypeScript", "GitLab / GitHub"], points: ["Uczestniczę w projektowaniu zmian w systemach fabrycznych i WMS, proponuję sposób implementacji i wprowadzam drobne poprawki w TypeScript.", "Testuję aplikacje i API w Postmanie, pracuję z JSON oraz uczestniczę w testach wydajnościowych i jednostkowych.", "Diagnozuję zgłoszenia klientów, analizuję dane z użyciem SQL i dokumentuję ustalenia w Jirze. Pracuję z repozytoriami GitLab oraz GitHub."] },
+    { period: "2021 - 2023", title: "Application Support · web / mobile / desktop", labels: ["SQL", "PostgreSQL", "MS SQL Server"], description: "Diagnozowałem zgłoszenia i odtwarzałem błędy aplikacji webowych, mobilnych oraz desktopowych. Wykorzystywałem SQL do analizy danych w PostgreSQL i MS SQL Server. Testowałem aplikacje i wspierałem użytkowników." },
+    { period: "2020", title: "IT Support · użytkownicy i endpointy", labels: ["Endpoint Security"], description: "Zajmowałem się serwisem sprzętu, instalacją i aktualizacją oprogramowania oraz rozwiązywaniem problemów z urządzeniami i usługami. Analizowałem logi i reagowałem na alerty ochrony stacji roboczych." },
+    { period: "Wcześniejsze doświadczenie", title: "Bankowość · obsługa klienta i zarządzanie zespołem", labels: ["Team Leadership", "Customer Service"], description: "Obsługiwałem klientów i pracowałem w aplikacjach bankowych, zgodnie z procedurami i zasadami bezpieczeństwa. Przez rok zarządzałem zespołem. Poznałem pracę z produktami bankowymi i odpowiedzialność za poprawną obsługę klienta." },
   ],
   projectLabel: "WŁASNY PROJEKT",
   projectTitle: "MyAnalyze - od pomysłu do wydania",
@@ -45,21 +44,20 @@ const text = pl ? {
 } : {
   label: "PROFESSIONAL EXPERIENCE",
   role: "Application Support · QA · Technical Troubleshooting",
-  intro: "I combine application support, QA and technical troubleshooting. I work with users and developers to reproduce issues, investigate data and APIs, test changes and document findings. I also contribute focused code fixes.",
-  profileLabels: ["6+ years in IT", "Application Support", "QA / Testing", "SQL + API", "Troubleshooting", "Customer & developer collaboration"],
+  intro: "I work with users and developers to reproduce issues, investigate data and APIs, test changes and document findings. I also contribute focused code fixes.",
+  profileLabels: ["In IT since 2020", "Manufacturing / WMS"],
   contact: "Contact me about a role",
   history: "Experience at a glance",
   approachTitle: "How I work with teams",
   approach: [
-    "I explain technical problems in plain language so users and developers understand the findings and next steps.",
-    "I investigate independently, collaborate when needed and check whether the proposed fix solves the user's problem.",
+    "I explain technical findings to users and developers, agree on next steps and combine independent investigation with teamwork.",
     "I learn new tools through real tasks and choose them based on the problem, not the trend.",
   ],
   stages: [
-    { period: "2023 - present", title: "Application Support & QA · manufacturing / WMS", labels: ["Application Support", "QA", "WMS / manufacturing", "API", "SQL", "TypeScript", "Customer-facing"], points: ["I help plan changes to manufacturing and WMS applications, propose implementation approaches and make focused TypeScript fixes.", "I test applications and APIs with Postman, work with JSON and take part in unit and performance testing.", "I investigate customer-reported issues, check data with SQL and document findings in Jira while working with GitLab and GitHub."] },
-    { period: "2021 - 2023", title: "Application Support · web / mobile / desktop", labels: ["Application Support", "Bug reproduction", "Testing", "SQL", "Logs", "User support"], description: "I investigated support requests, reproduced issues and tested web, mobile and desktop applications. I worked with SQL and logs, supported users and contributed to application development." },
-    { period: "2020", title: "IT Support · users and endpoints", labels: ["IT Support", "Troubleshooting", "Endpoint security", "Hardware & software"], description: "I serviced hardware, installed and updated software, and resolved device and service issues. I investigated logs and responded to endpoint protection alerts." },
-    { period: "Earlier experience", title: "Banking · customer service and team leadership", labels: ["Team leadership", "Customer service", "Banking", "Procedures & security"], description: "I supported customers using banking applications and followed security procedures. I also managed a team for one year, gaining experience in customer service and team leadership." },
+    { period: "2023 - present", title: "Application Support & QA · manufacturing / WMS", labels: ["API Testing", "Postman", "SQL", "Jira", "TypeScript", "GitLab / GitHub"], points: ["I help plan changes to manufacturing and WMS applications, propose implementation approaches and make focused TypeScript fixes.", "I test applications and APIs with Postman, work with JSON and take part in unit and performance testing.", "I investigate customer-reported issues, analyze data with SQL and document findings in Jira. I work with GitLab and GitHub repositories."] },
+    { period: "2021 - 2023", title: "Application Support · web / mobile / desktop", labels: ["SQL", "PostgreSQL", "MS SQL Server"], description: "I investigated requests and reproduced issues in web, mobile and desktop applications. I used SQL to analyze data in PostgreSQL and MS SQL Server, tested applications and supported users." },
+    { period: "2020", title: "IT Support · users and endpoints", labels: ["Endpoint Security"], description: "I serviced hardware, installed and updated software, and resolved device and service issues. I investigated logs and responded to endpoint protection alerts." },
+    { period: "Earlier experience", title: "Banking · customer service and team leadership", labels: ["Team Leadership", "Customer Service"], description: "I served banking customers, worked with banking applications and followed banking and security procedures. I also managed a team for one year." },
   ],
   projectLabel: "PERSONAL PROJECT",
   projectTitle: "MyAnalyze - from idea to release",
@@ -104,7 +102,7 @@ const text = pl ? {
     <section class="project" aria-labelledby="personal-project-title">
       <p class="eyebrow">{text.projectLabel}</p>
       <h2 id="personal-project-title">{text.projectTitle}</h2>
-      <ul class="skill-labels project-technologies" aria-label={pl ? "Najważniejsze obszary projektu" : "Key project areas"}>{projectTags.map((item) => <li>{item}</li>)}</ul>
+      <ul class="skill-labels project-technologies" aria-label={pl ? "Technologie i ich zastosowanie w projekcie" : "Technologies and their use in the project"}>{projectTags.map((item) => <li>{item}</li>)}</ul>
       <p>{text.projectText}</p>
       <h3 class="results-title">{text.resultsTitle}</h3>
       <ul class="results">{text.results.map((result) => <li>{result}</li>)}</ul>
