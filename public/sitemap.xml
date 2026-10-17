@@ -49,4 +49,24 @@
     <xhtml:link rel="alternate" hreflang="pl" href="https://mdquality.pl/pl/terms/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://mdquality.pl/terms/"/>
   </url>
+  <url>
+    <loc>https://mdquality.pl/offer/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mdquality.pl/offer/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://mdquality.pl/pl/offer/"/>
+  </url>
+  <url>
+    <loc>https://mdquality.pl/pl/offer/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mdquality.pl/offer/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://mdquality.pl/pl/offer/"/>
+  </url>
+  <url>
+    <loc>https://mdquality.pl/experience/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mdquality.pl/experience/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://mdquality.pl/pl/experience/"/>
+  </url>
+  <url>
+    <loc>https://mdquality.pl/pl/experience/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://mdquality.pl/experience/"/>
+    <xhtml:link rel="alternate" hreflang="pl" href="https://mdquality.pl/pl/experience/"/>
+  </url>
 </urlset>

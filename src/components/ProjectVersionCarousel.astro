@@ -18,15 +18,9 @@ const trackId = `${id}-track`;
     <slot />
   </div>
   <div class="version-controls">
-    <button type="button" class="version-arrow" data-version-previous disabled aria-label={pl ? "Nowsza wersja" : "Newer version"} aria-controls={trackId}>
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m14 6-6 6 6 6" /></svg>
-    </button>
     <div class="version-picker" aria-label={pl ? "Wybierz wersję" : "Choose a version"}>
-      {versions.map((item, index) => <button type="button" data-version-index={index} aria-label={`${pl ? "Pokaż wersję" : "Show version"} ${item.version}`} aria-current={index === 0 ? "true" : undefined} aria-controls={trackId}>{item.version}</button>)}
+      {versions.map((item, index) => <button type="button" data-version-index={index} data-version-number={item.version} aria-label={`${pl ? "Pokaż wersję" : "Show version"} ${item.version}`} aria-current={index === 0 ? "true" : undefined} aria-controls={trackId}><span class="version-dot" aria-hidden="true"></span></button>)}
     </div>
-    <button type="button" class="version-arrow" data-version-next aria-label={pl ? "Starsza wersja" : "Older version"} aria-controls={trackId}>
-      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m10 6 6 6-6 6" /></svg>
-    </button>
     <span class="sr-only" data-version-status aria-live="polite" aria-atomic="true" data-version-prefix={pl ? "Wersja" : "Version"}>{pl ? "Wersja" : "Version"} {versions[0].version}</span>
   </div>
 </section>
@@ -34,33 +28,27 @@ const trackId = `${id}-track`;
 <script>
   document.querySelectorAll<HTMLElement>("[data-version-carousel]").forEach((root) => {
     const track = root.querySelector<HTMLElement>("[data-version-track]");
-    const previous = root.querySelector<HTMLButtonElement>("[data-version-previous]");
-    const next = root.querySelector<HTMLButtonElement>("[data-version-next]");
     const status = root.querySelector<HTMLElement>("[data-version-status]");
     const buttons = [...root.querySelectorAll<HTMLButtonElement>("[data-version-index]")];
-    if (!track || !previous || !next || !status) return;
+    if (!track || !status) return;
     const slides = [...track.children].filter((child): child is HTMLElement => child instanceof HTMLElement);
     let active = 0;
     let scheduled = false;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const update = (index: number) => {
       active = index;
-      previous.disabled = index === 0;
-      next.disabled = index === slides.length - 1;
       buttons.forEach((button, position) => {
         if (position === index) button.setAttribute("aria-current", "true");
         else button.removeAttribute("aria-current");
       });
       slides.forEach((slide, position) => { slide.inert = position !== index; });
-      status.textContent = `${status.dataset.versionPrefix} ${buttons[index].textContent}`;
+      status.textContent = `${status.dataset.versionPrefix} ${buttons[index].dataset.versionNumber}`;
     };
     const show = (index: number, animate = true) => {
       const selected = Math.max(0, Math.min(slides.length - 1, index));
       track.scrollTo({ left: slides[selected].offsetLeft, behavior: animate && !reducedMotion.matches ? "smooth" : "instant" });
     };
     buttons.forEach((button, index) => button.addEventListener("click", () => show(index)));
-    previous.addEventListener("click", () => show(active - 1));
-    next.addEventListener("click", () => show(active + 1));
     track.addEventListener("keydown", (event) => {
       if (event.target !== track) return;
       const requested = event.key === "ArrowRight" ? active + 1 : event.key === "ArrowLeft" ? active - 1 : event.key === "Home" ? 0 : event.key === "End" ? slides.length - 1 : null;
@@ -88,16 +76,17 @@ const trackId = `${id}-track`;
   .version-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; margin-bottom: 14px; }
   .version-heading p { margin: 0; color: #c3d3e5; font-size: 13px; font-weight: 700; }
   .version-heading span { color: #8996a6; font-size: 12px; }
-  .version-track { position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: 100%; gap: 16px; min-width: 0; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: thin; scrollbar-color: #344559 transparent; padding-bottom: 8px; }
+  .version-track { position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: 100%; gap: 16px; min-width: 0; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; }
   .version-track > :global(*) { min-width: 0; scroll-snap-align: start; scroll-snap-stop: always; }
-  .version-controls { display: flex; justify-content: center; align-items: center; gap: 12px; margin-top: 14px; }
-  .version-picker { display: flex; gap: 6px; }
-  button { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; border: 1px solid #2a3849; border-radius: 11px; background: #0d1219; color: #aebdcc; font: inherit; font-size: 13px; cursor: pointer; transition: background .15s ease, color .15s ease; }
-  button[aria-current="true"] { color: #d9f1ff; border-color: #5185a7; background: #19344b; }
-  button:hover:not(:disabled) { background: #1b2a3b; color: #fff; }
-  button:disabled { opacity: .35; cursor: default; }
+  .version-track::-webkit-scrollbar { display: none; }
+  .version-controls { display: flex; justify-content: center; margin-top: 6px; }
+  .version-picker { display: flex; gap: 0; }
+  button { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 0; padding: 0; background: transparent; cursor: pointer; border-radius: 50%; }
+  .version-dot { width: 7px; height: 7px; background: #465569; border-radius: 50%; transition: background .15s ease, transform .15s ease; }
+  button[aria-current="true"] .version-dot { background: #7dd3fc; transform: scale(1.2); }
+  button:hover .version-dot { background: #c6eaff; }
   button:focus-visible, .version-track:focus-visible { outline: 2px solid #7dd3fc; outline-offset: 2px; }
   .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-  @media (max-width: 600px) { .version-heading span { max-width: 220px; } .version-controls { gap: 4px; } .version-picker { gap: 2px; } }
-  @media (prefers-reduced-motion: reduce) { button { transition: none; } }
+  @media (max-width: 600px) { .version-heading span { max-width: 220px; } }
+  @media (prefers-reduced-motion: reduce) { .version-dot { transition: none; } }
 </style>
