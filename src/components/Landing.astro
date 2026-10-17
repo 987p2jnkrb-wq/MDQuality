@@ -140,10 +140,10 @@ const copy = {
       title: "A product you can inspect, not just a claim.",
       intro:
         "MyAnalyze is the clearest example of how I turn an idea into a working product and keep improving it across real releases.",
-      caseLabel: "PERSONAL PRODUCT · WINDOWS",
-      caseTitle: "MyAnalyze 3.0 · Finance, planning and analysis in one place",
+      caseLabel: "PERSONAL PRODUCT · WINDOWS + MOBILE",
+      caseTitle: "MyAnalyze 4.0 · Finance on desktop and mobile",
       caseText:
-        "Accounts, transactions, goals, statement imports and forecasts in one local Windows app. Version 3.0 adds a guided first run, clearer transaction review and refined dashboard, KPI and trend views. Financial integrity checks flag items for review without changing data automatically.",
+        "Accounts, transactions, goals, statement imports and forecasts in one local Windows app. Version 4.0 adds a mobile browser interface: compact transaction history, status indicators, month filters, swipeable KPI cards and customizable shortcuts. Financial integrity checks flag items for review without changing data automatically.",
       proofLabel: "WHAT TO LOOK AT",
       bullets: [
         "Attention to detail and consistency across a growing interface",
@@ -153,7 +153,7 @@ const copy = {
         "Design decisions balanced with usability and business rules",
       ],
       projectButton: "Public project page",
-      releaseButton: "Release 3.0",
+      releaseButton: "Release 4.0",
       detailsLabel: "See MyAnalyze quality evidence",
     },
     about: {
@@ -339,10 +339,10 @@ const copy = {
       title: "Produkt, który można realnie ocenić.",
       intro:
         "MyAnalyze najlepiej pokazuje, jak przekładam pomysł na działający produkt, rozwijam go przez kolejne wersje i dbam o jakość na każdym etapie.",
-      caseLabel: "WŁASNY PRODUKT · WINDOWS",
-      caseTitle: "MyAnalyze 3.0 · Finanse, planowanie i analiza w jednym miejscu",
+      caseLabel: "WŁASNY PRODUKT · WINDOWS + MOBILE",
+      caseTitle: "MyAnalyze 4.0 · Finanse na komputerze i telefonie",
       caseText:
-        "Konta, transakcje, cele, import wyciągów i prognozy w jednej aplikacji Windows z danymi przechowywanymi lokalnie. Wersja 3.0 prowadzi przez pierwsze uruchomienie, ułatwia przegląd transakcji i rozwija dashboard, KPI oraz widoki trendów. Kontrole spójności finansowej wskazują dane wymagające sprawdzenia, bez automatycznego ich zmieniania.",
+        "Konta, transakcje, cele, import wyciągów i prognozy w jednej aplikacji Windows z danymi przechowywanymi lokalnie. Wersja 4.0 dodaje widok mobilny w przeglądarce: kompaktową historię transakcji, statusy operacji, filtry miesięcy, przewijane karty KPI i konfigurowalne skróty. Kontrole spójności finansowej wskazują dane wymagające sprawdzenia, bez automatycznego ich zmieniania.",
       proofLabel: "NA CO WARTO ZWRÓCIĆ UWAGĘ",
       bullets: [
         "Dbałość o detale i spójność w rosnącym interfejsie",
@@ -352,7 +352,7 @@ const copy = {
         "Decyzje projektowe łączące design, użyteczność i reguły biznesowe",
       ],
       projectButton: "Publiczna strona projektu",
-      releaseButton: "Wydanie 3.0",
+      releaseButton: "Wydanie 4.0",
       detailsLabel: "Zobacz szczegóły jakości MyAnalyze",
     },
     about: {
@@ -417,6 +417,12 @@ const quoteMailto =
 
 const projectScreens = [
   {
+    title: lang === "pl" ? "Mobilna historia transakcji" : "Mobile transaction history",
+    src: "/images/myanalyze/mobile-transactions-4.0.jpg",
+    width: 590,
+    height: 1280,
+  },
+  {
     title: lang === "pl" ? "Dashboard · tryb ciemny, ukryte kwoty" : "Dashboard · dark mode, amounts hidden",
     src: "https://raw.githubusercontent.com/987p2jnkrb-wq/MyAnalyze-releases/main/screenshots/3.0/dashboard-dark.png",
     width: 1679,
@@ -475,7 +481,7 @@ const capabilities =
 
 const myAnalyzePublicUrl = "https://github.com/987p2jnkrb-wq/MyAnalyze-releases";
 const myAnalyzeReleaseUrl =
-  "https://github.com/987p2jnkrb-wq/MyAnalyze-releases/releases/tag/v3.0";
+  "https://github.com/987p2jnkrb-wq/MyAnalyze-releases/releases/tag/v4.0.0";
 
 const schema = {
   "@context": "https://schema.org",
@@ -729,8 +735,8 @@ const schema = {
             </div>
           </div>
 
-          <a class="project-preview project-image-link" href={projectScreens[0].src} target="_blank" rel="noreferrer">
-            <img src={projectScreens[0].src} alt={"MyAnalyze 3.0 — " + projectScreens[0].title} width={projectScreens[0].width} height={projectScreens[0].height} loading="lazy" decoding="async" />
+          <a class="project-preview project-image-link project-mobile-preview" href={projectScreens[0].src} target="_blank" rel="noreferrer">
+            <img src={projectScreens[0].src} alt={"MyAnalyze - " + projectScreens[0].title} width={projectScreens[0].width} height={projectScreens[0].height} loading="lazy" decoding="async" />
           </a>
         </article>
 
@@ -747,7 +753,7 @@ const schema = {
             <div class="project-gallery">
               {projectScreens.slice(1).map((screen) => (
                 <a class="project-shot" href={screen.src} target="_blank" rel="noreferrer">
-                  <img src={screen.src} alt={"MyAnalyze 3.0 — " + screen.title} width={screen.width} height={screen.height} loading="lazy" decoding="async" />
+                  <img src={screen.src} alt={"MyAnalyze - " + screen.title} width={screen.width} height={screen.height} loading="lazy" decoding="async" />
                   <span>{screen.title}</span>
                 </a>
               ))}
@@ -1017,6 +1023,7 @@ const schema = {
   .project-preview { position: relative; z-index: 1; border-radius: 12px; background: #090d13; border: 1px solid #202a37; overflow: hidden; }
   .project-image-link { display: block; transition: transform .2s ease, border-color .2s ease; }
   .project-image-link:hover { transform: translateY(-3px); border-color: #3b5168; }
+  .project-mobile-preview { width: 100%; max-width: 260px; justify-self: center; }
   .project-preview img { width: 100%; height: auto; display: block; }
   .project-gallery { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 15px; margin-top: 15px; }
   .project-shot { display: block; overflow: hidden; border: 1px solid #1d2631; border-radius: 14px; background: #0d1219; text-decoration: none; color: #d9e0e8; transition: transform .2s ease, border-color .2s ease; }
