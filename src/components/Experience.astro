@@ -5,38 +5,72 @@ const pl = lang === "pl";
 const text = pl ? {
   label: "DOŚWIADCZENIE ZAWODOWE",
   role: "Wsparcie aplikacji, testowanie i diagnostyka",
-  intro: "W IT pracuję od 2020 roku. Zaczynałem od sprzętu i wsparcia użytkowników, dziś pracuję przy aplikacjach wykorzystywanych na produkcji. Łączę kontakt z klientem z analizą problemów, testami i drobnymi zmianami w kodzie.",
+  intro: "W IT pracuję od 2020 roku, a od 2023 przy aplikacjach dla fabryk i magazynów. Na co dzień rozmawiam z klientami, szukam przyczyn problemów i uczestniczę w rozwijaniu oprogramowania. Zaczynałem od wsparcia użytkowników; z czasem doszły testy, projektowanie zmian i poprawki w kodzie.",
   contact: "Porozmawiajmy o współpracy",
   history: "Doświadczenie w skrócie",
+  skillsTitle: "Technologie i praktyka",
+  skills: [
+    { title: "Praca zawodowa", items: ["SQL", "TypeScript", "JSON", "API", "Postman", "Jira", "GitLab", "GitHub"] },
+    { title: "Własny projekt MyAnalyze", items: ["React", "TypeScript", "Node.js", "Express", "SQLite", "Electron", "Jest", "React Testing Library", "GitHub Actions"] },
+  ],
+  approachTitle: "Jak pracuję",
+  approach: [
+    "Zaczynam od rozmowy: co nie działa, komu przeszkadza i co trzeba zmienić. Techniczne ustalenia wyjaśniam klientowi prostym językiem.",
+    "Nowe narzędzia poznaję przy konkretnych zadaniach. Dostosowuję sposób pracy do problemu i rozwijam umiejętności wraz ze zmianami technologii.",
+    "Łączę perspektywę klienta i zespołu technicznego: uzgadniam potrzeby, proponuję rozwiązania i sprawdzam zmiany przed oddaniem ich użytkownikom.",
+  ],
   stages: [
-    { period: "2023 - obecnie", title: "Aplikacje dla produkcji i magazynów", description: "Pracuję przy systemach używanych w fabrykach, w tym WMS. Uczestniczę w ustalaniu potrzeb, projektowaniu zmian i proponowaniu rozwiązań technicznych. Wprowadzam drobne poprawki kodu, wykonuję testy aplikacji, API, wydajnościowe i jednostkowe. Wspieram klientów i tworzę dokumentację." },
+    { period: "2023 - obecnie", title: "Aplikacje dla produkcji i magazynów", points: ["Projektowanie zmian w systemach fabrycznych i WMS, propozycje implementacji i drobne poprawki w TypeScript.", "Testy aplikacji i API w Postmanie, praca z JSON, testy wydajnościowe i jednostkowe.", "Diagnozowanie zgłoszeń, wsparcie klientów i dokumentacja; praca z SQL, Jirą oraz repozytoriami GitLab i GitHub."] },
     { period: "2021 - 2023", title: "Wsparcie aplikacji i usług chmurowych", description: "Diagnozowałem zgłoszenia, odtwarzałem błędy i testowałem aplikacje webowe, mobilne oraz desktopowe. Pracowałem z SQL i logami, wspierałem użytkowników oraz współpracowałem przy rozwoju aplikacji." },
     { period: "2020", title: "Wsparcie IT i środowiska użytkowników", description: "Zajmowałem się serwisem sprzętu, instalacją i aktualizacją oprogramowania oraz rozwiązywaniem problemów z urządzeniami i usługami. Analizowałem logi i reagowałem na alerty ochrony stacji roboczych." },
     { period: "Wcześniejsze doświadczenie", title: "Bankowość i zarządzanie zespołem", description: "Obsługiwałem klientów i pracowałem w aplikacjach bankowych, zgodnie z procedurami i zasadami bezpieczeństwa. Przez rok zarządzałem zespołem. Poznałem pracę z produktami bankowymi i odpowiedzialność za poprawną obsługę klienta." },
   ],
   projectLabel: "WŁASNY PROJEKT",
   projectTitle: "MyAnalyze - od pomysłu do wydania",
-  projectText: "Korzystając z doświadczenia zawodowego i rozwijając umiejętności z pomocą narzędzi AI, zbudowałem aplikację do finansów osobistych. Odpowiadam za projekt interfejsu, implementację, testy, dokumentację i publikację kolejnych wersji na Windows oraz widoków mobilnych.",
-  projectMethod: "AI wspiera mnie w projektowaniu, pisaniu kodu i analizie problemów. Decyzje produktowe oraz weryfikacja działania pozostają po mojej stronie.",
-  projectLink: "Zobacz aplikację",
+  projectText: "Zbudowałem aplikację do finansów osobistych: od projektu interfejsu i logiki działania po implementację, testy, dokumentację i wydania. Wykorzystuję w niej doświadczenie z codziennej pracy przy aplikacjach.",
+  resultsTitle: "Co można sprawdzić",
+  results: [
+    "Opublikowana wersja 4.0 z instalatorem Windows i interfejsem mobilnym w PL i EN.",
+    "Import CSV/PDF, historia transakcji, konta, cele i prognozy w jednym produkcie.",
+    "Testy UI i API, regresja na tymczasowych bazach SQLite oraz build i testy w CI.",
+  ],
+  projectMethod: "AI wykorzystuję do projektowania, kodowania i diagnostyki. Sam ustalam zakres zmian i sprawdzam ich działanie.",
+  projectLink: "Aplikacja i wydania",
   evidence: "Historia rozwoju i przykłady",
 } : {
   label: "PROFESSIONAL EXPERIENCE",
   role: "Application support, testing and diagnostics",
-  intro: "I have worked in IT since 2020. I started with hardware and user support and now work on applications used in production environments. I combine customer communication with troubleshooting, testing and focused code changes.",
+  intro: "I have worked in IT since 2020 and on manufacturing and warehouse applications since 2023. My daily work involves talking to customers, investigating problems and contributing to software development. I started in user support and gradually took on testing, change design and code fixes.",
   contact: "Let's discuss working together",
   history: "Experience at a glance",
+  skillsTitle: "Technologies and practice",
+  skills: [
+    { title: "Professional work", items: ["SQL", "TypeScript", "JSON", "API", "Postman", "Jira", "GitLab", "GitHub"] },
+    { title: "MyAnalyze personal project", items: ["React", "TypeScript", "Node.js", "Express", "SQLite", "Electron", "Jest", "React Testing Library", "GitHub Actions"] },
+  ],
+  approachTitle: "How I work",
+  approach: [
+    "I start with a conversation: what is not working, who it affects and what needs to change. I explain technical findings to customers in plain language.",
+    "I learn new tools through practical tasks. I adapt how I work to the problem and keep developing my skills as technology changes.",
+    "I connect customer needs with the technical team: clarify requirements, propose solutions and verify changes before handing them over to users.",
+  ],
   stages: [
-    { period: "2023 - present", title: "Manufacturing and warehouse applications", description: "I work on systems used in factories, including WMS. I contribute to requirements, change design and technical implementation proposals. I make focused code fixes, carry out application, API, performance and unit testing, support customers and write documentation." },
+    { period: "2023 - present", title: "Manufacturing and warehouse applications", points: ["Change design for factory systems and WMS, implementation proposals and focused TypeScript fixes.", "Application and API testing with Postman, working with JSON, performance and unit tests.", "Issue investigation, customer support and documentation; working with SQL, Jira, and GitLab and GitHub repositories."] },
     { period: "2021 - 2023", title: "Application and cloud service support", description: "I investigated support requests, reproduced issues and tested web, mobile and desktop applications. I worked with SQL and logs, supported users and contributed to application development." },
     { period: "2020", title: "IT and end-user support", description: "I serviced hardware, installed and updated software, and resolved device and service issues. I investigated logs and responded to endpoint protection alerts." },
     { period: "Earlier experience", title: "Banking and team management", description: "I served customers and worked with banking applications, following procedures and security requirements. I managed a team for one year. This gave me practical knowledge of banking products and responsibility for accurate customer service." },
   ],
   projectLabel: "PERSONAL PROJECT",
   projectTitle: "MyAnalyze - from idea to release",
-  projectText: "Drawing on my professional experience and developing my skills with AI tools, I built a personal finance application. I handle interface design, implementation, testing, documentation and versioned Windows releases with mobile views.",
-  projectMethod: "AI supports my design, coding and troubleshooting work. Product decisions and verification remain my responsibility.",
-  projectLink: "Explore the application",
+  projectText: "I built a personal finance application, from interface design and application logic through implementation, testing, documentation and releases. I draw on what I learn in my daily application work.",
+  resultsTitle: "What you can review",
+  results: [
+    "Published version 4.0 with a Windows installer, mobile interface, and Polish and English UI.",
+    "CSV/PDF imports, transaction history, accounts, goals and forecasts in one product.",
+    "UI and API tests, regression on temporary SQLite databases, and CI builds and tests.",
+  ],
+  projectMethod: "I use AI for design, coding and diagnostics. I decide the scope of changes and verify how they work.",
+  projectLink: "Application and releases",
   evidence: "Development history and examples",
 };
 ---
@@ -52,6 +86,14 @@ const text = pl ? {
       <a href="https://www.linkedin.com/in/mikdwo/" target="_blank" rel="noreferrer">LinkedIn</a>
     </div>
   </div>
+  <section class="approach" aria-labelledby="approach-title">
+    <h2 id="approach-title">{text.approachTitle}</h2>
+    <ul>{text.approach.map((item) => <li>{item}</li>)}</ul>
+  </section>
+  <section class="skills" aria-labelledby="skills-title">
+    <h2 id="skills-title">{text.skillsTitle}</h2>
+    <dl>{text.skills.map((group) => <div><dt>{group.title}</dt><dd><ul class="skill-labels">{group.items.map((item) => <li>{item}</li>)}</ul></dd></div>)}</dl>
+  </section>
   <div class="experience-body">
     <section aria-labelledby="career-title">
       <h2 id="career-title">{text.history}</h2>
@@ -59,7 +101,7 @@ const text = pl ? {
         {text.stages.map((stage) => <li>
           <p class="period">{stage.period}</p>
           <h3>{stage.title}</h3>
-          <p>{stage.description}</p>
+          {stage.points ? <ul class="stage-points">{stage.points.map((point) => <li>{point}</li>)}</ul> : <p>{stage.description}</p>}
         </li>)}
       </ol>
     </section>
@@ -67,6 +109,8 @@ const text = pl ? {
       <p class="eyebrow">{text.projectLabel}</p>
       <h2 id="personal-project-title">{text.projectTitle}</h2>
       <p>{text.projectText}</p>
+      <h3 class="results-title">{text.resultsTitle}</h3>
+      <ul class="results">{text.results.map((result) => <li>{result}</li>)}</ul>
       <p>{text.projectMethod}</p>
       <div class="project-links">
         <a class="project-button" href="https://github.com/987p2jnkrb-wq/MyAnalyze-releases" target="_blank" rel="noreferrer">{text.projectLink} <span aria-hidden="true">↗</span></a>
@@ -87,18 +131,34 @@ const text = pl ? {
   a { color: #7dd3fc; font-size: 14px; text-decoration: none; }
   a:hover { text-decoration: underline; }
   .experience-body { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .9fr); gap: 40px; align-items: start; }
+  .approach { max-width: 860px; margin-bottom: 28px; }
+  .approach h2 { font-size: 19px; margin-bottom: 12px; }
+  .approach ul { margin: 0; padding-left: 18px; color: #aeb7c4; font-size: 14px; }
+  .approach li + li { margin-top: 8px; }
+  .skills { margin-bottom: 36px; padding: 22px 0; border-top: 1px solid #27384a; border-bottom: 1px solid #27384a; }
+  .skills h2 { font-size: 19px; margin-bottom: 16px; }
+  .skills dl { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 32px; margin: 0; }
+  .skills dt { color: #dce6f0; font-size: 13px; font-weight: 700; margin-bottom: 6px; }
+  .skills dd { color: #aeb7c4; font-size: 14px; margin: 0; }
+  .skill-labels { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; margin: 0; }
+  .skill-labels li { padding: 3px 9px; border: 1px solid #30465e; border-radius: 6px; background: #101b28; color: #c7dcef; font-size: 12px; line-height: 1.5; overflow-wrap: anywhere; }
   h2 { font-size: 23px; line-height: 1.25; letter-spacing: -.5px; margin: 0 0 22px; }
   .timeline { list-style: none; margin: 0; padding: 0; }
-  .timeline li { border-left: 1px solid #2a3b4f; padding: 0 0 25px 22px; position: relative; }
-  .timeline li:last-child { padding-bottom: 0; }
-  .timeline li::before { content: ""; position: absolute; width: 7px; height: 7px; border-radius: 50%; left: -4px; top: 8px; background: #7dd3fc; }
+  .timeline > li { border-left: 1px solid #2a3b4f; padding: 0 0 25px 22px; position: relative; }
+  .timeline > li:last-child { padding-bottom: 0; }
+  .timeline > li::before { content: ""; position: absolute; width: 7px; height: 7px; border-radius: 50%; left: -4px; top: 8px; background: #7dd3fc; }
+  .stage-points { padding-left: 17px; margin: 0; color: #aeb7c4; font-size: 14px; }
+  .stage-points li + li { margin-top: 7px; }
   .period { font-size: 12px; color: #7dd3fc; margin: 0 0 6px; }
   h3 { font-size: 17px; line-height: 1.4; margin: 0 0 8px; }
   li > p:last-child, .project > p:not(.eyebrow) { font-size: 14px; color: #aeb7c4; margin: 0; }
   .project { padding: 26px; background: #0d131c; border: 1px solid #27384a; border-radius: 16px; }
   .project h2 { margin-bottom: 16px; }
   .project > p:not(.eyebrow) + p { margin-top: 14px; }
+  .results-title { margin-top: 20px; font-size: 14px; }
+  .results { padding-left: 18px; margin: 0 0 18px; color: #aeb7c4; font-size: 14px; }
+  .results li + li { margin-top: 8px; }
   .project-button { display: inline-flex; align-items: center; gap: 8px; padding: 11px 15px; border: 1px solid #385572; border-radius: 8px; color: #e8f5ff; background: #162638; }
-  @media (max-width: 820px) { .experience-body { grid-template-columns: 1fr; gap: 30px; } }
+  @media (max-width: 820px) { .experience-body { grid-template-columns: 1fr; gap: 30px; } .skills dl { grid-template-columns: 1fr; } }
   @media (max-width: 520px) { .experience { width: calc(100% - 30px); padding: 30px 0; } .role { font-size: 17px; } .profile { margin-bottom: 30px; } .project { padding: 22px; } }
 </style>
