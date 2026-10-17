@@ -1,4 +1,5 @@
 ---
+import ProjectVersionCarousel from "./ProjectVersionCarousel.astro";
 import ReviewScope from "./ReviewScope.astro";
 import WorkEvidence from "./WorkEvidence.astro";
 import ContactBrief from "./ContactBrief.astro";
@@ -143,7 +144,7 @@ const copy = {
       caseLabel: "PERSONAL PRODUCT · WINDOWS + MOBILE",
       caseTitle: "MyAnalyze 4.0 · Finance on desktop and mobile",
       caseText:
-        "Accounts, transactions, goals, statement imports and forecasts in one local Windows app. Version 4.0 adds a mobile browser interface: compact transaction history, status indicators, month filters, swipeable KPI cards and customizable shortcuts. Financial integrity checks flag items for review without changing data automatically.",
+        "Mobile transaction history with statuses and month filters. Swipeable KPIs, individually selected signals and shortcuts with saved ordering. Accounts, goals, imports and forecasts remain part of the same product.",
       proofLabel: "WHAT TO LOOK AT",
       bullets: [
         "Attention to detail and consistency across a growing interface",
@@ -342,7 +343,7 @@ const copy = {
       caseLabel: "WŁASNY PRODUKT · WINDOWS + MOBILE",
       caseTitle: "MyAnalyze 4.0 · Finanse na komputerze i telefonie",
       caseText:
-        "Konta, transakcje, cele, import wyciągów i prognozy w jednej aplikacji Windows z danymi przechowywanymi lokalnie. Wersja 4.0 dodaje widok mobilny w przeglądarce: kompaktową historię transakcji, statusy operacji, filtry miesięcy, przewijane karty KPI i konfigurowalne skróty. Kontrole spójności finansowej wskazują dane wymagające sprawdzenia, bez automatycznego ich zmieniania.",
+        "Mobilna historia transakcji ze statusami i filtrami miesięcy. Przewijane KPI, pojedynczo wybierane sygnały oraz skróty z własną kolejnością. Konta, cele, import i prognozy dostępne w tym samym produkcie.",
       proofLabel: "NA CO WARTO ZWRÓCIĆ UWAGĘ",
       bullets: [
         "Dbałość o detale i spójność w rosnącym interfejsie",
@@ -482,6 +483,49 @@ const capabilities =
 const myAnalyzePublicUrl = "https://github.com/987p2jnkrb-wq/MyAnalyze-releases";
 const myAnalyzeReleaseUrl =
   "https://github.com/987p2jnkrb-wq/MyAnalyze-releases/releases/tag/v4.0.0";
+
+const projectVersions = [
+  {
+    version: "4.0",
+    label: t.work.caseLabel,
+    title: t.work.caseTitle,
+    summary: t.work.caseText,
+    image: projectScreens[0],
+    features: lang === "pl" ? ["Widok mobilny", "Gesty", "Personalizacja"] : ["Mobile views", "Gestures", "Customization"],
+    releaseUrl: myAnalyzeReleaseUrl,
+    releaseLabel: t.work.releaseButton,
+  },
+  {
+    version: "3.0",
+    label: lang === "pl" ? "ETAP PROJEKTU · WINDOWS" : "PRODUCT MILESTONE · WINDOWS",
+    title: lang === "pl" ? "MyAnalyze 3.0 · Wygodniejsza codzienna praca" : "MyAnalyze 3.0 · A calmer daily workflow",
+    summary: lang === "pl" ? "Pierwsze uruchomienie z przewodnikiem, czytelniejsza historia i edycja transakcji oraz spójniejsze widoki dashboardu, KPI i trendów. Dokumentacja PL/EN trafia do instalatora." : "Guided first run, clearer transaction history and editing, and more coherent dashboard, KPI and trend views. Polish and English documentation is bundled with the installer.",
+    image: { title: lang === "pl" ? "Dashboard wersji 3.0" : "Version 3.0 dashboard", src: "/images/myanalyze/dashboard-3.0.png", width: 1679, height: 951 },
+    features: lang === "pl" ? ["Pierwsze kroki", "Historia", "Dokumentacja"] : ["Onboarding", "History", "Documentation"],
+    releaseUrl: myAnalyzePublicUrl + "/releases/tag/v3.0",
+    releaseLabel: lang === "pl" ? "Wydanie 3.0" : "Release 3.0",
+  },
+  {
+    version: "2.0",
+    label: lang === "pl" ? "ETAP PROJEKTU · WINDOWS" : "PRODUCT MILESTONE · WINDOWS",
+    title: lang === "pl" ? "MyAnalyze 2.0 · Spójne analizy i reguły wyniku" : "MyAnalyze 2.0 · Consistent analysis and result rules",
+    summary: lang === "pl" ? "Własne reguły przychodów, kosztów i wyniku miesiąca, wspólne dla analiz oraz KPI. Etykiety nadrzędne i podrzędne, lepsze mapowanie CSV i dokładniejsze porównania okresów." : "Custom Income, Costs and Month Result rules shared across analysis and KPIs. Parent-child labels, improved CSV mapping and clearer period comparisons.",
+    image: { title: lang === "pl" ? "Dashboard wersji 2.0" : "Version 2.0 dashboard", src: "/images/myanalyze/dashboard-2.0.png", width: 1672, height: 941 },
+    features: lang === "pl" ? ["Reguły wyniku", "KPI", "Import CSV"] : ["Result rules", "KPIs", "CSV import"],
+    releaseUrl: myAnalyzePublicUrl + "/releases/tag/v2.0.0",
+    releaseLabel: lang === "pl" ? "Wydanie 2.0" : "Release 2.0",
+  },
+  {
+    version: "1.5",
+    label: lang === "pl" ? "ARCHIWUM PROJEKTU · WINDOWS" : "PROJECT ARCHIVE · WINDOWS",
+    title: lang === "pl" ? "MyAnalyze 1.5 · Narzędzie do codziennych finansów" : "MyAnalyze 1.5 · An everyday finance tool",
+    summary: lang === "pl" ? "Polski i angielski interfejs, prezentacja walut, podział środków na cele oraz import PDF z podglądem i korektą. Prognozy zaczynają lepiej radzić sobie z dłuższą historią operacji." : "Polish and English interfaces, currency presentation, goal allocation and PDF import with preview and correction. Forecasts become faster with longer transaction histories.",
+    image: null,
+    features: ["PL / EN", "PDF", lang === "pl" ? "Prognozy" : "Forecasts"],
+    releaseUrl: myAnalyzePublicUrl + "/releases/tag/v1.5.0",
+    releaseLabel: lang === "pl" ? "Opis wydania 1.5" : "1.5 release notes",
+  },
+];
 
 const schema = {
   "@context": "https://schema.org",
@@ -710,35 +754,28 @@ const schema = {
           <p class="section-intro">{t.work.intro}</p>
         </div>
 
-        <article class="project">
-          <div class="project-copy">
-            <p class="project-label">{t.work.caseLabel}</p>
-            <h3>{t.work.caseTitle}</h3>
-            <p>{t.work.caseText}</p>
-
-            <div class="tags">
-              <span>React</span>
-              <span>TypeScript</span>
-              <span>Node.js</span>
-              <span>SQLite</span>
-              <span>Electron</span>
-              <span>Jest</span>
+        <ProjectVersionCarousel id="myanalyze-history" lang={lang} versions={projectVersions}>
+          {projectVersions.map((version) => <article class="project" aria-label={"MyAnalyze " + version.version}>
+            <div class="project-copy">
+              <p class="project-label">{version.label}</p>
+              <h3>{version.title}</h3>
+              <p>{version.summary}</p>
+              <div class="tags">{version.features.map((feature) => <span>{feature}</span>)}</div>
+              <div class="project-actions">
+                <a class="button secondary" href={myAnalyzePublicUrl} target="_blank" rel="noreferrer">{t.work.projectButton}</a>
+                <a class="button secondary" href={version.releaseUrl} target="_blank" rel="noreferrer">{version.releaseLabel}</a>
+              </div>
             </div>
-
-            <div class="project-actions">
-              <a class="button secondary" href={myAnalyzePublicUrl} target="_blank" rel="noreferrer">
-                {t.work.projectButton}
-              </a>
-              <a class="button secondary" href={myAnalyzeReleaseUrl} target="_blank" rel="noreferrer">
-                {t.work.releaseButton}
-              </a>
-            </div>
-          </div>
-
-          <a class="project-preview project-image-link project-mobile-preview" href={projectScreens[0].src} target="_blank" rel="noreferrer">
-            <img src={projectScreens[0].src} alt={"MyAnalyze - " + projectScreens[0].title} width={projectScreens[0].width} height={projectScreens[0].height} loading="lazy" decoding="async" />
-          </a>
-        </article>
+            {version.image ? <a class:list={["project-preview", "project-image-link", { "project-mobile-preview": version.image.height > version.image.width }]} href={version.image.src} target="_blank" rel="noreferrer">
+              <img src={version.image.src} alt={"MyAnalyze " + version.version + " - " + version.image.title} width={version.image.width} height={version.image.height} loading="lazy" decoding="async" />
+            </a> : <div class="project-archive">
+              <span>{lang === "pl" ? "Początki produktu" : "Early product milestone"}</span>
+              <strong>{version.version}</strong>
+              <p>{lang === "pl" ? "Opis wydania zachowany w archiwum projektu." : "Release notes preserved in the project archive."}</p>
+            </div>}
+          </article>)}
+        </ProjectVersionCarousel>
+        <div class="tags project-stack"><span>React</span><span>TypeScript</span><span>Node.js</span><span>SQLite</span><span>Electron</span><span>Jest</span></div>
 
         <details class="work-details disclosure">
           <summary>{t.work.detailsLabel}</summary>
@@ -1020,11 +1057,17 @@ const schema = {
   .tags { margin-top: 24px; }
   .tags span, .capabilities span, .contact-points span { border: 1px solid #263241; border-radius: 999px; padding: 6px 11px; color: #aeb7c4; font-size: 12px; background: rgba(10,14,20,.6); }
   .project-actions { margin-top: 27px; }
-  .project-preview { position: relative; z-index: 1; border-radius: 12px; background: #090d13; border: 1px solid #202a37; overflow: hidden; }
+  .project-preview { display: grid; place-items: center; height: 360px; min-width: 0; position: relative; z-index: 1; border-radius: 12px; background: #090d13; border: 1px solid #202a37; overflow: hidden; }
   .project-image-link { display: block; transition: transform .2s ease, border-color .2s ease; }
   .project-image-link:hover { transform: translateY(-3px); border-color: #3b5168; }
-  .project-mobile-preview { width: 100%; max-width: 260px; justify-self: center; }
-  .project-preview img { width: 100%; height: auto; display: block; }
+  .project-mobile-preview { width: 100%; max-width: 200px; justify-self: center; }
+  .project-preview img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .project-archive { display: flex; min-height: 280px; flex-direction: column; justify-content: center; align-items: center; padding: 24px; text-align: center; border: 1px solid #27384a; border-radius: 14px; background: radial-gradient(circle at 50% 30%, #172c40, #0b1119 75%); }
+  .project-archive > span { font-size: 12px; color: #9ccde9; }
+  .project-archive strong { font-size: 88px; line-height: 1.3; color: #d1ebfc; font-weight: 600; }
+  .project-archive p { max-width: 220px; color: #8996a6; font-size: 13px; }
+  .project-stack { margin-top: 20px; }
+  @media (max-width: 600px) { .project-preview { height: 280px; } }
   .project-gallery { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 15px; margin-top: 15px; }
   .project-shot { display: block; overflow: hidden; border: 1px solid #1d2631; border-radius: 14px; background: #0d1219; text-decoration: none; color: #d9e0e8; transition: transform .2s ease, border-color .2s ease; }
   .project-shot:hover { transform: translateY(-3px); border-color: #3b5168; }
