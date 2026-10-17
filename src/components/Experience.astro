@@ -15,7 +15,7 @@ const text = pl ? {
   label: "DOŚWIADCZENIE ZAWODOWE",
   role: "Wsparcie aplikacji · QA · diagnostyka techniczna",
   intro: "Współpracuję z użytkownikami i zespołem technicznym. Odtwarzam problemy, analizuję dane i API, testuję zmiany oraz dokumentuję ustalenia. Wprowadzam też drobne poprawki kodu.",
-  profileLabels: ["W IT od 2020", "Produkcja / WMS"],
+  language: "Angielski: B2",
   contact: "Kontakt w sprawie pracy",
   history: "Doświadczenie w skrócie",
   approachTitle: "Współpraca i rozwój",
@@ -45,7 +45,7 @@ const text = pl ? {
   label: "PROFESSIONAL EXPERIENCE",
   role: "Application Support · QA · Technical Troubleshooting",
   intro: "I work with users and developers to reproduce issues, investigate data and APIs, test changes and document findings. I also contribute focused code fixes.",
-  profileLabels: ["In IT since 2020", "Manufacturing / WMS"],
+  language: "English: B2",
   contact: "Contact me about a role",
   history: "Experience at a glance",
   approachTitle: "How I work with teams",
@@ -80,7 +80,7 @@ const text = pl ? {
     <h1 id="experience-name">Mikołaj Dworak</h1>
     <p class="role">{text.role}</p>
     <p class="intro">{text.intro}</p>
-    <ul class="profile-labels" aria-label={pl ? "Najważniejsze obszary doświadczenia" : "Core experience areas"}>{text.profileLabels.map((item) => <li>{item}</li>)}</ul>
+    <p class="language">{text.language}</p>
     <div class="contact-links">
       <a href="mailto:mikolajdworak@icloud.com">{text.contact} <span aria-hidden="true">→</span></a>
       <a href="https://www.linkedin.com/in/mikdwo/" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -126,9 +126,8 @@ const text = pl ? {
   h1 { font-size: clamp(32px, 5vw, 48px); line-height: 1.1; letter-spacing: -1.5px; margin: 0 0 14px; }
   .role { color: #dce6f0; font-size: 19px; margin: 0 0 16px; }
   .intro { color: #aeb7c4; font-size: 16px; margin: 0; }
-  .profile-labels, .skill-labels { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; }
-  .profile-labels { margin: 18px 0 0; }
-  .profile-labels li { padding: 5px 10px; border: 1px solid #30465e; border-radius: 999px; background: rgba(16,27,40,.72); color: #d8e8f5; font-size: 12px; line-height: 1.4; }
+  .language { margin: 14px 0 0; color: #c7dcef; font-size: 14px; }
+  .skill-labels { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; padding: 0; }
   .contact-links, .project-links { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 22px; }
   a { color: #7dd3fc; font-size: 14px; text-decoration: none; }
   a:hover { text-decoration: underline; }
