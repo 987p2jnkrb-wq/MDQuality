@@ -490,8 +490,6 @@ const myAnalyzeReleaseUrl =
   "https://github.com/987p2jnkrb-wq/MyAnalyze-releases/releases/tag/v4.0.0";
 
 const releaseScreens = [
-  { title: lang === "pl" ? "Wynik miesiąca na komputerze · tryb ciemny" : "Desktop monthly result · dark mode", src: "/images/myanalyze/4.1.0/desktop-summary.png", width: 1901, height: 968 },
-  { title: lang === "pl" ? "Cele na komputerze · tryb jasny" : "Desktop goals · light mode", src: "/images/myanalyze/4.1.0/desktop-goals.png", width: 1889, height: 918 },
   { title: lang === "pl" ? "Dashboard na telefonie · tryb ciemny" : "Mobile dashboard · dark mode", src: "/images/myanalyze/4.1.0/mobile-dashboard.png", width: 1179, height: 2556 },
   { title: lang === "pl" ? "Kalendarz transakcji na telefonie" : "Mobile transaction calendar", src: "/images/myanalyze/4.1.0/mobile-calendar.png", width: 1179, height: 2556 },
   { title: lang === "pl" ? "Inwestycje na telefonie" : "Mobile investments", src: "/images/myanalyze/4.1.0/mobile-investments.png", width: 1179, height: 2556 },
@@ -1111,8 +1109,7 @@ const schema = {
   .release-details { grid-column: 1 / -1; margin: 0; min-width: 0; }
   .release-details h4 { color: #d9e0e8; margin: 20px 0 8px; }
   .release-details p, .release-details li { color: #aeb7c4; font-size: 14px; }
-  .project-gallery.release-gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; }
-  .release-gallery .project-shot:first-child { grid-column: 1 / -1; width: min(100%, 920px); justify-self: center; }
+  .project-gallery.release-gallery { grid-template-columns: repeat(2, minmax(0, 300px)); justify-content: center; align-items: start; gap: 24px; }
   .release-gallery .project-shot-portrait { width: min(100%, 260px); justify-self: center; }
   .release-gallery .project-shot img { width: 100%; height: auto; object-fit: contain; background: #090d13; }
   .project h3 { font-size: 31px; line-height: 1.15; margin: 8px 0 14px; }
