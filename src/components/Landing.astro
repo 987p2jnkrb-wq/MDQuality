@@ -430,19 +430,19 @@ const projectScreens = [
   },
   {
     title: lang === "pl" ? "Dashboard · tryb ciemny, ukryte kwoty" : "Dashboard · dark mode, amounts hidden",
-    src: "https://raw.githubusercontent.com/987p2jnkrb-wq/MyAnalyze-releases/main/screenshots/3.0/dashboard-dark.png",
+    src: "https://raw.githubusercontent.com/987p2jnkrb-wq/MyAnalyze-releases/v4.2.0/screenshots/3.0/dashboard-dark.png",
     width: 1679,
     height: 951,
   },
   {
     title: lang === "pl" ? "Trendy i alerty · porównanie miesięcy" : "Trends and alerts · month comparisons",
-    src: "https://raw.githubusercontent.com/987p2jnkrb-wq/MyAnalyze-releases/main/screenshots/3.0/trends.png",
+    src: "https://raw.githubusercontent.com/987p2jnkrb-wq/MyAnalyze-releases/v4.2.0/screenshots/3.0/trends.png",
     width: 1891,
     height: 969,
   },
   {
     title: lang === "pl" ? "KPI · własne wskaźniki finansowe" : "KPIs · custom financial indicators",
-    src: "https://raw.githubusercontent.com/987p2jnkrb-wq/MyAnalyze-releases/main/screenshots/3.0/kpi.png",
+    src: "https://raw.githubusercontent.com/987p2jnkrb-wq/MyAnalyze-releases/v4.2.0/screenshots/3.0/kpi.png",
     width: 1226,
     height: 621,
   },
@@ -489,22 +489,39 @@ const myAnalyzePublicUrl = "https://github.com/987p2jnkrb-wq/MyAnalyze-releases"
 const myAnalyzeReleaseUrl =
   "https://github.com/987p2jnkrb-wq/MyAnalyze-releases/releases/tag/v4.0.0";
 
-const releaseScreens = [
-  { title: lang === "pl" ? "Dashboard na telefonie · tryb ciemny" : "Mobile dashboard · dark mode", src: "/images/myanalyze/4.1.0/mobile-dashboard.png", width: 1179, height: 2556 },
-  { title: lang === "pl" ? "Kalendarz transakcji na telefonie" : "Mobile transaction calendar", src: "/images/myanalyze/4.1.0/mobile-calendar.png", width: 1179, height: 2556 },
-  { title: lang === "pl" ? "Inwestycje na telefonie" : "Mobile investments", src: "/images/myanalyze/4.1.0/mobile-investments.png", width: 1179, height: 2556 },
+const releaseScreens420 = [
+  { title: lang === "pl" ? "Demo 4.2 · Import wyciągu i analiza" : "4.2 demo · Statement import and analysis", src: "/videos/myanalyze-4.2-demo.mp4", poster: "/images/myanalyze/4.2.0/mobile-dashboard.png", isVideo: true, width: 720, height: 1302 },
+  { title: lang === "pl" ? "Podsumowanie i prognoza na telefonie" : "Mobile financial summary and forecast", src: "/images/myanalyze/4.2.0/mobile-summary.png", poster: null, isVideo: false, width: 1179, height: 2556 },
+  { title: lang === "pl" ? "Trendy i wskaźniki na telefonie" : "Mobile trends and financial indicators", src: "/images/myanalyze/4.2.0/mobile-trends.png", poster: null, isVideo: false, width: 1179, height: 2556 },
+];
+
+const releaseScreens410 = [
+  { title: lang === "pl" ? "Kalendarz transakcji na telefonie" : "Mobile transaction calendar", src: "/images/myanalyze/4.1.0/mobile-calendar.png", poster: null, isVideo: false, width: 1179, height: 2556 },
+  { title: lang === "pl" ? "Inwestycje na telefonie" : "Mobile investments", src: "/images/myanalyze/4.1.0/mobile-investments.png", poster: null, isVideo: false, width: 1179, height: 2556 },
 ];
 
 const projectVersions = [
   {
-    version: "4.1.0",
+    version: "4.2.0",
     label: t.work.caseLabel,
-    title: lang === "pl" ? "MyAnalyze 4.1 · Finanse, planowanie i analiza w jednym miejscu" : "MyAnalyze 4.1 · Finance, planning and analysis in one place",
+    title: lang === "pl" ? "MyAnalyze 4.2 · Finanse, planowanie i analiza w jednym miejscu" : "MyAnalyze 4.2 · Finance, planning and analysis in one place",
     summary: lang === "pl" ? "Konta, transakcje, cele, import wyciągów i prognozy w jednej aplikacji do finansów osobistych. MyAnalyze pomaga uporządkować codzienne finanse, zrozumieć wydatki i planować kolejne kroki. Dane są przechowywane lokalnie, a interfejs jest dostępny na komputerze i telefonie." : "Accounts, transactions, goals, statement imports and forecasts in one personal finance app. MyAnalyze helps you organize everyday finances, understand your spending and plan ahead. Data is stored locally, with an interface for desktop and mobile.",
     value: lang === "pl" ? "Od projektu widoku po reguły obliczeń dbam o to, żeby użytkownik rozumiał, skąd bierze się wynik." : "From screen design to calculation rules, I work to make the result understandable to the person using the app.",
-    image: releaseScreens[0],
-    screens: releaseScreens,
+    image: releaseScreens420[1],
+    screens: releaseScreens420,
     features: lang === "pl" ? ["Finanse osobiste", "Planowanie", "Analiza"] : ["Personal finance", "Planning", "Analysis"],
+    releaseUrl: myAnalyzePublicUrl + "/releases/tag/v4.2.0",
+    releaseLabel: lang === "pl" ? "Wydanie 4.2.0" : "Release 4.2.0",
+    downloadUrl: myAnalyzePublicUrl + "/releases/download/v4.2.0/MyAnalyze.Setup.4.2.0.exe",
+  },
+  {
+    version: "4.1.0",
+    label: t.work.caseLabel,
+    title: lang === "pl" ? "MyAnalyze 4.1 · Lokaty, inwestycje i IKE/IKZE" : "MyAnalyze 4.1 · Deposits, investments and IKE/IKZE",
+    summary: lang === "pl" ? "Wersja 4.1 rozbudowała obsługę lokat (kapitał, oprocentowanie, termin i historia wyceny), inwestycji (koszt zakupu i bieżąca wartość) oraz kont emerytalnych IKE i IKZE. Uporządkowała też podział na środki dostępne na co dzień i oszczędności długoterminowe, a także poprawiła interfejs na komputerze i telefonie." : "Version 4.1 added deposit tracking (principal, interest, maturity and valuation history), investments (acquisition cost and current value), and Polish IKE/IKZE retirement accounts. It also clarified spendable funds versus long-term savings and refined the desktop and mobile interface.",
+    image: releaseScreens410[0],
+    screens: releaseScreens410,
+    features: lang === "pl" ? ["Lokaty", "Inwestycje", "IKE / IKZE"] : ["Deposits", "Investments", "IKE / IKZE"],
     releaseUrl: myAnalyzePublicUrl + "/releases/tag/v4.1.0",
     releaseLabel: lang === "pl" ? "Wydanie 4.1.0" : "Release 4.1.0",
     downloadUrl: myAnalyzePublicUrl + "/releases/download/v4.1.0/MyAnalyze.Setup.4.1.0.exe",
@@ -519,17 +536,6 @@ const projectVersions = [
     releaseUrl: myAnalyzeReleaseUrl,
     releaseLabel: t.work.releaseButton,
   },
-  {
-    version: "3.0",
-    label: lang === "pl" ? "ETAP PROJEKTU · WINDOWS" : "PRODUCT MILESTONE · WINDOWS",
-    title: lang === "pl" ? "MyAnalyze 3.0 · Wygodniejsza codzienna praca" : "MyAnalyze 3.0 · A calmer daily workflow",
-    summary: lang === "pl" ? "Pierwsze uruchomienie z przewodnikiem, czytelniejsza historia i edycja transakcji oraz spójniejsze widoki dashboardu, KPI i trendów. Dokumentacja PL/EN trafia do instalatora." : "Guided first run, clearer transaction history and editing, and more coherent dashboard, KPI and trend views. Polish and English documentation is bundled with the installer.",
-    image: { title: lang === "pl" ? "Dashboard wersji 3.0" : "Version 3.0 dashboard", src: "/images/myanalyze/dashboard-3.0.png", width: 1679, height: 951 },
-    features: lang === "pl" ? ["Pierwsze kroki", "Historia", "Dokumentacja"] : ["Onboarding", "History", "Documentation"],
-    releaseUrl: myAnalyzePublicUrl + "/releases/tag/v3.0",
-    releaseLabel: lang === "pl" ? "Wydanie 3.0" : "Release 3.0",
-  },
-
 ];
 
 const schema = {
@@ -791,9 +797,12 @@ const schema = {
                 <a class="button secondary" href={version.releaseUrl} target="_blank" rel="noreferrer">{version.releaseLabel}</a>
               </div>
             </div>
-            {version.screens ? <div class="project-mobile-gallery" tabindex="0" role="group" aria-label={lang === "pl" ? "Zrzuty ekranu MyAnalyze 4.1. Przewiń, aby zobaczyć kolejne." : "MyAnalyze 4.1 screenshots. Scroll to see more."}>
-              {version.screens.map((screen) => <a class="mobile-screen" href={screen.src} target="_blank" rel="noreferrer">
-                <img src={screen.src} alt={"MyAnalyze 4.1 - " + screen.title} width={screen.width} height={screen.height} loading="lazy" decoding="async" />
+            {version.screens ? <div class="project-mobile-gallery" style={`--screen-count: ${version.screens.length}`} tabindex="0" role="group" aria-label={lang === "pl" ? `Zrzuty ekranu MyAnalyze ${version.version}. Przewiń, aby zobaczyć kolejne.` : `MyAnalyze ${version.version} screenshots. Scroll to see more.`}>
+              {version.screens.map((screen) => screen.isVideo ? <div class="mobile-screen mobile-demo">
+                <video src={screen.src} poster={screen.poster ?? undefined} width={screen.width} height={screen.height} controls playsinline preload="metadata" aria-label={screen.title}></video>
+                <span>{screen.title}</span>
+              </div> : <a class="mobile-screen" href={screen.src} target="_blank" rel="noreferrer">
+                <img src={screen.src} alt={"MyAnalyze " + version.version + " - " + screen.title} width={screen.width} height={screen.height} loading="lazy" decoding="async" />
                 <span>{screen.title}</span>
               </a>)}
             </div> : <a class:list={["project-preview", "project-image-link", { "project-mobile-preview": version.image.height > version.image.width }]} style={"--preview-aspect: " + version.image.width + " / " + version.image.height} href={version.image.src} target="_blank" rel="noreferrer">
@@ -1075,11 +1084,12 @@ const schema = {
   .project { position: relative; overflow: hidden; background: #0d1219; border: 1px solid #1d2631; border-radius: 18px; padding: 42px; display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 48px; align-items: center; }
   .project-copy { position: relative; z-index: 1; }
   .project-current { grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 32px; }
-  .project-mobile-gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 12px; min-width: 0; }
+  .project-mobile-gallery { display: grid; grid-template-columns: repeat(var(--screen-count, 3), minmax(0, 1fr)); align-items: start; gap: 12px; min-width: 0; }
   .mobile-screen { display: block; min-width: 0; color: #aeb7c4; text-decoration: none; }
-  .mobile-screen img { display: block; width: 100%; height: auto; border: 1px solid #304054; border-radius: 18px; box-sizing: border-box; }
+  .mobile-screen img, .mobile-screen video { display: block; width: 100%; height: auto; border: 1px solid #304054; border-radius: 18px; box-sizing: border-box; }
   .mobile-screen span { display: block; margin-top: 12px; font-size: 11px; line-height: 1.5; }
   .mobile-screen:hover img { border-color: #7dd3fc; }
+  .mobile-demo video:focus-visible { outline: 2px solid #7dd3fc; outline-offset: 4px; }
   .project-mobile-gallery:focus-visible, .mobile-screen:focus-visible { outline: 2px solid #7dd3fc; outline-offset: 4px; }
   @media (max-width: 980px) {
     .project.project-current { grid-template-columns: 1fr; }
