@@ -486,8 +486,6 @@ const capabilities =
       ];
 
 const myAnalyzePublicUrl = "https://github.com/987p2jnkrb-wq/MyAnalyze-releases";
-const myAnalyzeReleaseUrl =
-  "https://github.com/987p2jnkrb-wq/MyAnalyze-releases/releases/tag/v4.0.0";
 
 const releaseScreens420 = [
   { title: lang === "pl" ? "Demo 4.2 · Import wyciągu i analiza" : "4.2 demo · Statement import and analysis", src: "/videos/myanalyze-4.2-demo.mp4", poster: "/images/myanalyze/4.2.0/mobile-dashboard.png", isVideo: true, width: 720, height: 1302 },
@@ -522,9 +520,9 @@ const projectVersions = [
     image: releaseScreens410[0],
     screens: releaseScreens410,
     features: lang === "pl" ? ["Lokaty", "Inwestycje", "IKE / IKZE"] : ["Deposits", "Investments", "IKE / IKZE"],
-    releaseUrl: myAnalyzePublicUrl + "/releases/tag/v4.1.0",
+    releaseUrl: null,
     releaseLabel: lang === "pl" ? "Wydanie 4.1.0" : "Release 4.1.0",
-    downloadUrl: myAnalyzePublicUrl + "/releases/download/v4.1.0/MyAnalyze.Setup.4.1.0.exe",
+    downloadUrl: null,
   },
   {
     version: "4.0",
@@ -533,7 +531,7 @@ const projectVersions = [
     summary: t.work.caseText,
     image: projectScreens[0],
     features: lang === "pl" ? ["Widok mobilny", "Gesty", "Personalizacja"] : ["Mobile views", "Gestures", "Customization"],
-    releaseUrl: myAnalyzeReleaseUrl,
+    releaseUrl: null,
     releaseLabel: t.work.releaseButton,
   },
 ];
@@ -794,7 +792,7 @@ const schema = {
               <div class="project-actions">
                 {version.downloadUrl && <a class="button primary" href={version.downloadUrl}>{lang === "pl" ? "Pobierz na Windows" : "Download for Windows"}</a>}
                 <a class="button secondary" href={myAnalyzePublicUrl} target="_blank" rel="noreferrer">{t.work.projectButton}</a>
-                <a class="button secondary" href={version.releaseUrl} target="_blank" rel="noreferrer">{version.releaseLabel}</a>
+                {version.releaseUrl && <a class="button secondary" href={version.releaseUrl} target="_blank" rel="noreferrer">{version.releaseLabel}</a>}
               </div>
             </div>
             {version.screens ? <div class="project-mobile-gallery" style={`--screen-count: ${version.screens.length}`} tabindex="0" role="group" aria-label={lang === "pl" ? `Zrzuty ekranu MyAnalyze ${version.version}. Przewiń, aby zobaczyć kolejne.` : `MyAnalyze ${version.version} screenshots. Scroll to see more.`}>
