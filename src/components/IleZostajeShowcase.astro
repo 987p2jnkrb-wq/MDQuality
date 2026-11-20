@@ -1,0 +1,376 @@
+---
+interface Props {
+  lang: string;
+}
+
+const { lang } = Astro.props;
+const pl = lang === "pl";
+const storeUrl = "https://apps.microsoft.com/detail/9N1M8RZBRRCC";
+
+const copy = pl
+  ? {
+      eyebrow: "WŁASNY PRODUKT · WERSJA 1.0",
+      version: "1.0",
+      headline: "Widzisz, ile zostaje. Nie tylko ile wydajesz.",
+      description:
+        "Importuj wyciągi CSV i PDF, sprawdzaj operacje przed zapisaniem i planuj kolejne miesiące. Konta, cele, wydatki i prognozy w jednym miejscu — bez podłączania banku.",
+      features: ["Dane przechowywane lokalnie", "Import CSV / PDF", "Plan i wykonanie"],
+      storeAction: "Zobacz w",
+      storeAccessible: "Otwórz IleZostaje w Microsoft Store (nowa karta)",
+      preview: "Zajrzyj do środka",
+      previewNote: "Prawdziwe zrzuty interfejsu · kliknij, aby powiększyć",
+      summary: "Podsumowanie i prognoza",
+      trends: "Trendy i wskaźniki",
+      platforms: "Platformy",
+      coming: "Wkrótce",
+    }
+  : {
+      eyebrow: "INDEPENDENT PRODUCT · VERSION 1.0",
+      version: "1.0",
+      headline: "See what’s left. Not just what you spend.",
+      description:
+        "Import CSV and PDF statements, review transactions before saving, and plan the months ahead. Accounts, goals, spending and forecasts together — without connecting your bank.",
+      features: ["Financial data stored locally", "CSV / PDF import", "Plan versus actual"],
+      storeAction: "Get it on",
+      storeAccessible: "Open IleZostaje on Microsoft Store (new tab)",
+      preview: "Inside the app",
+      previewNote: "Real interface screenshots · select to enlarge",
+      summary: "Summary and forecast",
+      trends: "Trends and indicators",
+      platforms: "Platforms",
+      coming: "Coming soon",
+    };
+---
+
+<article class="product-showcase" aria-labelledby="ilezostaje-heading">
+  <div class="showcase-main">
+    <div class="product-content">
+      <div class="product-identity">
+        <img class="product-icon" src="/images/ilezostaje/icon.png" width="256" height="256" alt="" decoding="async" />
+        <div class="identity-copy">
+          <p class="product-eyebrow">{copy.eyebrow}</p>
+          <p class="product-name">IleZostaje <span>{copy.version}</span></p>
+        </div>
+      </div>
+
+      <h3 id="ilezostaje-heading">{copy.headline}</h3>
+      <p class="product-description">{copy.description}</p>
+
+      <ul class="product-features">
+        {copy.features.map((feature) => <li>{feature}</li>)}
+      </ul>
+
+      <a
+        class="store-action"
+        href={storeUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={copy.storeAccessible}
+      >
+        <svg class="microsoft-mark" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M2 2h9v9H2zM13 2h9v9h-9zM2 13h9v9H2zM13 13h9v9h-9z" fill="currentColor" />
+        </svg>
+        <span class="store-text">
+          <span>{copy.storeAction}</span>
+          <strong>Microsoft Store</strong>
+        </span>
+        <svg class="external-arrow" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
+    </div>
+
+    <div class="product-gallery" aria-label={copy.preview}>
+      <div class="gallery-heading">
+        <span class="gallery-rule" aria-hidden="true"></span>
+        <span>{copy.preview}</span>
+        <span class="gallery-counter">01 — 02</span>
+      </div>
+      <div class="screen-stage">
+        <a
+          class="screen-shot screen-primary"
+          href="/images/myanalyze/4.2.0/mobile-summary.png"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={copy.summary}
+        >
+          <img
+            src="/images/myanalyze/4.2.0/mobile-summary.png"
+            alt={copy.summary}
+            width="1179"
+            height="2556"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+        <a
+          class="screen-shot screen-secondary"
+          href="/images/myanalyze/4.2.0/mobile-trends.png"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={copy.trends}
+        >
+          <img
+            src="/images/myanalyze/4.2.0/mobile-trends.png"
+            alt={copy.trends}
+            width="1179"
+            height="2556"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+      </div>
+      <p class="gallery-caption">{copy.previewNote}</p>
+    </div>
+  </div>
+
+  <div class="platform-bar" aria-label={copy.platforms}>
+    <span class="platform-label">{copy.platforms}</span>
+    <a class="platform windows" href={storeUrl} target="_blank" rel="noopener noreferrer" aria-label={copy.storeAccessible}>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M2 4.2 11 3v8H2V4.2Zm11-1.5L22 1v10h-9V2.7ZM2 13h9v8l-9-1.2V13Zm11 0h9v10l-9-1.6V13Z" /></svg>
+      <span>Windows</span><small>Microsoft Store</small>
+    </a>
+    <span class="platform upcoming"><span>macOS</span><small>{copy.coming}</small></span>
+    <span class="platform upcoming"><span>iOS</span><small>{copy.coming}</small></span>
+  </div>
+</article>
+
+<style>
+  .product-showcase {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid #28374d;
+    border-radius: 22px;
+    background: #0c131e;
+    color: #f7faff;
+  }
+  .showcase-main {
+    display: grid;
+    grid-template-columns: minmax(0, .96fr) minmax(0, 1.04fr);
+    min-width: 0;
+  }
+  .product-content {
+    min-width: 0;
+    padding: clamp(27px, 4vw, 54px);
+    padding-right: clamp(22px, 3vw, 42px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .product-identity {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 26px;
+  }
+  .product-icon {
+    width: 66px;
+    height: 66px;
+    object-fit: contain;
+    flex: 0 0 auto;
+    border-radius: 17px;
+    background: #0a2e71;
+  }
+  .identity-copy { min-width: 0; }
+  .product-eyebrow {
+    margin: 0 0 3px;
+    color: #89bfe8;
+    font-size: 10px;
+    line-height: 1.4;
+    font-weight: 780;
+    letter-spacing: 1.35px;
+  }
+  .product-name {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(20px, 2vw, 26px);
+    font-weight: 780;
+    letter-spacing: -.7px;
+    line-height: 1.25;
+  }
+  .product-name span {
+    color: #9bb5d0;
+    font-size: 14px;
+    font-weight: 580;
+    letter-spacing: 0;
+    margin-left: 3px;
+  }
+  h3 {
+    max-width: 530px;
+    margin: 0;
+    color: #fff;
+    font-size: clamp(29px, 3.2vw, 45px);
+    line-height: 1.12;
+    letter-spacing: -1.6px;
+    font-weight: 790;
+    text-wrap: balance;
+  }
+  .product-description {
+    max-width: 480px;
+    margin: 19px 0 0;
+    color: #bcc9da;
+    font-size: 15px;
+    line-height: 1.78;
+  }
+  .product-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px 0;
+    margin: 22px 0 34px;
+    padding: 0;
+    list-style: none;
+    color: #c2d9e9;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .product-features li + li::before {
+    content: "·";
+    color: #57738c;
+    padding: 0 11px;
+  }
+  .store-action {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 15px;
+    min-height: 64px;
+    padding: 11px 17px 11px 18px;
+    border: 1px solid transparent;
+    border-radius: 11px;
+    color: #091321;
+    background: #f4f8fd;
+    text-decoration: none;
+    box-shadow: 0 7px 30px rgba(0, 0, 0, .14);
+    transition: background .18s ease, transform .18s ease;
+  }
+  .store-action:hover { background: #dceeff; transform: translateY(-2px); }
+  .store-action:focus-visible, .screen-shot:focus-visible, .windows:focus-visible {
+    outline: 2px solid #91daff;
+    outline-offset: 4px;
+  }
+  .microsoft-mark { width: 28px; height: 28px; flex: 0 0 auto; }
+  .store-text { display: flex; flex-direction: column; line-height: 1.2; }
+  .store-text > span { font-size: 11px; font-weight: 590; }
+  .store-text strong { margin-top: 2px; font-size: 18px; font-weight: 790; letter-spacing: -.35px; white-space: nowrap; }
+  .external-arrow { width: 16px; height: 16px; margin-left: 16px; flex: 0 0 auto; opacity: .65; }
+
+  .product-gallery {
+    position: relative;
+    min-width: 0;
+    padding: 37px clamp(20px, 3vw, 44px) 21px;
+    background: #101c2e;
+    border-left: 1px solid rgba(134, 171, 211, .12);
+    overflow: hidden;
+  }
+  .gallery-heading {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #c7ddf1;
+    font-size: 12px;
+    font-weight: 680;
+  }
+  .gallery-rule { width: 17px; height: 2px; border-radius: 2px; background: #65bff6; }
+  .gallery-counter { margin-left: auto; color: #69829b; font-size: 11px; letter-spacing: .9px; }
+  .screen-stage {
+    position: relative;
+    isolation: isolate;
+    height: clamp(365px, 37vw, 490px);
+    margin-top: 25px;
+  }
+  .screen-shot {
+    position: absolute;
+    display: block;
+    width: min(45%, 226px);
+    border-radius: 19px;
+    text-decoration: none;
+    transition: transform .2s ease;
+  }
+  .screen-shot img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #426083;
+    border-radius: 19px;
+    box-shadow: 0 22px 55px rgba(0, 0, 0, .38);
+  }
+  .screen-primary { z-index: 2; top: 0; left: 6%; }
+  .screen-secondary { z-index: 1; top: 44px; right: 5%; }
+  .screen-shot:hover { transform: translateY(-7px); z-index: 3; }
+  .gallery-caption { margin: 3px 0 0; color: #839ab0; font-size: 11px; line-height: 1.5; text-align: center; }
+  .platform-bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 13px 26px;
+    padding: 19px clamp(27px, 4vw, 54px);
+    border-top: 1px solid #27364a;
+    background: #0a111b;
+  }
+  .platform-label {
+    margin-right: auto;
+    color: #8b9eb2;
+    font-size: 12px;
+    font-weight: 680;
+  }
+  .platform {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #f2f7fe;
+    font-size: 13px;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+  .platform svg { width: 16px; height: 16px; }
+  .platform small {
+    display: inline-block;
+    color: #92b5d4;
+    font-size: 11px;
+    font-weight: 590;
+  }
+  .windows { text-decoration: none; }
+  .windows:hover { color: #9cdaff; }
+  .upcoming { color: #b0becd; }
+  .upcoming small { color: #7c8b9d; }
+
+  @media (max-width: 920px) {
+    .showcase-main { grid-template-columns: 1fr; }
+    .product-content { padding: 34px 34px 37px; }
+    .product-description { max-width: 620px; }
+    .product-gallery { border-left: 0; border-top: 1px solid #27364a; padding: 27px 30px 22px; }
+    .screen-stage { max-width: 620px; height: clamp(370px, 73vw, 535px); margin-inline: auto; }
+    .screen-shot { width: min(40%, 220px); }
+    .screen-primary { left: 17%; }
+    .screen-secondary { right: 15%; }
+    .platform-bar { padding: 18px 34px; }
+  }
+  @media (max-width: 550px) {
+    .product-showcase { border-radius: 16px; }
+    .product-content { padding: 26px 23px 30px; }
+    .product-icon { width: 55px; height: 55px; border-radius: 14px; }
+    .product-identity { margin-bottom: 22px; gap: 12px; }
+    .product-eyebrow { font-size: 9px; letter-spacing: .9px; }
+    .product-name { font-size: 21px; }
+    h3 { font-size: clamp(28px, 8vw, 36px); letter-spacing: -1px; }
+    .product-description { margin-top: 15px; font-size: 14px; line-height: 1.65; }
+    .product-features { margin: 20px 0 25px; }
+    .store-action { width: 100%; justify-content: flex-start; }
+    .external-arrow { margin-left: auto; }
+    .product-gallery { padding: 23px 15px 18px; }
+    .screen-stage { height: clamp(295px, 105vw, 425px); margin-top: 20px; }
+    .screen-shot { width: 45%; border-radius: 14px; }
+    .screen-shot img { border-radius: 14px; }
+    .screen-primary { left: 4%; }
+    .screen-secondary { right: 4%; top: 29px; }
+    .gallery-caption { font-size: 10px; }
+    .platform-bar { gap: 13px 18px; padding: 19px 23px; }
+    .platform-label { width: 100%; }
+    .platform { font-size: 12px; }
+    .platform small { font-size: 10px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .store-action, .screen-shot { transition: none; }
+    .store-action:hover, .screen-shot:hover { transform: none; }
+  }
+</style>
