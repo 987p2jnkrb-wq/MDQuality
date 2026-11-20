@@ -1,11 +1,13 @@
 ---
+import { ILEZOSTAJE_STORE_URL } from "../lib/ilezostaje";
+
 interface Props {
   lang: string;
 }
 
 const { lang } = Astro.props;
 const pl = lang === "pl";
-const storeUrl = "https://apps.microsoft.com/detail/9N1M8RZBRRCC";
+const storeUrl = ILEZOSTAJE_STORE_URL;
 
 const copy = pl
   ? {
