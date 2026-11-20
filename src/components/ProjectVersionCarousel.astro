@@ -35,6 +35,10 @@ const trackId = `${id}-track`;
     let active = 0;
     let scheduled = false;
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const syncHeight = () => {
+      const height = Math.ceil(slides[active]?.getBoundingClientRect().height ?? 0);
+      if (height > 0 && track.style.height !== `${height}px`) track.style.height = `${height}px`;
+    };
     const update = (index: number) => {
       active = index;
       buttons.forEach((button, position) => {
@@ -43,6 +47,7 @@ const trackId = `${id}-track`;
       });
       slides.forEach((slide, position) => { slide.inert = position !== index; });
       status.textContent = `${status.dataset.versionPrefix} ${buttons[index].dataset.versionNumber}`;
+      syncHeight();
     };
     const show = (index: number, animate = true) => {
       const selected = Math.max(0, Math.min(slides.length - 1, index));
@@ -67,6 +72,8 @@ const trackId = `${id}-track`;
       });
     }, { passive: true });
     new ResizeObserver(() => show(active, false)).observe(track);
+    const slideObserver = new ResizeObserver(syncHeight);
+    slides.forEach(slide => slideObserver.observe(slide));
     update(0);
   });
 </script>
@@ -76,7 +83,7 @@ const trackId = `${id}-track`;
   .version-heading { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; margin-bottom: 14px; }
   .version-heading p { margin: 0; color: #c3d3e5; font-size: 13px; font-weight: 700; }
   .version-heading span { color: #8996a6; font-size: 12px; }
-  .version-track { position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: 100%; gap: 16px; min-width: 0; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; }
+  .version-track { position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: 100%; align-items: start; gap: 16px; min-width: 0; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; }
   .version-track > :global(*) { min-width: 0; scroll-snap-align: start; scroll-snap-stop: always; }
   .version-track::-webkit-scrollbar { display: none; }
   .version-controls { display: flex; justify-content: center; margin-top: 6px; }
