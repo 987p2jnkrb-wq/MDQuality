@@ -1,0 +1,40 @@
+name: Verify MD Quality site
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  astro-build:
+    name: Build Astro and check IleZostaje privacy routes
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --no-audit --no-fund
+      - name: Build static website
+        run: npm run build
+      - name: Validate application policy in both languages
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s dist/index.html
+          test -s dist/pl/index.html
+          test -s dist/privacy/index.html
+          test -s dist/pl/privacy/index.html
+          test -s dist/ilezostaje/privacy/index.html
+          test -s dist/pl/ilezostaje/privacy/index.html
+          grep -Fq 'IleZostaje Privacy Policy' dist/ilezostaje/privacy/index.html
+          grep -Fq 'Polityka prywatności IleZostaje' dist/pl/ilezostaje/privacy/index.html
+          grep -Fq '/ilezostaje/privacy/' dist/index.html
+          grep -Fq '/pl/ilezostaje/privacy/' dist/pl/index.html
+          echo "### Static site build" >> "$GITHUB_STEP_SUMMARY"
+          echo "Astro, PL/EN website policies and IleZostaje privacy pages: PASS" >> "$GITHUB_STEP_SUMMARY"
+          echo "Cloudflare deployment and public URL availability: NOT RUN" >> "$GITHUB_STEP_SUMMARY"

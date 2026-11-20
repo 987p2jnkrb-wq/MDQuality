@@ -1,46 +1,30 @@
-# Astro Starter Kit: Basics
+# MD Quality
+
+Astro website for `mdquality.pl`, with an IleZostaje product showcase and separate application privacy notice.
+
+## Local checks
+
+Requires Node.js 22.12 or later.
 
 ```sh
-npm create astro@latest -- --template basics
+npm ci
+npm run build
+npm run preview
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The output is generated under `dist/`. For a repeatable GitHub check, open **Actions > Verify MD Quality site > Run workflow**, choose `main`, then run the single Astro build. This is manual only and does not publish anything.
 
-## 🚀 Project Structure
+## Privacy pages
 
-Inside of your Astro project, you'll see the following folders and files:
+- Website: `/privacy/` and `/pl/privacy/`
+- IleZostaje app: `/ilezostaje/privacy/` and `/pl/ilezostaje/privacy/`
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+The application policy is distinct from the website privacy terms. Both localized routes should be available without login before being submitted to App Store Connect or Microsoft Store. The app Help Center opens these URLs in the system browser.
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Cloudflare deployment
 
-## 🧞 Commands
+Cloudflare handles the live deployment separately from this repository's manual build verification. A green GitHub Astro build validates the generated static pages **but does not prove** that `mdquality.pl` was deployed.
 
-All commands are run from the root of the project, from a terminal:
+If Cloudflare reports **Workers Builds: mdquality – failure**, inspect the exact build via Cloudflare dashboard > Workers & Pages > `mdquality` > Deployments > Build history. Note the first failing step and its error lines. Compare the build command, deployment command and output directory against this site's `astro build` output; do not change production credentials or hosting mode based on a failed GitHub status alone. After fixing the cause, confirm live HTTPS responses for both app privacy URLs and their footer links before updating store submissions.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+The site has no backend or user account provisioning. Do not move IleZostaje financial files or connect this site to its local database.
