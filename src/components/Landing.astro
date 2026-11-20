@@ -797,7 +797,6 @@ const schema = {
             {version.screens ? <div class="project-mobile-gallery" style={`--screen-count: ${version.screens.length}`} tabindex="0" role="group" aria-label={lang === "pl" ? `Zrzuty ekranu IleZostaje ${version.version}. Przewiń, aby zobaczyć kolejne.` : `IleZostaje ${version.version} screenshots. Scroll to see more.`}>
               {version.screens.map((screen) => screen.isVideo ? <div class="mobile-screen mobile-demo">
                 <video src={screen.src} poster={screen.poster ?? undefined} width={screen.width} height={screen.height} controls playsinline preload="metadata" aria-label={screen.title}></video>
-                <span>{screen.title}</span>
               </div> : <a class="mobile-screen" href={screen.src} target="_blank" rel="noreferrer">
                 <img src={screen.src} alt={"IleZostaje " + version.version + " - " + screen.title} width={screen.width} height={screen.height} loading="lazy" decoding="async" />
                 <span>{screen.title}</span>
