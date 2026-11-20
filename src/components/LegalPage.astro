@@ -2,14 +2,21 @@
 const { lang = "en", type = "privacy", detectLanguage = false } = Astro.props;
 const isPl = lang === "pl";
 const isPrivacy = type === "privacy";
+const isAppPrivacy = type === "appPrivacy";
 
 const homePath = isPl ? "/pl/" : "/";
 const privacyPath = isPl ? "/pl/privacy/" : "/privacy/";
+const appPrivacyPath = isPl ? "/pl/ilezostaje/privacy/" : "/ilezostaje/privacy/";
 const termsPath = isPl ? "/pl/terms/" : "/terms/";
-const canonical = isPrivacy ? privacyPath : termsPath;
+const canonical = isAppPrivacy ? appPrivacyPath : isPrivacy ? privacyPath : termsPath;
+const enLegalPath = isAppPrivacy ? "/ilezostaje/privacy/" : isPrivacy ? "/privacy/" : "/terms/";
+const plLegalPath = isAppPrivacy ? "/pl/ilezostaje/privacy/" : isPrivacy ? "/pl/privacy/" : "/pl/terms/";
 const canonicalUrl = "https://mdquality.pl" + canonical;
 
-const meta = isPrivacy
+const meta = isAppPrivacy ? {
+  en: { title: "IleZostaje Privacy Policy | MD Quality", description: "Privacy practices for the IleZostaje finance application." },
+  pl: { title: "Polityka prywatności IleZostaje | MD Quality", description: "Ochrona danych w aplikacji finansowej IleZostaje." },
+} : isPrivacy
   ? {
       en: {
         title: "Privacy Policy | MD Quality",
@@ -46,17 +53,17 @@ const m = meta[lang] || meta.en;
     <link
       rel="alternate"
       hreflang="en"
-      href={"https://mdquality.pl/" + (isPrivacy ? "privacy/" : "terms/")}
+      href={"https://mdquality.pl" + enLegalPath}
     />
     <link
       rel="alternate"
       hreflang="pl"
-      href={"https://mdquality.pl/pl/" + (isPrivacy ? "privacy/" : "terms/")}
+      href={"https://mdquality.pl" + plLegalPath}
     />
     <link
       rel="alternate"
       hreflang="x-default"
-      href={"https://mdquality.pl/" + (isPrivacy ? "privacy/" : "terms/")}
+      href={"https://mdquality.pl" + enLegalPath}
     />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 
@@ -67,7 +74,7 @@ const m = meta[lang] || meta.en;
           if (root.dataset.detectLanguage !== "true") return;
           const currentType = root.dataset.pageType;
           const saved = localStorage.getItem("mdq-lang");
-          const plPath = currentType === "privacy" ? "/pl/privacy/" : "/pl/terms/";
+          const plPath = currentType === "appPrivacy" ? "/pl/ilezostaje/privacy/" : currentType === "privacy" ? "/pl/privacy/" : "/pl/terms/";
           if (saved === "pl") {
             window.location.replace(plPath);
             return;
@@ -89,13 +96,13 @@ const m = meta[lang] || meta.en;
           <div class="language-switch">
             <a
               class:list={[lang === "en" && "active"]}
-              href={isPrivacy ? "/privacy/" : "/terms/"}
+              href={enLegalPath}
               data-lang="en"
             >EN</a>
             <span>/</span>
             <a
               class:list={[lang === "pl" && "active"]}
-              href={isPrivacy ? "/pl/privacy/" : "/pl/terms/"}
+              href={plLegalPath}
               data-lang="pl"
             >PL</a>
           </div>
@@ -106,7 +113,83 @@ const m = meta[lang] || meta.en;
 
     <main class="container">
       {
-        isPrivacy ? (
+        isAppPrivacy ? (
+          isPl ? (
+            <>
+              <section class="hero">
+                <p class="eyebrow">ILEZOSTAJE / PRYWATNOŚĆ</p>
+                <h1>Polityka prywatności IleZostaje</h1>
+                <p class="lead">Jak aplikacja przechowuje dane finansowe i kiedy łączy się z usługami zewnętrznymi.</p>
+                <p class="updated">Aktualizacja: 20 listopada 2026</p>
+              </section>
+              <section>
+                <h2>1. Kto odpowiada za aplikację?</h2>
+                <p>IleZostaje wydaje <strong>Mikołaj Dworak</strong> (MD Quality). W sprawach prywatności skontaktuj się przez <a href="mailto:mikolajdworak@icloud.com">mikolajdworak@icloud.com</a>. Polityka dotyczy aplikacji IleZostaje; osobna <a href="/pl/privacy/">polityka witryny MD Quality</a> opisuje odwiedzanie strony.</p>
+              </section>
+              <section>
+                <h2>2. Dane na urządzeniu</h2>
+                <p>Konta, operacje, plany, analizy, pliki CSV/PDF, załączniki i ustawienia są przechowywane lokalnie w bazie SQLite i plikach aplikacji. Nie wymagamy rejestracji konta u wydawcy ani danych logowania do banku. W wersji desktopowej interfejs korzysta z lokalnego API działającego na tym samym urządzeniu. Aplikacja nie wysyła automatycznie bazy finansowej do chmury wydawcy.</p>
+              </section>
+              <section>
+                <h2>3. Połączenia internetowe</h2>
+                <p>Aplikacja może pobierać kursy walut i notowania złota z API <strong>NBP</strong>. Opcjonalne notowania ETF mogą korzystać z <strong>Twelve Data</strong> po skonfigurowaniu klucza API; zapytanie zawiera symbol instrumentu i klucz. Dostawcy mogą otrzymać adres IP oraz standardowe dane połączenia. Do pobierania notowań nie jest potrzebna historia transakcji, saldo ani wyciąg bankowy. Apple i Microsoft mogą niezależnie przetwarzać dane pobrań lub zakupów według własnych zasad.</p>
+              </section>
+              <section>
+                <h2>4. Kopie i ochrona danych</h2>
+                <p>Eksport pełnej kopii może zawierać lokalną bazę, dokumenty i ustawienia. Standardowa kopia <strong>nie jest szyfrowana</strong>. Użytkownik może osobno wybrać zabezpieczenie hasłem; hasło nie jest zapisywane w aplikacji, a jego utrata uniemożliwia odtworzenie zaszyfrowanej kopii. Sama baza na dysku nie jest szyfrowana przez tę funkcję. Zabezpiecz konto systemowe i nośnik danych.</p>
+              </section>
+              <section>
+                <h2>5. Kontakt i korespondencja</h2>
+                <p>Jeśli napiszesz do wydawcy, będziemy przetwarzać dobrowolnie podany adres e-mail, treść wiadomości i ewentualne załączniki w celu obsługi pytania, wsparcia lub obowiązków prawnych. Nie przesyłaj niepotrzebnie wyciągów i haseł. Poczta jest obsługiwana przez Apple/iCloud. Korespondencja jest przechowywana przez czas potrzebny do załatwienia sprawy i obowiązków prawnych.</p>
+              </section>
+              <section>
+                <h2>6. Usuwanie i prawa</h2>
+                <p>Dane w aplikacji możesz zmieniać i usuwać. Funkcja <strong>Twardy reset danych</strong> czyści lokalny stan aplikacji, ale nie musi usuwać kopii wcześniej zapisanych w innych folderach. Takie pliki należy skasować samodzielnie. Odinstalowanie programu również nie zawsze usuwa katalog danych użytkownika. W sprawach danych posiadanych przez wydawcę możesz skorzystać z praw wynikających z RODO, pisząc na wskazany adres. Przysługuje Ci też skarga do Prezesa UODO.</p>
+              </section>
+              <section>
+                <h2>7. Zmiany</h2>
+                <p>Polityka może być aktualizowana po zmianie funkcjonalności, dostawców danych lub zasad dystrybucji. Aplikacja nie wykorzystuje Twojej historii finansowej do reklam behawioralnych.</p>
+              </section>
+            </>
+          ) : (
+            <>
+              <section class="hero">
+                <p class="eyebrow">ILEZOSTAJE / PRIVACY</p>
+                <h1>IleZostaje Privacy Policy</h1>
+                <p class="lead">How the app stores financial information and when it contacts external services.</p>
+                <p class="updated">Updated: 20 November 2026</p>
+              </section>
+              <section>
+                <h2>1. Publisher and contact</h2>
+                <p>IleZostaje is published by <strong>Mikołaj Dworak</strong> (MD Quality). For privacy enquiries email <a href="mailto:mikolajdworak@icloud.com">mikolajdworak@icloud.com</a>. This notice covers the IleZostaje application; the <a href="/privacy/">MD Quality website policy</a> separately describes visits to this website.</p>
+              </section>
+              <section>
+                <h2>2. On-device information</h2>
+                <p>Accounts, transactions, plans, analysis, CSV/PDF imports, attachments and preferences are stored locally in SQLite and application files. We do not require a publisher account or bank login credentials. The desktop UI uses an API running locally on your device. The application does not automatically upload your financial database to a publisher-operated cloud.</p>
+              </section>
+              <section>
+                <h2>3. Internet connections</h2>
+                <p>The application may request currency rates and gold prices from the <strong>NBP</strong> API. Optional ETF quotes may use <strong>Twelve Data</strong> when an API key is configured; these requests contain a ticker symbol and the API key. The providers may receive your IP address and ordinary connection metadata. Rate requests do not require your account balance, bank statements or transaction history. Apple and Microsoft may independently process purchase and download information under their own terms.</p>
+              </section>
+              <section>
+                <h2>4. Backups and security</h2>
+                <p>A full backup can include your local database, documents and settings. Standard exports are <strong>not encrypted</strong>. You can separately choose password protection; the app does not store the password and a lost password prevents restoring an encrypted backup. This feature does not encrypt the active on-disk database. Protect your device account, disk and exported files.</p>
+              </section>
+              <section>
+                <h2>5. Support correspondence</h2>
+                <p>If you contact the publisher, we process the email address, message and any attachments you voluntarily provide for support, handling enquiries or applicable legal obligations. Avoid including unnecessary bank statements or passwords. Email is handled by Apple/iCloud. Correspondence is retained as long as reasonably necessary to handle the request and meet legal obligations.</p>
+              </section>
+              <section>
+                <h2>6. Deletion and rights</h2>
+                <p>You can edit and delete local records. <strong>Hard data reset</strong> clears the app's local state, but does not necessarily remove copies previously exported to other locations. Delete those files separately. Uninstalling may also leave the user-data directory. You can contact us about your applicable GDPR rights concerning information held by the publisher, or lodge a complaint with Poland's data protection authority (UODO).</p>
+              </section>
+              <section>
+                <h2>7. Policy updates</h2>
+                <p>This policy may change when features, data providers or distribution practices change. The app does not use your financial history for behavioral advertising.</p>
+              </section>
+            </>
+          )
+        ) : isPrivacy ? (
           isPl ? (
             <>
               <section class="hero">
@@ -606,7 +689,8 @@ const m = meta[lang] || meta.en;
         <p>© {new Date().getFullYear()} Mikołaj Dworak</p>
       </div>
       <div class="footer-links">
-        <a href={privacyPath}>{isPl ? "Polityka prywatności" : "Privacy"}</a>
+        <a href={privacyPath}>{isPl ? "Prywatność strony" : "Website privacy"}</a>
+        <a href={appPrivacyPath}>{isPl ? "Prywatność IleZostaje" : "IleZostaje privacy"}</a>
         <a href={termsPath}>{isPl ? "Warunki korzystania" : "Website terms"}</a>
       </div>
     </footer>
