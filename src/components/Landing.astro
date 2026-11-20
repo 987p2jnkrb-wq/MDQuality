@@ -1,6 +1,8 @@
 ---
 import Experience from "./Experience.astro";
 import ProjectVersionCarousel from "./ProjectVersionCarousel.astro";
+import IleZostajeShowcase from "./IleZostajeShowcase.astro";
+import { ILEZOSTAJE_STORE_URL } from "../lib/ilezostaje";
 import ReviewScope from "./ReviewScope.astro";
 import WorkEvidence from "./WorkEvidence.astro";
 import ContactBrief from "./ContactBrief.astro";
@@ -143,7 +145,7 @@ const copy = {
       eyebrow: "SELECTED WORK",
       title: "A product you can inspect, not just a claim.",
       intro:
-        "IleZostaje is my offline-first personal finance app. The gallery also documents earlier development milestones.",
+        "IleZostaje is my offline-first personal finance product. See the interface and how the product has evolved.",
       caseLabel: "PERSONAL PRODUCT · WINDOWS DESKTOP",
       caseTitle: "IleZostaje 1.0 · Personal finance offline",
       caseText:
@@ -156,7 +158,7 @@ const copy = {
         "Versioned releases, regression thinking and documented changes",
         "Design decisions balanced with usability and business rules",
       ],
-      projectButton: "Public project page",
+      projectButton: "Microsoft Store",
       releaseButton: "Earlier releases",
       detailsLabel: "See IleZostaje quality evidence",
     },
@@ -321,7 +323,7 @@ const copy = {
       eyebrow: "WYBRANA REALIZACJA",
       title: "Produkt, który można realnie ocenić.",
       intro:
-        "IleZostaje to moja lokalna aplikacja finansowa. Galeria dokumentuje również wcześniejsze etapy jej rozwoju.",
+        "IleZostaje to moja aplikacja do finansów osobistych. Zobacz jej interfejs i to, jak rozwijał się produkt.",
       caseLabel: "WŁASNY PRODUKT · WINDOWS DESKTOP",
       caseTitle: "IleZostaje 1.0 · Finanse offline",
       caseText:
@@ -334,7 +336,7 @@ const copy = {
         "Wersjonowane wydania, myślenie regresyjne i dokumentowane zmiany",
         "Decyzje projektowe łączące design, użyteczność i reguły biznesowe",
       ],
-      projectButton: "Publiczna strona projektu",
+      projectButton: "Microsoft Store",
       releaseButton: "Poprzednie wersje",
       detailsLabel: "Zobacz szczegóły jakości IleZostaje",
     },
@@ -485,13 +487,7 @@ const capabilities =
         "AI-assisted Development",
       ];
 
-const myAnalyzePublicUrl = "https://github.com/987p2jnkrb-wq/MyAnalyze-releases";
-
-const releaseScreens420 = [
-  { title: lang === "pl" ? "Demo 4.2 · Import wyciągu i analiza" : "4.2 demo · Statement import and analysis", src: "/videos/myanalyze-4.2-demo.mp4", poster: "/images/myanalyze/4.2.0/mobile-dashboard.png", isVideo: true, width: 720, height: 1302 },
-  { title: lang === "pl" ? "Podsumowanie i prognoza na telefonie" : "Mobile financial summary and forecast", src: "/images/myanalyze/4.2.0/mobile-summary.png", poster: null, isVideo: false, width: 1179, height: 2556 },
-  { title: lang === "pl" ? "Trendy i wskaźniki na telefonie" : "Mobile trends and financial indicators", src: "/images/myanalyze/4.2.0/mobile-trends.png", poster: null, isVideo: false, width: 1179, height: 2556 },
-];
+const publicGithubUrl = "https://github.com/987p2jnkrb-wq/MDQuality";
 
 const releaseScreens410 = [
   { title: lang === "pl" ? "Kalendarz transakcji na telefonie" : "Mobile transaction calendar", src: "/images/myanalyze/4.1.0/mobile-calendar.png", poster: null, isVideo: false, width: 1179, height: 2556 },
@@ -499,18 +495,7 @@ const releaseScreens410 = [
 ];
 
 const projectVersions = [
-  {
-    version: "1.0.0",
-    label: t.work.caseLabel,
-    title: t.work.caseTitle,
-    summary: lang === "pl" ? "Konta, transakcje, cele, import wyciągów i prognozy w jednej aplikacji do finansów osobistych. IleZostaje pomaga uporządkować codzienne finanse, zrozumieć wydatki i planować kolejne kroki. Dane są przechowywane lokalnie, a interfejs jest dostępny na komputerze i telefonie. Wersja 1.0 to rebranding aplikacji na polski rynek." : "Accounts, transactions, goals, statement imports and forecasts in one personal finance app. IleZostaje helps you organize everyday finances, understand your spending and plan ahead. Data is stored locally, with an interface for desktop and mobile. Version 1.0 marks the app’s rebrand for the Polish market.",
-    value: lang === "pl" ? "Od projektu widoku po reguły obliczeń dbam o to, żeby użytkownik rozumiał, skąd bierze się wynik." : "From screen design to calculation rules, I work to make the result understandable to the person using the app.",
-    image: releaseScreens420[1],
-    screens: releaseScreens420,
-    features: lang === "pl" ? ["Finanse osobiste", "Planowanie", "Analiza"] : ["Personal finance", "Planning", "Analysis"],
-    releaseUrl: null,
-    downloadUrl: null,
-  },
+  { version: "1.0.0" },
   {
     version: "4.1.0",
     label: t.work.caseLabel,
@@ -545,7 +530,7 @@ const schema = {
   founder: { "@type": "Person", name: "Mikołaj Dworak" },
   sameAs: [
     "https://www.linkedin.com/in/mikdwo/",
-    "https://github.com/987p2jnkrb-wq/MyAnalyze-releases",
+    "https://github.com/987p2jnkrb-wq/MDQuality",
   ],
   inLanguage: lang,
 };
@@ -780,8 +765,9 @@ const schema = {
           <p class="section-intro">{t.work.intro}</p>
         </div>
 
-        <ProjectVersionCarousel id="myanalyze-history" lang={lang} versions={projectVersions}>
-          {projectVersions.map((version) => <article class:list={["project", { "project-current": version.screens }]} aria-label={"IleZostaje " + version.version}>
+        <ProjectVersionCarousel id="ilezostaje-history" lang={lang} versions={projectVersions}>
+          <IleZostajeShowcase lang={lang} />
+          {projectVersions.slice(1).map((version) => <article class:list={["project", { "project-current": version.screens }]} aria-label={"IleZostaje " + version.version}>
             <div class="project-copy">
               <p class="project-label">{version.label}</p>
               <h3>{version.title}</h3>
@@ -790,7 +776,7 @@ const schema = {
               <div class="tags">{version.features.map((feature) => <span>{feature}</span>)}</div>
               <div class="project-actions">
                 {version.downloadUrl && <a class="button primary" href={version.downloadUrl}>{lang === "pl" ? "Pobierz na Windows" : "Download for Windows"}</a>}
-                <a class="button secondary" href={myAnalyzePublicUrl} target="_blank" rel="noreferrer">{t.work.projectButton}</a>
+                <a class="button secondary" href={ILEZOSTAJE_STORE_URL} target="_blank" rel="noopener noreferrer">{t.work.projectButton}</a>
                 {version.releaseUrl && <a class="button secondary" href={version.releaseUrl} target="_blank" rel="noreferrer">{version.releaseLabel}</a>}
               </div>
             </div>
@@ -864,7 +850,7 @@ const schema = {
 
           <div class="social-links">
             <a href="https://www.linkedin.com/in/mikdwo/" target="_blank" rel="noreferrer">LinkedIn</a>
-            <a href={myAnalyzePublicUrl} target="_blank" rel="noreferrer">{t.contact.github}</a>
+            <a href={publicGithubUrl} target="_blank" rel="noopener noreferrer">{t.contact.github}</a>
           </div>
         </div>
       </section>
