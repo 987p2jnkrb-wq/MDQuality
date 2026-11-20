@@ -9,18 +9,25 @@ const pl = lang === "pl";
 const trackId = `${id}-track`;
 ---
 
-<section class="version-carousel" data-version-carousel aria-label={pl ? "Historia wersji IleZostaje" : "IleZostaje version history"} aria-roledescription={pl ? "karuzela" : "carousel"}>
+<section class="version-carousel" data-version-carousel aria-label={pl ? "IleZostaje — produkt i historia rozwoju" : "IleZostaje product and release history"} aria-roledescription={pl ? "karuzela" : "carousel"}>
   <div class="version-heading">
-    <p>{pl ? "Historia rozwoju" : "Release history"}</p>
-    <span>{pl ? "Przesuń, aby zobaczyć starsze wersje" : "Swipe to explore earlier releases"}</span>
+    <p>{pl ? "IleZostaje · produkt i rozwój" : "IleZostaje · product and evolution"}</p>
+    <span>{pl ? "Dalej: wcześniejsze etapy projektu" : "Next: earlier product milestones"}</span>
   </div>
   <div class="version-track" id={trackId} data-version-track role="group" tabindex="0" aria-label={pl ? "Wersje projektu" : "Project versions"}>
     <slot />
   </div>
   <div class="version-controls">
+    <button class="version-arrow" type="button" data-version-previous aria-label={pl ? "Poprzedni slajd" : "Previous slide"} aria-controls={trackId} disabled>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m14 6-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+    </button>
     <div class="version-picker" aria-label={pl ? "Wybierz wersję" : "Choose a version"}>
       {versions.map((item, index) => <button type="button" data-version-index={index} data-version-number={item.version} aria-label={`${pl ? "Pokaż wersję" : "Show version"} ${item.version}`} aria-current={index === 0 ? "true" : undefined} aria-controls={trackId}><span class="version-dot" aria-hidden="true"></span></button>)}
     </div>
+    <button class="version-arrow" type="button" data-version-next aria-label={pl ? "Następny slajd" : "Next slide"} aria-controls={trackId}>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m10 6 6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" /></svg>
+    </button>
+    <span class="version-count" aria-hidden="true" data-version-count>01 / {String(versions.length).padStart(2, "0")}</span>
     <span class="sr-only" data-version-status aria-live="polite" aria-atomic="true" data-version-prefix={pl ? "Wersja" : "Version"}>{pl ? "Wersja" : "Version"} {versions[0].version}</span>
   </div>
 </section>
@@ -30,6 +37,9 @@ const trackId = `${id}-track`;
     const track = root.querySelector<HTMLElement>("[data-version-track]");
     const status = root.querySelector<HTMLElement>("[data-version-status]");
     const buttons = [...root.querySelectorAll<HTMLButtonElement>("[data-version-index]")];
+    const previous = root.querySelector<HTMLButtonElement>("[data-version-previous]");
+    const next = root.querySelector<HTMLButtonElement>("[data-version-next]");
+    const counter = root.querySelector<HTMLElement>("[data-version-count]");
     if (!track || !status) return;
     const slides = [...track.children].filter((child): child is HTMLElement => child instanceof HTMLElement);
     let active = 0;
@@ -47,6 +57,9 @@ const trackId = `${id}-track`;
       });
       slides.forEach((slide, position) => { slide.inert = position !== index; });
       status.textContent = `${status.dataset.versionPrefix} ${buttons[index].dataset.versionNumber}`;
+      if (previous) previous.disabled = index === 0;
+      if (next) next.disabled = index === slides.length - 1;
+      if (counter) counter.textContent = `${String(index + 1).padStart(2, "0")} / ${String(slides.length).padStart(2, "0")}`;
       syncHeight();
     };
     const show = (index: number, animate = true) => {
@@ -54,6 +67,8 @@ const trackId = `${id}-track`;
       track.scrollTo({ left: slides[selected].offsetLeft, behavior: animate && !reducedMotion.matches ? "smooth" : "instant" });
     };
     buttons.forEach((button, index) => button.addEventListener("click", () => show(index)));
+    previous?.addEventListener("click", () => show(active - 1));
+    next?.addEventListener("click", () => show(active + 1));
     track.addEventListener("keydown", (event) => {
       if (event.target !== track) return;
       const requested = event.key === "ArrowRight" ? active + 1 : event.key === "ArrowLeft" ? active - 1 : event.key === "Home" ? 0 : event.key === "End" ? slides.length - 1 : null;
@@ -86,7 +101,12 @@ const trackId = `${id}-track`;
   .version-track { position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: 100%; align-items: start; gap: 16px; min-width: 0; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scrollbar-width: none; }
   .version-track > :global(*) { min-width: 0; scroll-snap-align: start; scroll-snap-stop: always; }
   .version-track::-webkit-scrollbar { display: none; }
-  .version-controls { display: flex; justify-content: center; margin-top: 6px; }
+  .version-controls { display: flex; justify-content: center; align-items: center; gap: 5px; margin-top: 9px; }
+  .version-arrow { width: 35px; height: 35px; border: 1px solid #33445b; border-radius: 9px; color: #cfe4f4; background: #121c29; }
+  .version-arrow svg { width: 17px; height: 17px; }
+  .version-arrow:hover:not(:disabled) { background: #1b2b3d; border-color: #6195bb; }
+  .version-arrow:disabled { opacity: .33; cursor: default; }
+  .version-count { min-width: 57px; text-align: right; color: #8397ad; font-size: 11px; font-variant-numeric: tabular-nums; }
   .version-picker { display: flex; gap: 0; }
   button { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 0; padding: 0; background: transparent; cursor: pointer; border-radius: 50%; }
   .version-dot { width: 7px; height: 7px; background: #465569; border-radius: 50%; transition: background .15s ease, transform .15s ease; }

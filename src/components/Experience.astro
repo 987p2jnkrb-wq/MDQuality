@@ -1,4 +1,6 @@
 ---
+import { ILEZOSTAJE_STORE_URL } from "../lib/ilezostaje";
+
 interface Props { lang: string; }
 const { lang } = Astro.props;
 const pl = lang === "pl";
@@ -33,12 +35,12 @@ const text = pl ? {
   projectText: "Zbudowałem aplikację do finansów osobistych: od projektu interfejsu i logiki działania po implementację, testy, dokumentację i wydania. Wykorzystuję w niej doświadczenie z codziennej pracy przy aplikacjach.",
   resultsTitle: "Co można sprawdzić",
   results: [
-    "Opublikowana wersja 4.1.0 z instalatorem Windows i interfejsem mobilnym w PL i EN.",
+    "IleZostaje 1.0 na Windows, z interfejsem w języku polskim i angielskim.",
     "Import CSV/PDF, historia transakcji, konta, cele i prognozy w jednym produkcie.",
     "Testy UI i API, regresja na tymczasowych bazach SQLite oraz build i testy w CI.",
   ],
   projectMethod: "AI wykorzystuję do projektowania, kodowania i diagnostyki. Sam ustalam zakres zmian i sprawdzam ich działanie.",
-  projectLink: "Aplikacja i wydania",
+  projectLink: "Zobacz w Microsoft Store",
   evidence: "Historia rozwoju i przykłady",
 } : {
   label: "PROFESSIONAL EXPERIENCE",
@@ -62,12 +64,12 @@ const text = pl ? {
   projectText: "I built IleZostaje from idea to release, covering interface design, application logic, development, testing and documentation.",
   resultsTitle: "What you can review",
   results: [
-    "Published version 4.1.0 with a Windows installer, mobile interface, and Polish and English UI.",
+    "IleZostaje 1.0 for Windows, with Polish and English interfaces.",
     "CSV/PDF imports, transaction history, accounts, goals and forecasts in one product.",
     "UI and API tests, regression testing with temporary SQLite databases, and automated builds and tests in CI.",
   ],
   projectMethod: "I use AI for design, coding and diagnostics. I decide the scope of changes and verify how they work.",
-  projectLink: "Application and releases",
+  projectLink: "View on Microsoft Store",
   evidence: "Development history and examples",
 };
 ---
@@ -105,7 +107,7 @@ const text = pl ? {
       <ul class="results">{text.results.map((result) => <li>{result}</li>)}</ul>
       <p>{text.projectMethod}</p>
       <div class="project-links">
-        <a class="project-button" href="https://github.com/987p2jnkrb-wq/MyAnalyze-releases" target="_blank" rel="noreferrer">{text.projectLink} <span aria-hidden="true">↗</span></a>
+        <a class="project-button" href={ILEZOSTAJE_STORE_URL} target="_blank" rel="noopener noreferrer">{text.projectLink} <span aria-hidden="true">↗</span></a>
         <a href={pl ? "/pl/#work" : "/#work"}>{text.evidence}</a>
       </div>
     </section>
