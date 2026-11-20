@@ -143,9 +143,9 @@ const copy = {
       eyebrow: "SELECTED WORK",
       title: "A product you can inspect, not just a claim.",
       intro:
-        "MyAnalyze is the clearest example of how I turn an idea into a working product and keep improving it across real releases.",
-      caseLabel: "PERSONAL PRODUCT · WINDOWS + MOBILE",
-      caseTitle: "MyAnalyze 4.0 · Finance on desktop and mobile",
+        "IleZostaje is my offline-first personal finance app. The gallery also documents earlier development milestones.",
+      caseLabel: "PERSONAL PRODUCT · WINDOWS DESKTOP",
+      caseTitle: "IleZostaje 1.0 · Personal finance offline",
       caseText:
         "Mobile transaction history with statuses and month filters. Swipeable KPIs, individually selected signals and shortcuts with saved ordering. Accounts, goals, imports and forecasts remain part of the same product.",
       proofLabel: "WHAT TO LOOK AT",
@@ -157,8 +157,8 @@ const copy = {
         "Design decisions balanced with usability and business rules",
       ],
       projectButton: "Public project page",
-      releaseButton: "Release 4.0",
-      detailsLabel: "See MyAnalyze quality evidence",
+      releaseButton: "Earlier releases",
+      detailsLabel: "See IleZostaje quality evidence",
     },
     toolkit: {
       eyebrow: "TOOLKIT",
@@ -321,9 +321,9 @@ const copy = {
       eyebrow: "WYBRANA REALIZACJA",
       title: "Produkt, który można realnie ocenić.",
       intro:
-        "MyAnalyze najlepiej pokazuje, jak przekładam pomysł na działający produkt, rozwijam go przez kolejne wersje i dbam o jakość na każdym etapie.",
-      caseLabel: "WŁASNY PRODUKT · WINDOWS + MOBILE",
-      caseTitle: "MyAnalyze 4.0 · Finanse na komputerze i telefonie",
+        "IleZostaje to moja lokalna aplikacja finansowa. Galeria dokumentuje również wcześniejsze etapy jej rozwoju.",
+      caseLabel: "WŁASNY PRODUKT · WINDOWS DESKTOP",
+      caseTitle: "IleZostaje 1.0 · Finanse offline",
       caseText:
         "Mobilna historia transakcji ze statusami i filtrami miesięcy. Przewijane KPI, pojedynczo wybierane sygnały oraz skróty z własną kolejnością. Konta, cele, import i prognozy dostępne w tym samym produkcie.",
       proofLabel: "NA CO WARTO ZWRÓCIĆ UWAGĘ",
@@ -335,8 +335,8 @@ const copy = {
         "Decyzje projektowe łączące design, użyteczność i reguły biznesowe",
       ],
       projectButton: "Publiczna strona projektu",
-      releaseButton: "Wydanie 4.0",
-      detailsLabel: "Zobacz szczegóły jakości MyAnalyze",
+      releaseButton: "Poprzednie wersje",
+      detailsLabel: "Zobacz szczegóły jakości IleZostaje",
     },
     toolkit: {
       eyebrow: "NARZĘDZIA",
@@ -379,7 +379,7 @@ const pageCopy = lang === "pl" ? {
   badge: "TESTOWANIE, DIAGNOSTYKA I ROZWÓJ APLIKACJI",
   title: "Pomagam sprawdzać, usprawniać", accent: "i rozwijać aplikacje.",
   text: "Łączę testowanie i diagnostykę z poprawkami kodu oraz automatyzacją. Korzystam z AI, a efekty weryfikuję w praktyce.",
-  help: "Jak mogę pomóc", project: "Zobacz MyAnalyze", details: "Poznaj ofertę i sposób współpracy",
+  help: "Jak mogę pomóc", project: "Zobacz IleZostaje", details: "Poznaj ofertę i sposób współpracy",
   offerTitle: "Wsparcie dopasowane do problemu.",
   offerText: "Testowanie, diagnostyka i rozwój aplikacji - w ramach konkretnego zadania, etatu lub dłuższej współpracy.",
   collaborationTitle: "Etat i dłuższa współpraca",
@@ -397,7 +397,7 @@ const pageCopy = lang === "pl" ? {
   badge: "TESTING, DIAGNOSTICS AND APPLICATION DEVELOPMENT",
   title: "I help test, improve", accent: "and develop applications.",
   text: "I combine testing and diagnostics with focused code improvements and automation. I use AI and verify the results in practice.",
-  help: "How I can help", project: "Explore MyAnalyze", details: "Explore services and how I work",
+  help: "How I can help", project: "Explore IleZostaje", details: "Explore services and how I work",
   offerTitle: "Support shaped around your problem.",
   offerText: "Application testing, diagnostics and development - through a focused project, employment or longer-term collaboration.",
   collaborationTitle: "Employment and longer-term collaboration",
@@ -412,7 +412,7 @@ const pageCopy = lang === "pl" ? {
   ]
 };
 const pageTitle = `${isHome ? (lang === "pl" ? "Testowanie, diagnostyka i rozwój aplikacji" : "Testing, diagnostics and application development") : isOffer ? pageCopy.offer : pageCopy.experience} | MD Quality`;
-const pageDescription = isHome ? pageCopy.text : isOffer ? pageCopy.offerText : (lang === "pl" ? "Mikołaj Dworak - w IT od 2020 roku. Wsparcie aplikacji, testowanie, diagnostyka i własny projekt MyAnalyze." : "Mikołaj Dworak - working in IT since 2020. Application support, testing, diagnostics and the MyAnalyze personal project.");
+const pageDescription = isHome ? pageCopy.text : isOffer ? pageCopy.offerText : (lang === "pl" ? "Mikołaj Dworak - w IT od 2020 roku. Wsparcie aplikacji, testowanie, diagnostyka i własny projekt IleZostaje." : "Mikołaj Dworak - working in IT since 2020. Application support, testing, diagnostics and the IleZostaje personal project.");
 const sampleReportPath = lang === "pl" ? "/pl/sample-qa-report/" : "/sample-qa-report/";
 const homePath = lang === "pl" ? "/pl/" : "/";
 
@@ -500,22 +500,34 @@ const releaseScreens410 = [
 
 const projectVersions = [
   {
+    version: "1.0.0",
+    label: t.work.caseLabel,
+    title: t.work.caseTitle,
+    summary: lang === "pl"
+      ? "Finanse osobiste w jednym miejscu: konta, transakcje, import CSV/PDF, planowanie i analiza. Dane pozostają lokalnie. Galeria obejmuje też wcześniejsze etapy interfejsu."
+      : "Personal finance in one place: accounts, transactions, CSV/PDF import, planning and analysis. Records stay local. Gallery images also show earlier interface stages.",
+    image: projectScreens[1],
+    features: lang === "pl" ? ["Windows", "Dane lokalne", "Import", "Analiza"] : ["Windows", "Local data", "Import", "Analysis"],
+    releaseUrl: null,
+    downloadUrl: null,
+  },
+  {
     version: "4.2.0",
     label: t.work.caseLabel,
-    title: lang === "pl" ? "MyAnalyze 4.2 · Finanse, planowanie i analiza w jednym miejscu" : "MyAnalyze 4.2 · Finance, planning and analysis in one place",
-    summary: lang === "pl" ? "Konta, transakcje, cele, import wyciągów i prognozy w jednej aplikacji do finansów osobistych. MyAnalyze pomaga uporządkować codzienne finanse, zrozumieć wydatki i planować kolejne kroki. Dane są przechowywane lokalnie, a interfejs jest dostępny na komputerze i telefonie." : "Accounts, transactions, goals, statement imports and forecasts in one personal finance app. MyAnalyze helps you organize everyday finances, understand your spending and plan ahead. Data is stored locally, with an interface for desktop and mobile.",
+    title: lang === "pl" ? "Archiwum 4.2 · Import i analiza" : "Archive 4.2 · Import and analysis",
+    summary: lang === "pl" ? "Konta, transakcje, cele, import wyciągów i prognozy w jednej aplikacji do finansów osobistych. IleZostaje pomaga uporządkować codzienne finanse, zrozumieć wydatki i planować kolejne kroki. Dane są przechowywane lokalnie, a interfejs jest dostępny na komputerze i telefonie." : "Accounts, transactions, goals, statement imports and forecasts in one personal finance app. IleZostaje helps you organize everyday finances, understand your spending and plan ahead. Data is stored locally, with an interface for desktop and mobile.",
     value: lang === "pl" ? "Od projektu widoku po reguły obliczeń dbam o to, żeby użytkownik rozumiał, skąd bierze się wynik." : "From screen design to calculation rules, I work to make the result understandable to the person using the app.",
     image: releaseScreens420[1],
     screens: releaseScreens420,
     features: lang === "pl" ? ["Finanse osobiste", "Planowanie", "Analiza"] : ["Personal finance", "Planning", "Analysis"],
-    releaseUrl: myAnalyzePublicUrl + "/releases/tag/v4.2.0",
+    releaseUrl: null,
     releaseLabel: lang === "pl" ? "Wydanie 4.2.0" : "Release 4.2.0",
-    downloadUrl: myAnalyzePublicUrl + "/releases/download/v4.2.0/MyAnalyze.Setup.4.2.0.exe",
+    downloadUrl: null,
   },
   {
     version: "4.1.0",
     label: t.work.caseLabel,
-    title: lang === "pl" ? "MyAnalyze 4.1 · Lokaty, inwestycje i IKE/IKZE" : "MyAnalyze 4.1 · Deposits, investments and IKE/IKZE",
+    title: lang === "pl" ? "Archiwum 4.1 · Lokaty i inwestycje" : "Archive 4.1 · Deposits and investments",
     summary: lang === "pl" ? "Wersja 4.1 rozbudowała obsługę lokat (kapitał, oprocentowanie, termin i historia wyceny), inwestycji (koszt zakupu i bieżąca wartość) oraz kont emerytalnych IKE i IKZE. Uporządkowała też podział na środki dostępne na co dzień i oszczędności długoterminowe, a także poprawiła interfejs na komputerze i telefonie." : "Version 4.1 added deposit tracking (principal, interest, maturity and valuation history), investments (acquisition cost and current value), and Polish IKE/IKZE retirement accounts. It also clarified spendable funds versus long-term savings and refined the desktop and mobile interface.",
     image: releaseScreens410[0],
     screens: releaseScreens410,
@@ -527,7 +539,7 @@ const projectVersions = [
   {
     version: "4.0",
     label: t.work.caseLabel,
-    title: t.work.caseTitle,
+    title: lang === "pl" ? "Archiwum 4.0 · Interfejs mobilny" : "Archive 4.0 · Mobile interface",
     summary: t.work.caseText,
     image: projectScreens[0],
     features: lang === "pl" ? ["Widok mobilny", "Gesty", "Personalizacja"] : ["Mobile views", "Gestures", "Customization"],
@@ -782,7 +794,7 @@ const schema = {
         </div>
 
         <ProjectVersionCarousel id="myanalyze-history" lang={lang} versions={projectVersions}>
-          {projectVersions.map((version) => <article class:list={["project", { "project-current": version.screens }]} aria-label={"MyAnalyze " + version.version}>
+          {projectVersions.map((version) => <article class:list={["project", { "project-current": version.screens }]} aria-label={"IleZostaje " + version.version}>
             <div class="project-copy">
               <p class="project-label">{version.label}</p>
               <h3>{version.title}</h3>
@@ -795,16 +807,16 @@ const schema = {
                 {version.releaseUrl && <a class="button secondary" href={version.releaseUrl} target="_blank" rel="noreferrer">{version.releaseLabel}</a>}
               </div>
             </div>
-            {version.screens ? <div class="project-mobile-gallery" style={`--screen-count: ${version.screens.length}`} tabindex="0" role="group" aria-label={lang === "pl" ? `Zrzuty ekranu MyAnalyze ${version.version}. Przewiń, aby zobaczyć kolejne.` : `MyAnalyze ${version.version} screenshots. Scroll to see more.`}>
+            {version.screens ? <div class="project-mobile-gallery" style={`--screen-count: ${version.screens.length}`} tabindex="0" role="group" aria-label={lang === "pl" ? `Zrzuty ekranu IleZostaje ${version.version}. Przewiń, aby zobaczyć kolejne.` : `IleZostaje ${version.version} screenshots. Scroll to see more.`}>
               {version.screens.map((screen) => screen.isVideo ? <div class="mobile-screen mobile-demo">
                 <video src={screen.src} poster={screen.poster ?? undefined} width={screen.width} height={screen.height} controls playsinline preload="metadata" aria-label={screen.title}></video>
                 <span>{screen.title}</span>
               </div> : <a class="mobile-screen" href={screen.src} target="_blank" rel="noreferrer">
-                <img src={screen.src} alt={"MyAnalyze " + version.version + " - " + screen.title} width={screen.width} height={screen.height} loading="lazy" decoding="async" />
+                <img src={screen.src} alt={"IleZostaje " + version.version + " - " + screen.title} width={screen.width} height={screen.height} loading="lazy" decoding="async" />
                 <span>{screen.title}</span>
               </a>)}
             </div> : <a class:list={["project-preview", "project-image-link", { "project-mobile-preview": version.image.height > version.image.width }]} style={"--preview-aspect: " + version.image.width + " / " + version.image.height} href={version.image.src} target="_blank" rel="noreferrer">
-              <img src={version.image.src} alt={"MyAnalyze " + version.version + " - " + version.image.title} width={version.image.width} height={version.image.height} loading="lazy" decoding="async" />
+              <img src={version.image.src} alt={"IleZostaje " + version.version + " - " + version.image.title} width={version.image.width} height={version.image.height} loading="lazy" decoding="async" />
             </a>}
           </article>)}
         </ProjectVersionCarousel>
@@ -823,7 +835,7 @@ const schema = {
             <div class="project-gallery">
               {projectScreens.slice(1).map((screen) => (
                   <a class="project-shot" href={screen.src} target="_blank" rel="noreferrer">
-                  <img src={screen.src} alt={"MyAnalyze - " + screen.title} width={screen.width} height={screen.height} loading="lazy" decoding="async" />
+                  <img src={screen.src} alt={"IleZostaje - " + screen.title} width={screen.width} height={screen.height} loading="lazy" decoding="async" />
                   <span>{screen.title}</span>
                 </a>
               ))}
@@ -885,6 +897,9 @@ const schema = {
         </a>
         <a href={lang === "pl" ? "/pl/terms/" : "/terms/"}>
           {lang === "pl" ? "Warunki korzystania" : "Website terms"}
+        </a>
+        <a href={lang === "pl" ? "/pl/ilezostaje/privacy/" : "/ilezostaje/privacy/"}>
+          {lang === "pl" ? "Prywatność IleZostaje" : "IleZostaje privacy"}
         </a>
       </div>
     </footer>
